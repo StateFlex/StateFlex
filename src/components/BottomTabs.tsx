@@ -5,6 +5,7 @@ import Tab from '@material-ui/core/Tab';
 import Tooltip from '@material-ui/core/Tooltip';
 import HtmlAttr from './HtmlAttr';
 import CodePreview from './CodePreview';
+import ReactCodePreview from './ReactCodePreview'
 import { ComponentInt, ComponentsInt, ChildInt } from '../utils/InterfaceDefinitions';
 import ComponentReduxSetup from './ComponentReduxSetup';
 
@@ -143,6 +144,16 @@ class BottomTabs extends Component<PropsInt> {
               label={'edit HTML child attributes'}
             />
           </Tooltip>
+          <Tooltip
+            title="react code preview"
+            aria-label="react code preview"
+            placement="top">
+            <Tab
+              disableRipple
+              classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+              label={'react code preview'}
+            />
+          </Tooltip>
         </Tabs>
         <div id="code-preview-outer">
           {value === 0 && <CodePreview focusComponent={focusComponent} components={components} />}
@@ -151,6 +162,7 @@ class BottomTabs extends Component<PropsInt> {
           {value === 2 && focusChild.childType !== 'HTML' && (
             <p>select an HTML element to view attributes</p>
           )}
+          {value === 3 && <ReactCodePreview focusComponent={focusComponent} components={components} />}
         </div>
       </div>
     );
