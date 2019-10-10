@@ -55,6 +55,7 @@ interface StateInt {
 const mapStateToProps = (store: StoreInterface) => ({
   components: store.workspace.components,
   storeConfig: store.workspace.storeConfig,
+  reduxView: store.workspace.reduxView
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -79,6 +80,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   stateComponents: ComponentsInt;
   }) => dispatch(actions.deleteComponent({ componentId, stateComponents })),
   deleteAllData: () => dispatch(actions.deleteAllData()),
+  createNewProject: (reduxView: boolean) => dispatch(actions.createNewProject(reduxView)),
   createApp: ({
     path,
     components,
@@ -168,6 +170,24 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
         primBtnLabel: null,
         secBtnAction: () => {
           this.props.deleteAllData();
+          this.closeModal();
+        },
+      }),
+    });
+  };
+
+  newProject = () => {
+    this.setState({
+      modal: createModal({
+        message: 'create new project?',
+        closeModal: this.closeModal,
+        secBtnLabel: 'create new project',
+        open: true,
+        children: null,
+        primBtnAction: null,
+        primBtnLabel: null,
+        secBtnAction: () => {
+          this.props.createNewProject(this.props.reduxView);
           this.closeModal();
         },
       }),
@@ -301,6 +321,27 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
               backgroundColor: '#F64C72',
             }}>
             clear workspace
+          </Button>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+          }}>
+          <Button
+            aria-label="New Project"
+            variant="contained"
+            fullWidth
+            onClick={this.newProject}
+            className={classes.clearButton}
+            style={{
+              borderRadius: '10px',
+              margin: '2px',
+              color: 'white',
+              backgroundColor: '#F64C72',
+            }}>
+            new project
           </Button>
         </div>
       </div>

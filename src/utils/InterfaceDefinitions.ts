@@ -56,6 +56,7 @@ export interface ApplicationStateInt {
   appDir: string;
   loading: boolean;
   storeConfig: StoreConfigInterface;
+  reduxView: boolean;
 }
 
 export interface StoreInterface {

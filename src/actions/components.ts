@@ -31,6 +31,7 @@ import {
   DELETE_PROP,
   ADD_PROP,
   DELETE_ALL_DATA,
+  CREATE_NEW_PROJECT,
   UPDATE_HTML_ATTR,
   UPDATE_CHILDREN_SORT,
   ADD_SELECTOR,
@@ -242,6 +243,10 @@ export const openExpansionPanel = (component: ComponentInt) => ({
 export const deleteAllData = () => ({
   type: DELETE_ALL_DATA,
 });
+
+export const createNewProject = (reduxView: boolean) => (dispatch: any) => {
+  dispatch({ type: CREATE_NEW_PROJECT, payload: reduxView });
+};
 
 export const deleteProp = (propId: number) => (dispatch: any) => {
   dispatch({ type: DELETE_PROP, payload: propId });

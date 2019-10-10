@@ -75,6 +75,7 @@ const initialApplicationState: ApplicationStateInt = {
   appDir: '',
   loading: false,
   storeConfig: { interfaces: {}, reducers: {} },
+  reduxView: true
 };
 
 const componentReducer = (state = initialApplicationState, action: any) => {
@@ -120,6 +121,9 @@ const componentReducer = (state = initialApplicationState, action: any) => {
       return openExpansionPanel(state, action.payload);
     case types.DELETE_ALL_DATA:
       return initialApplicationState;
+    case types.CREATE_NEW_PROJECT:
+      console.log('reduxView is', action.payload);
+      return { ...initialApplicationState, reduxView: action.payload ? false : true };
     case types.ADD_PROP:
       return addProp(state, action.payload);
     case types.DELETE_PROP:

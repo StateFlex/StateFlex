@@ -28,6 +28,13 @@ const initialComponentState: ComponentInt = {
   actions: [],
 };
 
+// export const createNewProject = (state: ApplicationStateInt, reduxView: boolean) => {
+//   return {
+//     ...state,
+//     reduxView: reduxView ? false : true
+//   };
+// };
+
 export const addComponent = (state: ApplicationStateInt, { title }: { title: string }) => {
   // remove whitespace and digits, capitalize first char
   const strippedTitle = title
