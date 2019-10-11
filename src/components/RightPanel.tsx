@@ -16,7 +16,7 @@ const RightPanel = (props: any) => {
   return (
     <div className="right-panel">
       <Interfaces />
-      <Reducers />
+      {props.reduxView && <Reducers />}
     </div>
   );
 };

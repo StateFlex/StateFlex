@@ -17,6 +17,7 @@ interface PropsInt {
   focusComponent?: ComponentInt;
   classes?: any;
   focusChild?: any;
+  reduxView?: boolean;
 }
 
 interface StateInt {
@@ -55,6 +56,7 @@ const mapStateToProps = (store: any) => ({
   focusComponent: store.workspace.focusComponent,
   focusChild: store.workspace.focusChild,
   components: store.workspace.components,
+  reduxView: store.workspace.reduxView
 });
 
 class MainContainer extends Component<PropsInt, StateInt> {
@@ -90,7 +92,7 @@ class MainContainer extends Component<PropsInt, StateInt> {
   render() {
     const { modal } = this.state;
     const {
-      components, focusComponent, focusChild, classes,
+      components, focusComponent, focusChild, classes, reduxView
     } = this.props;
     const { main }: any = this;
 
@@ -106,9 +108,9 @@ class MainContainer extends Component<PropsInt, StateInt> {
                 focusComponent={focusComponent}
                 classes={classes}></TreeDisplay>
             </div>
-            {this.state.windowWidth >= 800 ? <RightPanel /> : ''}
+            {this.state.windowWidth >= 800 ? <RightPanel reduxView={reduxView} /> : ''}
           </div>
-          {this.state.windowWidth >= 800 ? <BottomPanel focusComponent={focusComponent} /> : ''}
+          {this.state.windowWidth >= 800 ? <BottomPanel focusComponent={focusComponent} reduxView={reduxView} /> : ''}
         </div>
       </MuiThemeProvider>
     );
