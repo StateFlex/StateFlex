@@ -110,7 +110,7 @@ class MainContainer extends Component<PropsInt, StateInt> {
             </div>
             {this.state.windowWidth >= 800 ? <RightPanel reduxView={reduxView} /> : ''}
           </div>
-          {this.state.windowWidth >= 800 ? <BottomPanel focusComponent={focusComponent} /> : ''}
+          {this.state.windowWidth >= 800 ? <BottomPanel focusComponent={focusComponent} reduxView={reduxView} /> : ''}
         </div>
       </MuiThemeProvider>
     );

@@ -17,11 +17,12 @@ interface PropsInt {
   focusChild: ChildInt;
   components: ComponentsInt;
   focusComponent: ComponentInt;
+  reduxView: boolean;
 }
 
 class BottomPanel extends Component<PropsInt> {
   render() {
-    const { components, focusComponent, focusChild } = this.props;
+    const { components, focusComponent, focusChild, reduxView } = this.props;
 
     return (
       <div className="bottom-panel" style={{ width: '100%' }}>
@@ -29,6 +30,7 @@ class BottomPanel extends Component<PropsInt> {
           components={components}
           focusComponent={focusComponent}
           focusChild={focusChild}
+          reduxView={reduxView}
         />
       </div>
     );

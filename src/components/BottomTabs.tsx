@@ -14,6 +14,7 @@ interface PropsInt {
   components: ComponentsInt;
   focusComponent: ComponentInt;
   classes: any;
+  reduxView: boolean;
 }
 
 // interface TreeInt {
@@ -104,7 +105,7 @@ class BottomTabs extends Component<PropsInt> {
 
   render() {
     const {
-      classes, components, focusComponent, focusChild,
+      classes, components, focusComponent, focusChild, reduxView
     } = this.props;
     const { value } = this.state;
 
@@ -119,11 +120,24 @@ class BottomTabs extends Component<PropsInt> {
           value={value}
           onChange={this.handleChange}
           classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}>
+          {reduxView ?          
           <Tab
             disableRipple
             classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
             label="code preview"
           />
+          :
+          <Tooltip
+            title="react code preview"
+            aria-label="react code preview"
+            placement="top">
+            <Tab
+              disableRipple
+              classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+              label={'react code preview'}
+            />
+          </Tooltip>
+          }
           <Tooltip
             title="give selected component local state and/or connections to the redux store/actions"
             aria-label="give selected component local state and/or connections to the redux store/actions"
@@ -144,7 +158,7 @@ class BottomTabs extends Component<PropsInt> {
               label={'edit HTML child attributes'}
             />
           </Tooltip>
-          <Tooltip
+          {/* <Tooltip
             title="react code preview"
             aria-label="react code preview"
             placement="top">
@@ -153,16 +167,34 @@ class BottomTabs extends Component<PropsInt> {
               classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
               label={'react code preview'}
             />
-          </Tooltip>
+          </Tooltip> */}
         </Tabs>
         <div id="code-preview-outer">
-          {value === 0 && <CodePreview focusComponent={focusComponent} components={components} />}
-          {value === 1 && <ComponentReduxSetup focusComponent={focusComponent} />}
+          {/* {(reduxView && value === 0) ? 
+          <CodePreview focusComponent={focusComponent} components={components} />  
+          :
+          <ReactCodePreview focusComponent={focusComponent} components={components} />
+          } */}
+          {reduxView && value === 0 && <CodePreview focusComponent={focusComponent} components={components} />}
+          {!reduxView && value === 0 && <ReactCodePreview focusComponent={focusComponent} components={components} />}
+          {reduxView && value === 1 && <ComponentReduxSetup focusComponent={focusComponent} />}
+          {!reduxView && value === 1 && <ComponentReduxSetup focusComponent={focusComponent} />}
+          {reduxView && value === 2 && focusChild.childType === 'HTML' && <HtmlAttr />}
+          {!reduxView && value === 2 && focusChild.childType === 'HTML' && <HtmlAttr />}
+          {reduxView && value === 2 && focusChild.childType !== 'HTML' && (
+            <p>select an HTML element to view attributes</p>
+          )}
+          {!reduxView && value === 2 && focusChild.childType !== 'HTML' && (
+            <p>select an HTML element to view attributes</p>
+          )}
+          
+          {/* {value === 0 && <CodePreview focusComponent={focusComponent} components={components} />} */}
+          {/* {value === 1 && <ComponentReduxSetup focusComponent={focusComponent} />}
           {value === 2 && focusChild.childType === 'HTML' && <HtmlAttr />}
           {value === 2 && focusChild.childType !== 'HTML' && (
             <p>select an HTML element to view attributes</p>
-          )}
-          {value === 3 && <ReactCodePreview focusComponent={focusComponent} components={components} />}
+          )} */}
+          {/* {value === 3 && <ReactCodePreview focusComponent={focusComponent} components={components} />} */}
         </div>
       </div>
     );
