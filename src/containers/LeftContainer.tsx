@@ -43,6 +43,8 @@ interface PropsInt {
   deleteComponent: any;
   createApp: any;
   deleteAllData: any;
+  createNewProject: any;
+  reduxView: boolean;
 }
 
 interface StateInt {
@@ -52,11 +54,14 @@ interface StateInt {
   genOption: number;
 }
 
-const mapStateToProps = (store: StoreInterface) => ({
-  components: store.workspace.components,
-  storeConfig: store.workspace.storeConfig,
-  reduxView: store.workspace.reduxView
-});
+const mapStateToProps = (store: StoreInterface) => {
+  console.log('store.workspace', store.workspace)
+  return {
+    components: store.workspace.components,
+    storeConfig: store.workspace.storeConfig,
+    reduxView: store.workspace.reduxView
+  }
+};
 
 const mapDispatchToProps = (dispatch: any) => ({
   addComponent: ({ title }: { title: string }) => dispatch(actions.addComponent({ title })),
@@ -79,7 +84,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   componentId: number;
   stateComponents: ComponentsInt;
   }) => dispatch(actions.deleteComponent({ componentId, stateComponents })),
-  deleteAllData: () => dispatch(actions.deleteAllData()),
+  deleteAllData: (reduxView: boolean) => dispatch(actions.deleteAllData(reduxView)),
   createNewProject: (reduxView: boolean) => dispatch(actions.createNewProject(reduxView)),
   createApp: ({
     path,
@@ -169,7 +174,8 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
         primBtnAction: null,
         primBtnLabel: null,
         secBtnAction: () => {
-          this.props.deleteAllData();
+          console.log('in clearWorspace', this.props)
+          this.props.deleteAllData(this.props.reduxView);
           this.closeModal();
         },
       }),
@@ -187,6 +193,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
         primBtnAction: null,
         primBtnLabel: null,
         secBtnAction: () => {
+          console.log('in newProject', this.props)
           this.props.createNewProject(this.props.reduxView);
           this.closeModal();
         },

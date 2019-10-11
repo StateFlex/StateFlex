@@ -240,9 +240,9 @@ export const openExpansionPanel = (component: ComponentInt) => ({
   payload: { component },
 });
 
-export const deleteAllData = () => ({
-  type: DELETE_ALL_DATA,
-});
+export const deleteAllData = (reduxView: boolean) => (dispatch: any) => {
+  dispatch({ type: DELETE_ALL_DATA, payload: reduxView });
+};
 
 export const createNewProject = (reduxView: boolean) => (dispatch: any) => {
   dispatch({ type: CREATE_NEW_PROJECT, payload: reduxView });

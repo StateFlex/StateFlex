@@ -34,7 +34,7 @@ const styles = (theme: any) => ({
  * ,ust have unique id
  * ****************************** */
 
-function dataTable(props: any) {
+function reactDataTable(props: any) {
   const {
     classes, rowData, rowHeader, deletePropHandler, editHandler,
   } = props;
@@ -44,23 +44,24 @@ function dataTable(props: any) {
   ));
 
   function renderRowCells(row: any) {
+      console.log('row is', row)
     if (!row) return;
     return rowHeader.map((header: string, idx: number) => (
       <TableCell align={'center'} key={`${uuid.v4()}`}>
-        {row.toString()}
+        {row[header].toString()}
       </TableCell>
     ));
   }
   // style={{height: 30}}
   const renderRows = rowData.map((row: any) => (
-    console.log(row),
     <TableRow key={`${uuid.v4()}`}>
       {renderRowCells(row)}
       <TableCell align={'center'} padding={'none'}>
-        <IconButton color="default" onClick={() => deletePropHandler(row)}>
+        <IconButton color="default" onClick={() => deletePropHandler(row.id)}>
           <DeleteIcon />
         </IconButton>
-        <IconButton color="default" onClick={() => editHandler(row)}>
+        {/* currently not working */}
+        <IconButton color="default" onClick={() => editHandler(row.id)}>
           <CreateIcon />
         </IconButton>
       </TableCell>
@@ -69,7 +70,7 @@ function dataTable(props: any) {
 
   return (
     <Paper className={`${classes.root}, data-table`}>
-      <Table className={classes.table}>
+      <Table className={classes.table} selectable={'true'}>
         <TableHead>
           <TableRow>{renderHeader}</TableRow>
         </TableHead>
@@ -79,4 +80,4 @@ function dataTable(props: any) {
   );
 }
 
-export default withStyles(styles)(dataTable);
+export default withStyles(styles)(reactDataTable);
