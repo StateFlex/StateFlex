@@ -69,21 +69,27 @@ import {
         // .replace(/[a-z]+/gi, word => word[0].toUpperCase() + word.slice(1))
         // .replace(/[-_\s0-9\W]+/gi, '');
     }
+
+    function questionMark(required){
+      let output = '';
+      if(!required) output = '?';
+      return output;
+    }
   
     function componentNameGenerator(child: ChildInt) {
       if (child.childType === 'HTML') {
         switch (child.componentName) {
-          case 'Image':
+          case 'image':
             return 'img';
-          case 'Form':
+          case 'form':
             return 'form';
-          case 'Button':
+          case 'button':
             return 'button';
-          case 'Link':
+          case 'link':
             return 'a href=""';
-          case 'List':
+          case 'list':
             return 'ul';
-          case 'Paragraph':
+          case 'paragraph':
             return 'p';
           default:
             return 'div';
@@ -108,7 +114,7 @@ import {
       .join('\n')}
       
       type Props = {
-        ${props.map(prop => `${prop.key}: ${typeSwitcher(prop.type)}`).join('\n')}
+        ${props.map(prop => `${prop.key + questionMark(prop.required)}: ${typeSwitcher(prop.type)}`).join('\n')}
       }
   
       const ${title} = (props: Props) => {

@@ -128,6 +128,7 @@ const componentReducer = (state = initialApplicationState, action: any) => {
     case types.ADD_PROP:
       return addProp(state, action.payload);
     case types.DELETE_PROP:
+      console.log('delete prop is being fired')
       return deleteProp(state, action.payload);
     case types.UPDATE_HTML_ATTR:
       return updateHtmlAttr(state, action.payload);

@@ -36,7 +36,7 @@ const styles = (theme: any) => ({
 
 function reactDataTable(props: any) {
   const {
-    classes, rowData, rowHeader, deletePropHandler, editHandler,
+    classes, rowData, rowHeader, deletePropHandler, reactHandler,
   } = props;
 
   const renderHeader = rowHeader.map((col: any, idx: number) => (
@@ -44,7 +44,6 @@ function reactDataTable(props: any) {
   ));
 
   function renderRowCells(row: any) {
-      console.log('row is', row)
     if (!row) return;
     return rowHeader.map((header: string, idx: number) => (
       <TableCell align={'center'} key={`${uuid.v4()}`}>
@@ -53,6 +52,17 @@ function reactDataTable(props: any) {
     ));
   }
   // style={{height: 30}}
+
+//   const editHandler = (row) => {
+//     const name = row.match(/Name: \w+/)[0].slice(6);
+//     const type = row.match(/Type: \w+/)[0].slice(6);
+//     const initialValue = row.match(/Initial Value: \w+/)[0].slice(15);
+//     dispatch(deleteState(name));
+//     setEnteredName(name);
+//     setEnteredType(type);
+//     setEnteredValue(initialValue);
+//   };
+
   const renderRows = rowData.map((row: any) => (
     <TableRow key={`${uuid.v4()}`}>
       {renderRowCells(row)}
@@ -60,8 +70,7 @@ function reactDataTable(props: any) {
         <IconButton color="default" onClick={() => deletePropHandler(row.id)}>
           <DeleteIcon />
         </IconButton>
-        {/* currently not working */}
-        <IconButton color="default" onClick={() => editHandler(row.id)}>
+        <IconButton color="default" onClick={() => reactHandler(row, deletePropHandler)}>
           <CreateIcon />
         </IconButton>
       </TableCell>

@@ -127,6 +127,25 @@ class Props extends Component {
     });
   };
 
+  reactHandler = (row, callback) => {
+    const name = row._Key
+    const type = row.Type
+    const initialValue = row.Value
+    const isRequired = row.Required
+    this.setState({
+    propKey: name,
+    propValue: initialValue,
+    propRequired: isRequired,
+    propType: type,
+    });
+    return callback(row.id);
+    
+    // dispatch(deleteState(name));
+    // setEnteredName(name);
+    // setEnteredType(type);
+    // setEnteredValue(initialValue);
+    };
+
   handleAddProp = (event) => {
     event.preventDefault();
 
@@ -278,6 +297,7 @@ class Props extends Component {
                     rowHeader={rowHeader}
                     rowData={propsRows}
                     deletePropHandler={deleteProp}
+                    reactHandler={this.reactHandler}
                   />
                 </Grid>
                 <Grid item xs={1} />
