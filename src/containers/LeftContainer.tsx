@@ -55,7 +55,6 @@ interface StateInt {
 }
 
 const mapStateToProps = (store: StoreInterface) => {
-  console.log('store.workspace', store.workspace)
   return {
     components: store.workspace.components,
     storeConfig: store.workspace.storeConfig,
@@ -174,7 +173,6 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
         primBtnAction: null,
         primBtnLabel: null,
         secBtnAction: () => {
-          console.log('in clearWorspace', this.props)
           this.props.deleteAllData(this.props.reduxView);
           this.closeModal();
         },
@@ -193,7 +191,6 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
         primBtnAction: null,
         primBtnLabel: null,
         secBtnAction: () => {
-          console.log('in newProject', this.props)
           this.props.createNewProject(this.props.reduxView);
           this.closeModal();
         },
