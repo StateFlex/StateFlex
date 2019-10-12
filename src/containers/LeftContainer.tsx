@@ -55,7 +55,6 @@ interface StateInt {
 }
 
 const mapStateToProps = (store: StoreInterface) => {
-  console.log('store.workspace', store.workspace)
   return {
     components: store.workspace.components,
     storeConfig: store.workspace.storeConfig,
@@ -93,6 +92,7 @@ const mapDispatchToProps = (dispatch: any) => ({
     appName,
     exportAppBool,
     storeConfig,
+    reduxView
   }: {
   path: string;
   components: ComponentsInt;
@@ -100,6 +100,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   appName: string;
   exportAppBool: boolean;
   storeConfig: StoreConfigInterface;
+  reduxView: boolean;
   }) => dispatch(
     actions.createApplication({
       path,
@@ -108,6 +109,7 @@ const mapDispatchToProps = (dispatch: any) => ({
       appName,
       exportAppBool,
       storeConfig,
+      reduxView
     }),
   ),
 });
@@ -134,7 +136,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
     // Choose app dir
       const { components, storeConfig } = this.props;
       // const { genOption } = this.state;
-      const appName = 'preducksApp';
+      const appName = this.props.reduxView ? 'preducks app' : 'ReacType App';
       const exportAppBool = true;
       this.props.createApp({
         path: '',
@@ -143,6 +145,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
         appName,
         exportAppBool,
         storeConfig,
+        reduxView: this.props.reduxView
       });
     
   };
@@ -174,7 +177,6 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
         primBtnAction: null,
         primBtnLabel: null,
         secBtnAction: () => {
-          console.log('in clearWorspace', this.props)
           this.props.deleteAllData(this.props.reduxView);
           this.closeModal();
         },
@@ -183,17 +185,17 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
   };
 
   newProject = () => {
+    const message = this.props.reduxView ? 'React' : 'Redux';
     this.setState({
       modal: createModal({
-        message: 'create new project?',
+        message: `create new ${message} project?`,
         closeModal: this.closeModal,
-        secBtnLabel: 'create new project',
+        secBtnLabel: `create new ${message} project`,
         open: true,
         children: null,
         primBtnAction: null,
         primBtnLabel: null,
         secBtnAction: () => {
-          console.log('in newProject', this.props)
           this.props.createNewProject(this.props.reduxView);
           this.closeModal();
         },
