@@ -141,24 +141,26 @@ export const exportFiles = ({
   path,
   appName,
   exportAppBool,
+  reduxView
 }: {
 components: ComponentsInt;
 path: string;
 appName: string;
 exportAppBool: boolean;
+reduxView: boolean;
 }) => (dispatch: any) => {
   // this dispatch sets the global state property 'loading' to true until the createComponentFiles call resolves below
   // dispatch({
   //   type: EXPORT_FILES,
   // });
-
+  const zipFileName = reduxView ? 'preducksApp' : 'reactypeApp';
   const dir = createComponentFiles(components, path, appName, exportAppBool, zip);
   dispatch({
     type: EXPORT_FILES_SUCCESS,
     payload: { status: true, dir: dir[0] },
   });
   zip.generateAsync({type: "blob"}).then(blob => {
-    FileSaver.saveAs(blob, "preducksApp.zip");
+    FileSaver.saveAs(blob, `${appName}.zip`);
   }, function (err) {
     console.log(err);
   });
@@ -195,6 +197,7 @@ export const createApplication = ({
   appName = 'dope_exported_preducks_app',
   exportAppBool,
   storeConfig,
+  reduxView
 }: {
 path: string;
 components: ComponentsInt;
@@ -202,6 +205,7 @@ genOption: number;
 appName: string;
 exportAppBool: boolean;
 storeConfig: StoreConfigInterface;
+reduxView: boolean;
 }) => (dispatch: any) => {
   if (genOption) {
     exportAppBool = true;
@@ -213,7 +217,8 @@ storeConfig: StoreConfigInterface;
       appName,
       genOption,
       storeConfig,
-      zip
+      zip,
+      reduxView
     })
       .then(() => {
         dispatch({
@@ -225,6 +230,7 @@ storeConfig: StoreConfigInterface;
             path,
             components,
             exportAppBool,
+            reduxView
           }),
         );
       })
