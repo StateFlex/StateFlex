@@ -73,17 +73,17 @@ import {
     function componentNameGenerator(child: ChildInt) {
       if (child.childType === 'HTML') {
         switch (child.componentName) {
-          case 'Image':
+          case 'image':
             return 'img';
-          case 'Form':
+          case 'form':
             return 'form';
-          case 'Button':
+          case 'button':
             return 'button';
-          case 'Link':
+          case 'link':
             return 'a href=""';
-          case 'List':
+          case 'list':
             return 'ul';
-          case 'Paragraph':
+          case 'paragraph':
             return 'p';
           default:
             return 'div';

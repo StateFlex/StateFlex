@@ -2,13 +2,14 @@ import { formatter } from './formatter.util';
 import { createReduxFiles } from './createReduxFiles.util';
 import { StoreConfigInterface, ReducersInterface } from './InterfaceDefinitions';
 
-function createIndexHtml(path, appName, zip) {
+function createIndexHtml(path, appName, zip, reduxView) {
   const filePath: string = 'index.html';
-  const data: string = `<!DOCTYPE html>
+  const data: string = (reduxView) ? 
+  `<!DOCTYPE html>
   <html>
     <head>
       <meta charset="UTF-8" />
-      <title>preducks app</title>
+      <title>${appName}</title>
     </head>
     <link rel="stylesheet" type="text/css" href="./styles.css">
     <body>
@@ -16,6 +17,18 @@ function createIndexHtml(path, appName, zip) {
         <div id="title">quack quack quack, i'm a preducks app</div>
         <img id="preduck" src="./preduck.svg"></img>
       </div>
+      <div id="root"></div>
+      <script src="./build/bundle.js"></script>
+    </body>
+  </html>`
+  :
+  `<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <title>${appName}</title>
+    </head>
+    <body>
       <div id="root"></div>
       <script src="./build/bundle.js"></script>
     </body>
@@ -37,6 +50,7 @@ export const createIndexTsx = (
     import App from './components/App';`;
 
   let reduxAndOrRemainingText;
+  // if (!reduxView) hasRedux = false;
   if (hasRedux) {
     if (hasAsync) {
       reduxAndOrRemainingText = `import { reducers } from './reducers';
@@ -68,7 +82,7 @@ const createPackage = (
   const filePath = 'package.json';
   const data = `
   {
-    "name": "preducks",
+    "name": "${appName}",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -304,12 +318,14 @@ async function createApplicationUtil({
   genOption,
   storeConfig,
   zip,
+  reduxView
 }: {
 path: string;
 appName: string;
 genOption: number;
 storeConfig: StoreConfigInterface;
 zip: any;
+reduxView: boolean;
 }) {
   if (genOption === 1) {
     const reducerNames = Object.keys(storeConfig.reducers);
@@ -323,9 +339,13 @@ zip: any;
       });
     });
 
-    await createIndexHtml(path, appName, zip);
-    await createStylesCss(path, appName, zip);
-    await createPreduckSVG(path, appName, zip);
+    await createIndexHtml(path, appName, zip, reduxView);
+    if (reduxView) {
+      await createStylesCss(path, appName, zip);
+    }
+    if (reduxView) {
+      await createPreduckSVG(path, appName, zip);
+    }
     await createReduxFiles(path, appName, storeConfig, zip);
     // all of the redux stuff goes here.
     await createIndexTsx(path, appName, hasRedux, hasAsync, zip);
