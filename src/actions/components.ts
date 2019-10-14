@@ -154,7 +154,7 @@ reduxView: boolean;
   //   type: EXPORT_FILES,
   // });
   const zipFileName = reduxView ? 'preducksApp' : 'reactypeApp';
-  const dir = createComponentFiles(components, path, appName, exportAppBool, zip);
+  const dir = createComponentFiles(components, path, appName, exportAppBool, zip, reduxView);
   dispatch({
     type: EXPORT_FILES_SUCCESS,
     payload: { status: true, dir: dir[0] },
