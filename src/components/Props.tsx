@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch, connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
@@ -10,6 +10,8 @@ import Switch from '@material-ui/core/Switch';
 import InputLabel from '@material-ui/core/InputLabel';
 import { addProp, deleteProp } from '../actions/components.ts';
 import ReactDataTable from './ReactDataTable.tsx';
+import { StoreInterface } from '../utils/InterfaceDefinitions';
+
 
 const styles = theme => ({
   root: {
@@ -81,6 +83,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 
 const mapStateToProps = (store: any) => ({
   focusComponent: store.workspace.focusComponent,
+  storeConfig: store.workspace.storeConfig
 });
 
 const availablePropTypes = {
@@ -90,7 +93,6 @@ const availablePropTypes = {
   array: 'ARR',
   boolean: 'BOOL',
   function: 'FUNC',
-  // symbol: 'SYM',
   node: 'NODE',
   element: 'ELEM',
   any: 'ANY',
@@ -98,14 +100,24 @@ const availablePropTypes = {
   enum: 'ENUM',
 };
 
-const typeOptions = [
+// const typeOptions = [
+//   <option value="" key="" />,
+//   ...Object.keys(availablePropTypes).map(type => (
+//     <option value={type} key={type} style={{ color: '#000' }}>
+//       {type}
+//     </option>
+//   )),
+// ];
+
+const convertToOptions = choices => [
   <option value="" key="" />,
-  ...Object.keys(availablePropTypes).map(type => (
-    <option value={type} key={type} style={{ color: '#000' }}>
-      {type}
+  choices.map(choice => (
+    <option value={choice} key={choice} style={{ color: '#000' }}>
+      {choice}
     </option>
   )),
 ];
+
 
 class Props extends Component {
   state = {
@@ -126,6 +138,8 @@ class Props extends Component {
       propRequired: !this.state.propRequired,
     });
   };
+
+  
 
   reactHandler = (row, callback) => {
     const name = row._Key
@@ -259,7 +273,20 @@ class Props extends Component {
                             value={this.state.propType}
                             required
                           >
-                            {typeOptions}
+                            {convertToOptions([
+                             'string',
+                             'number',
+                             'object',
+                             'array',
+                             'boolean',
+                             'function',
+                             'node',
+                             'element',
+                             'any',
+                             'tuple',
+                             'emum',
+                            ...Object.keys(this.props.storeConfig.interfaces),
+                  ])}
                           </Select>
                         </FormControl>
                       </Grid>

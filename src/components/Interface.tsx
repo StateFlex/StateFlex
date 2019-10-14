@@ -29,7 +29,7 @@ const Interface = (props: any) => {
   const addProperty = () => {
     if (newPropertyValidation.isValid && newPropertyType) {
       const updatedInterface = interfaces[thisInterface];
-      updatedInterface[newPropertyValidation.input] = newPropertyType;
+      updatedInterface[newPropertyValidation.input] = newPropertyIsArray ? newPropertyType + '[]' : newPropertyType;
       setInterface({ [thisInterface]: updatedInterface });
       setNewPropertyName('');
       setNewPropertyType('');
@@ -45,6 +45,8 @@ const Interface = (props: any) => {
     delete updatedInterface[property];
     setInterface({ [thisInterface]: updatedInterface });
   };
+
+  console.log('interface is',interfaces)
 
   return (
     <div className="interface" key={`interface${thisInterface}`}>
@@ -102,18 +104,8 @@ const Interface = (props: any) => {
             <Checkbox
               color="primary"
               value={newPropertyIsArray.toString()}
+              checked={newPropertyIsArray}
               onChange={() => {
-                if (newPropertyIsArray) {
-                  // remove []
-                  setNewPropertyType((type) => {
-                    if (type.indexOf('[') !== -1) {
-                      return type.slice(0, type.length - 2);
-                    }
-                    return type;
-                  });
-                } else {
-                  setNewPropertyType(type => `${type}[]`);
-                }
                 setNewPropertyIsArray(isArray => !isArray);
               }}
             />

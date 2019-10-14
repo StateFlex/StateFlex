@@ -43,6 +43,8 @@ import {
           return '{}';
         case 'any':
           return 'any';
+        case type:
+          return `${type}`
         default:
           return 'any';
       }
