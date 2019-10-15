@@ -439,7 +439,8 @@ export const addProp = (
     console.log('Add prop error. no focused component ');
     return state;
   }
-
+  // console.log('state.components', state.components);
+  // console.log('state.storeConfig', state.storeConfig);
   const selectedComponent = state.components.find(comp => comp.id === state.focusComponent.id);
 
   const newProp: PropInt = {
