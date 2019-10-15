@@ -39,10 +39,10 @@ const Interface = (props: any) => {
   const addProperty = () => {
     if (newPropertyValidation.isValid && newPropertyType) {
       const updatedInterface = interfaces[thisInterface];
-      const propertyType = newPropertyIsArray ? newPropertyType + '[]' : newPropertyType;
-      const newUpdate = [interfaces, thisInterface, newPropertyValidation.input, isRequired, propertyType]
-      console.log(newUpdate)
-      setInterface({ newUpdate });
+      updatedInterface[newPropertyValidation.input] = newPropertyIsArray ? [newPropertyType + '[]', isRequired] : [newPropertyType, isRequired];
+      console.log(updatedInterface)
+      console.log(isRequired)
+      setInterface({ [thisInterface]: updatedInterface });
       setNewPropertyName('');
       setNewPropertyType('');
       setNewPropertyIsArray(false);
@@ -58,7 +58,7 @@ const Interface = (props: any) => {
     setInterface({ [thisInterface]: updatedInterface });
   };
 
-  console.log('interfaces are',interfaces)
+  console.log('interfaces are',interfaces[thisInterface])
   return (
     <div className="interface" key={`interface${thisInterface}`}>
       <StoreItemHeader storeItem={thisInterface} deleter={deleteInterface} />
@@ -73,11 +73,11 @@ const Interface = (props: any) => {
                 </li>
                 <li>
                   <div className="info-title">type</div>
-                  <div>{interfaces[thisInterface][property]}</div>
+                  <div>{interfaces[thisInterface][property][0]}</div>
                 </li>
                 <li>
                   <div className="info-title">required</div>
-                  <div>{}</div>
+                  <div>{interfaces[thisInterface][property][1].toString()}</div>
                 </li>
               </ul>
               <div className="property-controls">
