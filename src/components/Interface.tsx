@@ -8,6 +8,11 @@ import TypeSelect from './TypeSelect';
 import validateInput from '../utils/validateInput.util';
 import ErrorMessage from './ErrorMessage';
 import StoreItemHeader from './StoreItemHeader';
+import Grid from '@material-ui/core/Grid';
+import Switch from '@material-ui/core/Switch';
+import InputLabel from '@material-ui/core/InputLabel';
+
+
 
 const Interface = (props: any) => {
   const {
@@ -18,6 +23,11 @@ const Interface = (props: any) => {
   const [newPropertyIsArray, setNewPropertyIsArray] = useState(false);
   const [newPropertyValidation, setNewPropertyValidation] = useState(validateInput(''));
   const [isVisible, setVisibility] = useState(false);
+  const [isRequired, setIsRequired] = useState(false);
+
+  const toggleInterfacePropRequired = () => {
+    setIsRequired(!isRequired)
+  }
 
   const handleChange = (event: Event, setter: any) => {
       const target: HTMLInputElement = event.target;
@@ -29,7 +39,7 @@ const Interface = (props: any) => {
   const addProperty = () => {
     if (newPropertyValidation.isValid && newPropertyType) {
       const updatedInterface = interfaces[thisInterface];
-      updatedInterface[newPropertyValidation.input] = newPropertyIsArray ? newPropertyType + '[]' : newPropertyType;
+      updatedInterface[newPropertyValidation.input] = newPropertyIsArray ? [newPropertyType + '[]', isRequired] : [newPropertyType, isRequired];
       setInterface({ [thisInterface]: updatedInterface });
       setNewPropertyName('');
       setNewPropertyType('');
@@ -60,7 +70,11 @@ const Interface = (props: any) => {
                 </li>
                 <li>
                   <div className="info-title">type</div>
-                  <div>{interfaces[thisInterface][property]}</div>
+                  <div>{interfaces[thisInterface][property][0]}</div>
+                </li>
+                <li>
+                  <div className="info-title">required</div>
+                  <div>{interfaces[thisInterface][property][1].toString()}</div>
                 </li>
               </ul>
               <div className="property-controls">
@@ -111,6 +125,20 @@ const Interface = (props: any) => {
           label="array?"
           labelPlacement="top"
         />
+        <Grid item xs={6}>
+          <div className='is-required'>
+            <InputLabel className='is-required-input' htmlFor="propRequired">
+              required?
+            </InputLabel>
+            <Switch
+              checked={isRequired}
+              onChange={toggleInterfacePropRequired}
+              value="propRequired"
+              color="primary"
+              id="propRequired"
+            />
+          </div>
+        </Grid>
         <IconButton
           aria-label="add property"
           onClick={addProperty}
