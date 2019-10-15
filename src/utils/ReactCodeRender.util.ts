@@ -4,6 +4,7 @@ import {
     ChildInt,
     ChildrenInt,
     PropInt,
+    ComponentStateInterface
   } from './InterfaceDefinitions';
   import cloneDeep from './cloneDeep';
 
@@ -13,10 +14,12 @@ import {
       childrenArray,
       title,
       props,
+      componentState
     }: {
     childrenArray: ChildrenInt;
     title: string;
     props: PropInt[];
+    componentState: ComponentStateInterface[];
     } = component;
   
     function typeSwitcher(type: string) {
@@ -100,9 +103,32 @@ import {
         return child.componentName;
       }
     }
+
+    const reservedTypeScriptTypes = [
+      'string',
+      'boolean',
+      'number',
+      'any',
+      'string[]',
+      'boolean[]',
+      'number[]',
+      'any[]',
+    ];
+  
+    const listOfInterfaces = props.reduce((interfaces, current) => {
+      if (!reservedTypeScriptTypes.includes(current.type) && !interfaces.includes(current.type)) {
+        interfaces.push(current.type);
+      }
+      return interfaces;
+    }, []);
+
+    const interfacesToImport = listOfInterfaces.length
+    ? `import {${listOfInterfaces.join(', ')}} from '../Interfaces'`
+    : '';
   
     return `
       import React from 'react';
+      ${interfacesToImport}
       ${childrenArray
       .filter(child => child.childType !== 'HTML')
       .map(child => `import ${child.componentName} from './${child.componentName}.tsx'`)
