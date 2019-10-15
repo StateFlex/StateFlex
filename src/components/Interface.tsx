@@ -46,8 +46,6 @@ const Interface = (props: any) => {
     setInterface({ [thisInterface]: updatedInterface });
   };
 
-  console.log('interface is',interfaces)
-
   return (
     <div className="interface" key={`interface${thisInterface}`}>
       <StoreItemHeader storeItem={thisInterface} deleter={deleteInterface} />
