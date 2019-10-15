@@ -15,8 +15,14 @@ const createSharedInterfaces = (
   interfaceObjKeys.forEach((interfaceName) => {
     let curInterface = `export interface ${interfaceName} {\n`;
     Object.keys(interfaceObj[interfaceName]).forEach((property) => {
-      const curType = interfaceObj[interfaceName][property];
-      curInterface += `${property}: ${curType};\n`;
+      const curType = interfaceObj[interfaceName][property][0];
+      const isExportRequired = (input) => {
+        let output = '';
+        if(input === false) output = '?';
+        if(input === undefined || input === null) output = '';
+        return output;
+      }
+      curInterface += `${property + isExportRequired(interfaceObj[interfaceName][property][1])}: ${curType};\n`;
     });
     curInterface += '}\n\n';
     data += curInterface;

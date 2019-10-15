@@ -139,8 +139,6 @@ class Props extends Component {
     });
   };
 
-  
-
   reactHandler = (row, callback) => {
     const name = row._Key
     const type = row.Type
