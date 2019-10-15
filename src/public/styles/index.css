@@ -475,7 +475,8 @@ tr:hover .property-controls,
 }
 
 .info-title {
-  margin-right: 10px;
+  margin-left: 10px;
+  margin-right: 20px;
   font-weight: lighter;
   width: 40%;
   text-align: right;

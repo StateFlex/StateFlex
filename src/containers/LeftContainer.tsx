@@ -43,6 +43,8 @@ interface PropsInt {
   deleteComponent: any;
   createApp: any;
   deleteAllData: any;
+  createNewProject: any;
+  reduxView: boolean;
 }
 
 interface StateInt {
@@ -52,10 +54,13 @@ interface StateInt {
   genOption: number;
 }
 
-const mapStateToProps = (store: StoreInterface) => ({
-  components: store.workspace.components,
-  storeConfig: store.workspace.storeConfig,
-});
+const mapStateToProps = (store: StoreInterface) => {
+  return {
+    components: store.workspace.components,
+    storeConfig: store.workspace.storeConfig,
+    reduxView: store.workspace.reduxView
+  }
+};
 
 const mapDispatchToProps = (dispatch: any) => ({
   addComponent: ({ title }: { title: string }) => dispatch(actions.addComponent({ title })),
@@ -78,7 +83,8 @@ const mapDispatchToProps = (dispatch: any) => ({
   componentId: number;
   stateComponents: ComponentsInt;
   }) => dispatch(actions.deleteComponent({ componentId, stateComponents })),
-  deleteAllData: () => dispatch(actions.deleteAllData()),
+  deleteAllData: (reduxView: boolean) => dispatch(actions.deleteAllData(reduxView)),
+  createNewProject: (reduxView: boolean) => dispatch(actions.createNewProject(reduxView)),
   createApp: ({
     path,
     components,
@@ -86,6 +92,7 @@ const mapDispatchToProps = (dispatch: any) => ({
     appName,
     exportAppBool,
     storeConfig,
+    reduxView
   }: {
   path: string;
   components: ComponentsInt;
@@ -93,6 +100,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   appName: string;
   exportAppBool: boolean;
   storeConfig: StoreConfigInterface;
+  reduxView: boolean;
   }) => dispatch(
     actions.createApplication({
       path,
@@ -101,6 +109,7 @@ const mapDispatchToProps = (dispatch: any) => ({
       appName,
       exportAppBool,
       storeConfig,
+      reduxView
     }),
   ),
 });
@@ -127,7 +136,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
     // Choose app dir
       const { components, storeConfig } = this.props;
       // const { genOption } = this.state;
-      const appName = 'preducksApp';
+      const appName = this.props.reduxView ? 'preducks app' : 'ReacType App';
       const exportAppBool = true;
       this.props.createApp({
         path: '',
@@ -136,6 +145,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
         appName,
         exportAppBool,
         storeConfig,
+        reduxView: this.props.reduxView
       });
     
   };
@@ -167,7 +177,26 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
         primBtnAction: null,
         primBtnLabel: null,
         secBtnAction: () => {
-          this.props.deleteAllData();
+          this.props.deleteAllData(this.props.reduxView);
+          this.closeModal();
+        },
+      }),
+    });
+  };
+
+  newProject = () => {
+    const message = this.props.reduxView ? 'React' : 'Redux';
+    this.setState({
+      modal: createModal({
+        message: `create new ${message} project?`,
+        closeModal: this.closeModal,
+        secBtnLabel: `create new ${message} project`,
+        open: true,
+        children: null,
+        primBtnAction: null,
+        primBtnLabel: null,
+        secBtnAction: () => {
+          this.props.createNewProject(this.props.reduxView);
           this.closeModal();
         },
       }),
@@ -301,6 +330,27 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
               backgroundColor: '#F64C72',
             }}>
             clear workspace
+          </Button>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+          }}>
+          <Button
+            aria-label="New Project"
+            variant="contained"
+            fullWidth
+            onClick={this.newProject}
+            className={classes.clearButton}
+            style={{
+              borderRadius: '10px',
+              margin: '2px',
+              color: 'white',
+              backgroundColor: '#F64C72',
+            }}>
+            new project
           </Button>
         </div>
       </div>

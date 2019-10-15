@@ -70,22 +70,27 @@ const componentRender = (component: ComponentInt, components: ComponentsInt) => 
   }
 
   function htmlAttrSanitizer(element: string) {
-    return `'${element}'`;
+    // return `'${element}'`;
+    return element
+      .replace(/[a-z]+/gi, word => word[0].toUpperCase() + word.slice(1))
+      .replace(/[-_\s0-9\W]+/gi, '');
+
   }
+    
   function componentNameGenerator(child: ChildInt) {
     if (child.childType === 'HTML') {
       switch (child.componentName) {
-        case 'Image':
+        case 'image':
           return 'img';
-        case 'Form':
+        case 'form':
           return 'form';
-        case 'Button':
+        case 'button':
           return 'button';
-        case 'Link':
-          return 'a';
-        case 'List':
+        case 'link':
+          return 'a href=""';
+        case 'list':
           return 'ul';
-        case 'Paragraph':
+        case 'paragraph':
           return 'p';
         default:
           return 'div';
@@ -196,7 +201,7 @@ const componentRender = (component: ComponentInt, components: ComponentsInt) => 
     .map(
       (child: ChildInt) => `<${componentNameGenerator(child)} ${propDrillTextGenerator(child)}/>`,
     )
-    .join('\n')}` + '</div>';
+    .join('\n')}</div>`;
 
   const useStateCalls = componentState.length
     ? componentState

@@ -34,9 +34,9 @@ const styles = (theme: any) => ({
  * ,ust have unique id
  * ****************************** */
 
-function dataTable(props: any) {
+function reactDataTable(props: any) {
   const {
-    classes, rowData, rowHeader, deletePropHandler, editHandler,
+    classes, rowData, rowHeader, deletePropHandler, reactHandler,
   } = props;
 
   const renderHeader = rowHeader.map((col: any, idx: number) => (
@@ -47,20 +47,30 @@ function dataTable(props: any) {
     if (!row) return;
     return rowHeader.map((header: string, idx: number) => (
       <TableCell align={'center'} key={`${uuid.v4()}`}>
-        {row.toString()}
+        {row[header].toString()}
       </TableCell>
     ));
   }
   // style={{height: 30}}
+
+//   const editHandler = (row) => {
+//     const name = row.match(/Name: \w+/)[0].slice(6);
+//     const type = row.match(/Type: \w+/)[0].slice(6);
+//     const initialValue = row.match(/Initial Value: \w+/)[0].slice(15);
+//     dispatch(deleteState(name));
+//     setEnteredName(name);
+//     setEnteredType(type);
+//     setEnteredValue(initialValue);
+//   };
+
   const renderRows = rowData.map((row: any) => (
-    console.log(row),
     <TableRow key={`${uuid.v4()}`}>
       {renderRowCells(row)}
       <TableCell align={'center'} padding={'none'}>
-        <IconButton color="default" onClick={() => deletePropHandler(row)}>
+        <IconButton color="default" onClick={() => deletePropHandler(row.id)}>
           <DeleteIcon />
         </IconButton>
-        <IconButton color="default" onClick={() => editHandler(row)}>
+        <IconButton color="default" onClick={() => reactHandler(row, deletePropHandler)}>
           <CreateIcon />
         </IconButton>
       </TableCell>
@@ -69,7 +79,7 @@ function dataTable(props: any) {
 
   return (
     <Paper className={`${classes.root}, data-table`}>
-      <Table className={classes.table}>
+      <Table className={classes.table} selectable={'true'}>
         <TableHead>
           <TableRow>{renderHeader}</TableRow>
         </TableHead>
@@ -79,4 +89,4 @@ function dataTable(props: any) {
   );
 }
 
-export default withStyles(styles)(dataTable);
+export default withStyles(styles)(reactDataTable);

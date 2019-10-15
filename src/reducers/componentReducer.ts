@@ -75,6 +75,7 @@ const initialApplicationState: ApplicationStateInt = {
   appDir: '',
   loading: false,
   storeConfig: { interfaces: {}, reducers: {} },
+  reduxView: true
 };
 
 const componentReducer = (state = initialApplicationState, action: any) => {
@@ -119,10 +120,15 @@ const componentReducer = (state = initialApplicationState, action: any) => {
     case types.OPEN_EXPANSION_PANEL:
       return openExpansionPanel(state, action.payload);
     case types.DELETE_ALL_DATA:
-      return initialApplicationState;
+      console.log('in reducer', action);
+      return { ...initialApplicationState, reduxView: action.payload };
+    case types.CREATE_NEW_PROJECT:
+      console.log('in reducer', action);
+      return { ...initialApplicationState, reduxView: action.payload ? false : true };
     case types.ADD_PROP:
       return addProp(state, action.payload);
     case types.DELETE_PROP:
+      console.log('delete prop is being fired')
       return deleteProp(state, action.payload);
     case types.UPDATE_HTML_ATTR:
       return updateHtmlAttr(state, action.payload);
