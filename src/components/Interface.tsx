@@ -8,6 +8,11 @@ import TypeSelect from './TypeSelect';
 import validateInput from '../utils/validateInput.util';
 import ErrorMessage from './ErrorMessage';
 import StoreItemHeader from './StoreItemHeader';
+import Grid from '@material-ui/core/Grid';
+import Switch from '@material-ui/core/Switch';
+import InputLabel from '@material-ui/core/InputLabel';
+
+
 
 const Interface = (props: any) => {
   const {
@@ -18,6 +23,11 @@ const Interface = (props: any) => {
   const [newPropertyIsArray, setNewPropertyIsArray] = useState(false);
   const [newPropertyValidation, setNewPropertyValidation] = useState(validateInput(''));
   const [isVisible, setVisibility] = useState(false);
+  const [isRequired, setIsRequired] = useState(false);
+
+  const toggleInterfacePropRequired = () => {
+    setIsRequired(!isRequired)
+  }
 
   const handleChange = (event: Event, setter: any) => {
       const target: HTMLInputElement = event.target;
@@ -29,8 +39,10 @@ const Interface = (props: any) => {
   const addProperty = () => {
     if (newPropertyValidation.isValid && newPropertyType) {
       const updatedInterface = interfaces[thisInterface];
-      updatedInterface[newPropertyValidation.input] = newPropertyIsArray ? newPropertyType + '[]' : newPropertyType;
-      setInterface({ [thisInterface]: updatedInterface });
+      const propertyType = newPropertyIsArray ? newPropertyType + '[]' : newPropertyType;
+      const newUpdate = [interfaces, thisInterface, newPropertyValidation.input, isRequired, propertyType]
+      console.log(newUpdate)
+      setInterface({ newUpdate });
       setNewPropertyName('');
       setNewPropertyType('');
       setNewPropertyIsArray(false);
@@ -46,8 +58,7 @@ const Interface = (props: any) => {
     setInterface({ [thisInterface]: updatedInterface });
   };
 
-  console.log('interface is',interfaces)
-
+  console.log('interfaces are',interfaces)
   return (
     <div className="interface" key={`interface${thisInterface}`}>
       <StoreItemHeader storeItem={thisInterface} deleter={deleteInterface} />
@@ -63,6 +74,10 @@ const Interface = (props: any) => {
                 <li>
                   <div className="info-title">type</div>
                   <div>{interfaces[thisInterface][property]}</div>
+                </li>
+                <li>
+                  <div className="info-title">required</div>
+                  <div>{}</div>
                 </li>
               </ul>
               <div className="property-controls">
@@ -113,6 +128,20 @@ const Interface = (props: any) => {
           label="array?"
           labelPlacement="top"
         />
+        <Grid item xs={6}>
+          <div className='is-required'>
+            <InputLabel className='is-required-input' htmlFor="propRequired">
+              required?
+            </InputLabel>
+            <Switch
+              checked={isRequired}
+              onChange={toggleInterfacePropRequired}
+              value="propRequired"
+              color="primary"
+              id="propRequired"
+            />
+          </div>
+        </Grid>
         <IconButton
           aria-label="add property"
           onClick={addProperty}
