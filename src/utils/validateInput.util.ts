@@ -1,7 +1,7 @@
 const validateInput = (input: string = '') => {
   let inputValue = input
-    .replace(/\s([a-z])/gi, el => el.toUpperCase())
-    .replace(/\s/g, '');
+  .replace(/\s([a-z])/gi, el => el.toUpperCase())
+  .replace(/\s/g, '');
   let error;
   const regex = /^([a-z$_]{1})[a-z0-9$_]+$/i;
   if (inputValue === '') {
