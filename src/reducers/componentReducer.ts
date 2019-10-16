@@ -120,15 +120,12 @@ const componentReducer = (state = initialApplicationState, action: any) => {
     case types.OPEN_EXPANSION_PANEL:
       return openExpansionPanel(state, action.payload);
     case types.DELETE_ALL_DATA:
-      console.log('in reducer', action);
       return { ...initialApplicationState, reduxView: action.payload };
     case types.CREATE_NEW_PROJECT:
-      console.log('in reducer', action);
       return { ...initialApplicationState, reduxView: action.payload ? false : true };
     case types.ADD_PROP:
       return addProp(state, action.payload);
     case types.DELETE_PROP:
-      console.log('delete prop is being fired')
       return deleteProp(state, action.payload);
     case types.UPDATE_HTML_ATTR:
       return updateHtmlAttr(state, action.payload);
