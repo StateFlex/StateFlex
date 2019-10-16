@@ -53,7 +53,6 @@ function dataTable(props: any) {
   }
   // style={{height: 30}}
   const renderRows = rowData.map((row: any) => (
-    console.log(row),
     <TableRow key={`${uuid.v4()}`}>
       {renderRowCells(row)}
       <TableCell align={'center'} padding={'none'}>
