@@ -1,24 +1,22 @@
 import React from 'react';
-import Interfaces from './Interfaces';
-import Reducers from './Reducers';
-import validateInput from '../utils/validateInput.util';
+import CodePreview from './CodePreview';
+import { ComponentInt, ComponentsInt, ChildInt } from '../utils/InterfaceDefinitions';
 
-const RightPanel = (props: any) => {
-  const handleChange = (event: Event, setter: any, setValidation: any = '') => {
-    const target: any = event.target;
-    setter(target.type === 'checkbox' ? target.checked : target.value);
-    if (setValidation !== '') {
-      const result = validateInput(target.value);
-      setValidation(result);
-    }
-  };
 
+interface PropsInt {
+  focusChild: ChildInt;
+  components: ComponentsInt;
+  focusComponent: ComponentInt;
+  classes: any;
+}
+
+
+const RightPanel = ({focusComponent, components}) => {
   return (
-    <div className="right-panel">
-      <Interfaces />
-      {props.reduxView && <Reducers />}
-    </div>
+    <CodePreview focusComponent={focusComponent} components={components} />
   );
 };
+
+
 
 export default RightPanel;

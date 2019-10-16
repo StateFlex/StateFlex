@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { useSelector, useDispatch, connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
@@ -11,25 +10,25 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { addProp, deleteProp } from '../actions/components.ts';
 import ReactDataTable from './ReactDataTable.tsx';
 import { StoreInterface } from '../utils/InterfaceDefinitions';
+import Grid from '@material-ui/core/Grid';
 
 
 const styles = theme => ({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
+    color: '#222'
+
   },
   chip: {
-    color: '#eee',
-    backgroundColor: '#333333',
+    color: '#00f',
+    backgroundColor: '#eee',
   },
   column: {
-    display: 'inline-flex',
-    alignItems: 'baseline',
+
+
   },
   icon: {
     fontSize: '20px',
-    color: '#eee',
+    color: '#0f0',
     opacity: '0.7',
     transition: 'all .2s ease',
 
@@ -38,20 +37,20 @@ const styles = theme => ({
     },
   },
   cssLabel: {
-    color: 'white',
+    color: '222',
 
     '&$cssFocused': {
-      color: 'green',
+      color: '222',
     },
   },
   cssFocused: {},
   input: {
-    color: '#eee',
-    marginBottom: '10px',
+    color: '#222',
+    marginBottom: '0px',
     width: '60%',
   },
   light: {
-    color: '#eee',
+    color: '#222',
   },
   avatar: {
     color: '#eee',
@@ -112,7 +111,7 @@ const availablePropTypes = {
 const convertToOptions = choices => [
   <option value="" key="" />,
   choices.map(choice => (
-    <option value={choice} key={choice} style={{ color: '#000' }}>
+    <option value={choice} key={choice} style={{ color: '#eee' }}>
       {choice}
     </option>
   )),
@@ -126,6 +125,7 @@ class Props extends Component {
     propRequired: true,
     propType: '',
   };
+
 
   handleChange = (event) => {
     this.setState({
@@ -209,130 +209,144 @@ class Props extends Component {
     }));
 
     return (
-      <div className={'htmlattr'}>
-        {' '}
-        {Object.keys(focusComponent).length < 1 ? (
-          <div style={{ marginTop: '20px', width: '90%' }}>
-            Click a component to view its props.
+      <Fragment>
+          <form 
+                className="props-input" 
+                onSubmit={this.handleAddProp}
+                >
+
+          <div 
+                className="bottom-panel-props">
+
+
+
+          <div 
+                className="bottom-panel-props-submit">
+          <Button
+                aria-label="Add"
+                type="submit"
+                // disabled={!this.state.propKey || !this.state.propType}
+                variant="contained"
+                size="large">                                     
+                ADD PROP
+          </Button>
           </div>
-        ) : (
-          <Fragment>
-            <div
-              className="props-container"
-              style={{ marginTop: '20px', width: '90%', height: '80%' }}
-            >
-              <Grid container spacing={8}>
-                <Grid item xs={3}>
-                  <form className="props-input" onSubmit={this.handleAddProp}>
-                    <Grid container spacing={8}>
-                      <Grid item xs={6}>
-                        <TextField
-                          id="propKey"
-                          label="Key"
-                          margin="normal"
-                          autoFocus
-                          onChange={this.handleChange}
-                          value={this.state.propKey}
-                          required
-                          InputProps={{
+
+
+
+          <div 
+                className="bottom-panel-props-key">
+          <TextField
+                id="propKey"
+                label="Key"
+                autoFocus
+                onChange={this.handleChange}
+                value={this.state.propKey}
+                required
+                InputProps={{
                             className: classes.input,
-                          }}
-                          InputLabelProps={{
+                            }}
+                            InputLabelProps={{
                             className: classes.input,
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6}>
-                        <TextField
-                          id="propValue"
-                          label="Value"
-                          margin="normal"
-                          onChange={this.handleChange}
-                          InputProps={{
-                            className: classes.input,
-                          }}
-                          InputLabelProps={{
-                            className: classes.input,
-                          }}
-                          value={this.state.propValue}
-                        />
-                      </Grid>
-                      <Grid item xs={6}>
-                        <FormControl required>
-                          <InputLabel className={classes.light} htmlFor="propType">
-                            Type
-                          </InputLabel>
-                          <Select
-                            native
-                            className={classes.light}
-                            id="propType"
-                            placeholder="title"
-                            onChange={this.handleChange}
-                            value={this.state.propType}
-                            required
-                          >
-                            {convertToOptions([
-                             'string',
-                             'number',
-                             'object',
-                             'array',
-                             'boolean',
-                             'function',
-                             'node',
-                             'element',
-                             'any',
-                             'tuple',
-                             'emum',
-                            ...Object.keys(this.props.storeConfig.interfaces),
+                           }}/>
+          </div>
+
+
+
+
+          <div 
+                className="bottom-panel-props-value">
+          <TextField
+                id="propValue"
+                label="Value"
+                onChange={this.handleChange}
+                InputProps={{
+                  className: classes.input,
+                }}
+                InputLabelProps={{
+                  className: classes.input,
+                }}
+                value={this.state.propValue} 
+                />
+          </div>
+
+
+
+          <div 
+                className="bottom-panel-props-type">
+        <FormControl required>
+        <InputLabel 
+                className={classes.light} 
+                htmlFor="propType">
+                Type
+        </InputLabel>
+        <Select
+                native
+                className={classes.light}
+                id="propType"
+                placeholder="title"
+                onChange={this.handleChange}
+                value={this.state.propType}
+                required >
+                {convertToOptions([
+                  'string',
+                  'number',
+                  'object',
+                  'array',
+                  'boolean',
+                  'function',
+                  'node',
+                  'element',
+                  'any',
+                  'tuple',
+                  'emum',
+                  //...Object.keys(this.props.storeConfig.interfaces),
                   ])}
-                          </Select>
-                        </FormControl>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <div className={classes.column}>
-                          <InputLabel className={classes.light} htmlFor="propRequired">
-                            Required?
-                          </InputLabel>
-                          <Switch
-                            checked={this.state.propRequired}
-                            onChange={this.togglePropRequired}
-                            value="propRequired"
-                            color="primary"
-                            id="propRequired"
-                          />
-                        </div>
-                      </Grid>
-                      <Grid item>
-                        <Button
-                          color="primary"
-                          aria-label="Add"
-                          type="submit"
-                          // disabled={!this.state.propKey || !this.state.propType}
-                          variant="contained"
-                          size="large"
+        </Select>
+        </FormControl>
+        </div>
+
+
+        <div 
+                className="bottom-panel-props-required">
+                <Grid container 
+                      spacing={0}
+                      justify="flex-start"
+                      alignItems="flex-end"
+                      direction='row'>
+                <Grid item xs={6}>
+                <InputLabel 
+                        className={classes.light} htmlFor="propRequired"
                         >
-                          ADD PROP
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </form>
+                        Required?
+                </InputLabel>
                 </Grid>
-                <Grid item xs={8}>
-                  <ReactDataTable
-                    rowHeader={rowHeader}
-                    rowData={propsRows}
-                    deletePropHandler={deleteProp}
-                    reactHandler={this.reactHandler}
-                  />
+                <Grid xs={6}>
+                <Switch
+                      checked={this.state.propRequired}
+                      onChange={this.togglePropRequired}
+                      value="propRequired"
+                      id="propRequired"/>
                 </Grid>
-                <Grid item xs={1} />
-              </Grid>
-            </div>
-          </Fragment>
-        )}
-      </div>
-    );
-  }
+                </Grid>
+        </div>
+
+
+        <div 
+                className="bottom-panel-props-data">
+        <ReactDataTable
+                rowHeader={rowHeader}
+                rowData={propsRows}
+                deletePropHandler={deleteProp}
+                reactHandler={this.reactHandler}/>
+        </div>
+
+
+        </div>          
+        </form>             
+        </Fragment>      
+      );
+    }
 }
 
 export default connect(

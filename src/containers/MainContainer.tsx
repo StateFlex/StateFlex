@@ -4,6 +4,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import RightPanel from '../components/RightPanel';
 import BottomPanel from '../components/BottomPanel';
 import theme from '../components/theme';
+
 import {
   handleTransform,
   changeFocusChild,
@@ -11,6 +12,7 @@ import {
 } from '../actions/components';
 import { ComponentInt, ComponentsInt } from '../utils/InterfaceDefinitions';
 import TreeDisplay from '../components/NewTreeDisplay';
+import Grid from '@material-ui/core/Grid';
 
 interface PropsInt {
   components?: ComponentsInt;
@@ -97,22 +99,25 @@ class MainContainer extends Component<PropsInt, StateInt> {
     const { main }: any = this;
 
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="main-container">
-          {modal}
-          <div className="top-container">
-            <div className="main" ref={main}>
-              <TreeDisplay
-                focusChild={focusChild}
-                components={components}
-                focusComponent={focusComponent}
-                classes={classes}></TreeDisplay>
-            </div>
-            {this.state.windowWidth >= 800 ? <RightPanel reduxView={reduxView} /> : ''}
-          </div>
-          {this.state.windowWidth >= 800 ? <BottomPanel focusComponent={focusComponent} reduxView={reduxView} /> : ''}
-        </div>
-      </MuiThemeProvider>
+      <React.Fragment>
+      <div className="app-grid-middle-panel" >
+                 {modal}
+      
+                <TreeDisplay focusChild={focusChild}
+                  components={components}
+                  focusComponent={focusComponent}
+                  classes={classes}>
+                </TreeDisplay>
+      </div>
+      <div className="app-grid-right-panel">
+      
+                <RightPanel focusComponent={focusComponent} components={components}/> 
+       </div>
+       <div className="app-grid-bottom-panel">       
+      
+                <BottomPanel focusComponent={focusComponent} /> 
+      </div>
+      </React.Fragment>
     );
   }
 }

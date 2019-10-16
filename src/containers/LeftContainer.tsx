@@ -22,6 +22,7 @@ import {
 } from '../utils/InterfaceDefinitions';
 import createModal from '../utils/createModal.util';
 import cloneDeep from '../utils/cloneDeep';
+import theme from '../components/theme';
 
 
 // /////// FOR TESTING ONLY//////////////////////////
@@ -286,16 +287,19 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
       <div
         style={{
           width: '100%',
-          alignSelf: 'flex-end',
+          height: '100%',
         }}>
+        <div 
+          style={{
+            height: '40%'
+          }}></div>
         <div
           style={{
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
           }}>
-          <Button
-            color="primary"
+          <Button 
             aria-label="Export Code"
             variant="contained"
             fullWidth
@@ -305,7 +309,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
               borderRadius: '10px',
               margin: '2px',
               color: 'black',
-              backgroundColor: '#5CDB95',
+              backgroundColor: theme.palette.primary.main
             }}>
             <GetAppIcon style={{ paddingRight: '5px' }} />
             export project
@@ -326,8 +330,8 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
             style={{
               borderRadius: '10px',
               margin: '2px',
-              color: 'white',
-              backgroundColor: '#F64C72',
+              color: theme.palette.primary.contrastText,
+              backgroundColor: theme.palette.primary.main
             }}>
             clear workspace
           </Button>
@@ -357,53 +361,75 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
     );
 
     return (
-      <div className="column left">
+      <React.Fragment>
+<div className="left-panel-grid">
+  <div className="left-panel-grid-addComponent">
         {addComponent}
+  </div>
+  <div className="left-panel-grid-expansionPanel">
         <div className="expansionPanel">{leftColExpansionPanels}</div>
+  </div>
+  <div className="left-panel-grid-HTMLComponentPanel">
         <HTMLComponentPanel addChild={addChild} focusComponent={focusComponent} />
+  </div>
+  <div className="left-panel-grid-clearAndExportButtons">
         {clearAndExportButtons}
+  </div>
         {modal}
-      </div>
+  </div>
+      </React.Fragment>
     );
   }
 }
 
 function styles(): any {
   return {
-    cssLabel: {
-      color: 'white',
 
-      '&$cssFocused': {
-        color: 'green',
+    cssLabel: { // 'add component' 
+      color: theme.palette.primary.contrastText,
+
+      '&$cssFocused': { // 'add component'
+        color: theme.palette.primary.contrastText,
       },
     },
     cssFocused: {},
-    input: {
-      color: '#fff',
+
+
+// <Grid item xs={8} > <Textfield>
+    input: { // 'add component input text' 
+      color: theme.palette.primary.contrastText,
       opacity: '0.7',
       marginBottom: '10px',
     },
+
     underline: {
-      color: 'white',
+      color: theme.palette.primary.light,
       '&::before': {
-        color: 'white',
+        color: theme.palette.primary.contrastText,
       },
     },
+
+  // <Grid item xs={4}> <Fab>
     button: {
-      color: '#fff',
+      color: theme.palette.primary.light, // color of the '+' symbol
+      backgroundColor: theme.palette.primary.main,
+      opacity: 1.0,
 
       '&:disabled': {
-        color: 'grey',
+        color: theme.palette.primary.light,
+        backgroundColor: '#a9ecff',
       },
+      
     },
+
     clearButton: {
       top: '96%',
       position: 'sticky!important',
       zIndex: '1',
 
       '&:disabled': {
-        color: 'grey',
-        backgroundColor: '#424242',
+        color: theme.palette.primary.dark,
+        backgroundColor: theme.palette.primary.main,
       },
     },
   };

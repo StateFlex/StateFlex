@@ -1,14 +1,158 @@
+
+.bottom-panel-props {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns:  150px repeat(4, 1fr); 
+  grid-template-rows: 1fr 1fr; 
+  flexGrow: 1;
+  align-items: flex-start;
+
+}
+
+
+.bottom-panel-props-submit {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  justify-self: flex-end;
+  align-self: flex-end;
+  margin-right: 10px;
+}
+
+
+.bottom-panel-props-key {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.bottom-panel-props-value {
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.bottom-panel-props-type {
+  grid-column: 4 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.bottom-panel-props-required {
+  grid-column: 5 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.bottom-panel-props-data {
+  grid-column: 2 / span 4;
+  grid-row: 2 / span 1;
+}
+
+
+
+.app-grid {
+  display: grid;
+  height: 99vh;
+  grid-template-columns:  20% 40% 40%;
+  grid-template-rows: 60% 40%;
+  max-height: 99vh;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  flexGrow: 1;
+}
+
+.app-grid-left-panel {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 2;
+}
+
+.app-grid-middle-panel {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+
+
+}
+
+.app-grid-right-panel {
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+
+}
+
+.app-grid-bottom-panel {
+  grid-column: 2 / span 2;
+  grid-row: 2 / span 2;
+  align-self: start;
+
+ 
+}
+
+
+
+
+.left-panel-grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns:  100%;
+  grid-template-rows: 100px 1fr 110px 135px;
+  max-height: 99vh;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  align-content: end;
+
+}
+
+.left-panel-grid-addComponent {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+
+  align-self: end;
+  margin-left: 10px;
+}
+
+.left-panel-grid-expansionPanel {
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
+
+  align-self: start;
+  margin-left: 10px;
+}
+
+.left-panel-grid-HTMLComponentPanel {
+  grid-column: 1 / span 1;
+  grid-row: 3 / span 1;
+
+  align-self: end;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.left-panel-grid-clearAndExportButtons {
+  grid-column: 1 / span 1;
+  grid-row: 4 / span 1;
+
+  align-self: end;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+
 *,
 *::before,
 *::after {
   box-sizing: inherit;
 }
 
+
+
 html {
   box-sizing: border-box;
-  background: #333;
-  /* overflow: hidden; */
+
+
+
 }
+
+
+
 
 *::-webkit-scrollbar {
   -webkit-appearance: none;
@@ -18,9 +162,8 @@ html {
 
 *::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+
+
 }
 
 body {
@@ -29,11 +172,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu,
     Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 400;
-  overflow: hidden;
-  background: #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 #drag-bar {
@@ -75,18 +213,14 @@ Remove focus styling
 
 #app {
   display: flex;
-  width: 98vw;
-  height: 98vh;
+
 }
 
 .progress-bar {
   flex-grow: 1;
 }
 
-.column {
-  width: 25%;
-  background-color: #333333;
-}
+
 
 /* .column-right-export-btn {
   transition: display 400ms ease-in-out 300ms;
@@ -102,11 +236,33 @@ BUTTONS
   font-size: 16px;
 }
 
+
+
+
+
+
+
+
+
+
+
 /*
-/////////////////////////////////////////// 
-LEFT COLUMN
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+START :: LeftContainer.tsx
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
 /////////////////////////////////////////////
 */
+
+/*  Background color of LeftContainer.tsx */
+.column {
+  width: 25%;
+
+}
 
 .left {
   padding: 20px 10px 10px;
@@ -119,10 +275,13 @@ LEFT COLUMN
   flex-direction: column;
   position: relative;
   overflow-x: hidden;
-  /* box-shadow: 0 5px 7px 2px rgba(0, 0, 0, 0.4); */
+
 }
+
+/*//////////////
+/* 'add HTML element as child' */
 #html-component-panel {
-  color: white;
+
   padding-bottom: 30px;
   display: flex;
   flex-flow: row wrap;
@@ -137,8 +296,10 @@ LEFT COLUMN
   margin: 10px 0 0;
 }
 
+/*//////////////
+/* text labels for HTML elments menu 'image' , 'form' , 'button', 'link', 'list', 'paragraph' */
 #html-component-panel div[role='button'] span {
-  color: white !important;
+
 }
 
 #html-component-panel span {
@@ -152,15 +313,15 @@ LEFT COLUMN
 
 .node-html-child div {
   border-radius: 10px;
-  border: 1px solid white;
+
   width: 100%;
   text-align: center;
   height: 24px;
-  color: white;
+
 }
 
 .node-html-child div.focused {
-  background: white;
+
   font-weight: 600;
 }
 
@@ -188,19 +349,51 @@ LEFT COLUMN
 }
 
 /*
+/////////////////////////////////////////////
+START :: LeftContainer.tsx
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 /////////////////////////////////////////// 
 MAIN COLUMN
 /////////////////////////////////////////////
 */
 
 h1 {
-  color: #ccc;
+
 }
 
 .main-container {
   width: 100%;
   max-height: 99vh;
-  background-color: #333333;
   overflow-x: scroll;
   overflow-y: hidden;
 }
@@ -224,8 +417,6 @@ h1 {
   /* border-left: 1px solid grey;
   border-right: 1px solid grey;
   border-bottom: 1px solid grey; */
-  background-color: #212121;
-  box-shadow: 0 5px 7px -2px rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
 
@@ -238,11 +429,10 @@ h1 {
   /* border-left: 1px solid grey; */
   /* border-right: 1px solid grey; */
   border-radius: 10px;
-  background: #fff;
   width: 75%;
   /* overflow: hidden;  */
   display: flex;
-  background-color: #e4e4e4;
+  
   /* justify-content: center;
   align-items: center; */
 }
@@ -266,15 +456,15 @@ h1 {
 }
 
 .export-preference div span {
-  transition: color 1s, background1.5s, transform 2s;
+
 }
 
 .export-preference div:hover {
-  background: #5cdb95;
+
 }
 
 .export-preference div:hover span {
-  color: white;
+
 }
 
 .info {
@@ -294,13 +484,12 @@ code,
 
 /*
 /////////////////////////////////////////// 
-RIGHT COLUMN
+RIGHT PANEL - RightPanel.tsx
 /////////////////////////////////////////////
 */
 
 .right-panel {
-  background: #333;
-  color: rgba(255, 255, 255, 0.7);
+  background: #FBFBD4;
   width: 500px;
   height: 100%;
   overflow-y: hidden;
@@ -345,9 +534,7 @@ RIGHT COLUMN
 
 .right-panel .table-wrapper::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+
 }
 
 .right-panel table {
@@ -383,7 +570,6 @@ RIGHT COLUMN
 }
 
 .right-panel button {
-  background: rgba(255, 255, 255, 0.2);
 }
 
 .right-panel button.disabled {
@@ -418,7 +604,7 @@ td.property-controls {
 
 .confirm-delete {
   width: 100%;
-  background: rgba(97, 97, 97, 0.8);
+
   position: sticky;
   top: 0;
   bottom: 0;
@@ -444,16 +630,16 @@ td.property-controls {
 }
 
 .confirm-delete button:hover {
-  background: rgba(162, 162, 162, 0.2);
+
 }
 
 .confirm-delete button.delete {
-  background: rgba(255, 59, 48, 0.7);
+
   margin-bottom: 10px;
 }
 
 .confirm-delete button.delete:hover {
-  background: rgba(195, 53, 42, 0.7);
+
 }
 
 tr:hover .property-controls,
@@ -461,13 +647,7 @@ tr:hover .property-controls,
   visibility: visible;
 }
 
-.property-controls button {
-  background: #6f6f6f;
-}
 
-.property-controls button:hover {
-  background: #454545;
-}
 
 .reducer .property:first-of-type {
   width: 346px;
@@ -475,26 +655,22 @@ tr:hover .property-controls,
 }
 
 .info-title {
-  margin-left: 10px;
-  margin-right: 20px;
+  margin-right: 10px;
   font-weight: lighter;
   width: 40%;
   text-align: right;
 }
 
 .right-panel * {
-  color: rgba(255, 255, 255, 0.7) !important;
 }
 
 .form-error-message {
-  color: #f26e27 !important;
   font-weight: bolder;
   visibility: hidden;
 }
 
 right-panel div:before,
 .MuiInput-underline-351:before {
-  border-bottom-color: rgba(255, 255, 255, 0.7) !important;
   /* border-radius: 0px 10px 10px 0px; */
 }
 
@@ -510,12 +686,14 @@ right-panel div:before,
   transition: width 250ms ease-in-out;
   width: 100%;
   height: calc(100% / 3);
-  background-color: #333333;
   margin-right: 100px;
 }
 
 .htmlattr {
   font-size: 20px;
+  height: 100%;
+  width: 100%;
+  align-items: flex-start;
 }
 
 .htmlattr-name {
@@ -523,7 +701,6 @@ right-panel div:before,
   border-radius: 10px;
   width: 120px;
   margin: 5px 0px 5px 0px;
-  color: whitesmoke;
 }
 
 .props-container {
@@ -575,7 +752,7 @@ right-panel div:before,
 }
 
 .props-input {
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
 h3 {
   margin: 2px;
@@ -589,19 +766,15 @@ h3 {
 /* Sortable tree sorting */
 .sortable-tree {
   height: 100%;
-  background-color: rgb(37, 37, 38);
 }
 
 div.rst__rowContents {
   width: 45px;
   border: none;
-  color: #eee;
-  background-color: #333333;
 }
 
 .rst__rowContentsDragDisabled {
-  background-color: #333333;
-  background-color: rgba(37, 37, 38, 0.4);
+
 }
 
 .rst__moveHandle,
@@ -666,7 +839,7 @@ div.rst__rowContents {
 
 .right-panel .interface,
 .right-panel .reducer {
-  background: rgba(255, 255, 255, 0.07);
+
 }
 
 .new-store-item,
@@ -676,7 +849,7 @@ div.rst__rowContents {
 
 #store,
 #actions {
-  background: rgba(255, 255, 255, 0.05);
+
   padding: 2px 0 1.3em;
   margin: 20px 0;
 }
