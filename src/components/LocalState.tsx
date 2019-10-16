@@ -179,7 +179,7 @@ const LocalState: React.FC = (props: any): JSX.Element => {
             <DataTable
               rowHeader={['local state selections']}
               rowData={focusComponent.componentState.map(
-                state => `Name: ${state.name}.      Type: ${state.type}.      Initial Value: ${state.initialValue}`,
+                state => `Name: ${state.name}      Type: ${state.type}      Initial Value: ${state.initialValue}`,
               )}
               deletePropHandler={name => dispatch(deleteState(name.match(/Name: \w+/)[0].slice(6)))}
               editHandler={row => editHandler(row)}
