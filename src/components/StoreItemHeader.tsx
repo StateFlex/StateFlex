@@ -50,7 +50,7 @@ const StoreItemHeader = (props: any) => {
                         alignItems: 'end',
                         height: '100%',
                         color: '#333'}}>
-                Interface name: <b>{storeItem}</b>
+                Name: <b>{storeItem}</b>
           </div>
 
 

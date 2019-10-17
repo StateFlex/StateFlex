@@ -138,7 +138,7 @@ class Props extends Component {
   state = {
     propKey: '',
     propValue: '',
-    propRequired: true,
+    propRequired: false,
     propType: '',
   };
 
@@ -231,7 +231,7 @@ class Props extends Component {
     this.setState({
       propKey: '',
       propValue: '',
-      propRequired: true,
+      propRequired: false,
       propType: '',
     });
   };

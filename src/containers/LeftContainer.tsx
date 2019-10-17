@@ -137,7 +137,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
     // Choose app dir
       const { components, storeConfig } = this.props;
       // const { genOption } = this.state;
-      const appName = this.props.reduxView ? 'preducks app' : 'ReacType App';
+      const appName = this.props.reduxView ? 'StateFlex Redux App' : 'StateFlex React App';
       const exportAppBool = true;
       this.props.createApp({
         path: '',
@@ -247,7 +247,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
         <Grid item xs={8}>
           <TextField
             id="title-input"
-            label="add component"
+            label="Add component"
             placeholder="component name"
             margin="normal"
             autoFocus
