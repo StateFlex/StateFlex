@@ -34,15 +34,16 @@ export const LeftColExpansionPanel = (props: any) => {
   }
 
   const focusedStyle = {
-    boxShadow: 'rgba(50, 50, 50, 0.3) 0 0 2px 2px',
+    boxShadow: 'rgba(50, 50, 50, 0.3) 2px 2px 2px 2px',
     background: color,
     opacity: 1.0
   };
 
   const unFocusedStyle = {
-    boxShadow: 'rgba(50, 50, 50, 0.2) 0 0 2px 2px',
+    boxShadow: 'rgba(50, 50, 50, 0.2) 2px 2px 2px 2px',
     background: color,
     opacity: 0.5
+    
   }
 
   const componentTitleDisplay = (
@@ -132,7 +133,7 @@ export const LeftColExpansionPanel = (props: any) => {
           componentName={child.componentName}
           focusComponentID={focusComponent.id}
           components={components}
-          color={color}
+          color={'#def8ff'}
         />,
       );
     } else if (child.childComponentId === id) {
@@ -180,9 +181,9 @@ function styles(): any {
       backgroundColor: '#0f0',
     },
     light: {
-      color: 'blue',
+      color: '#fff',
       '&:hover': {
-        color: 'green',
+        color: '#fff',
       },
     },
 

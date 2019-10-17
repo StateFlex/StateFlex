@@ -194,7 +194,7 @@ class BottomTabs extends Component<PropsInt> {
           </Tooltip>
 
           <Tooltip
-            title="interfaces"
+            title="Interfaces"
             aria-label="define typescript interfaces"
             placement="top">
             <Tab
@@ -206,7 +206,7 @@ class BottomTabs extends Component<PropsInt> {
 
           {reduxView && 
             <Tooltip
-              title="reducers"
+              title="Reducers"
               aria-label="define redux reducers"
               placement="top">
               <Tab

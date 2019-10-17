@@ -1,66 +1,102 @@
 
-.bottom-panel-props {
-  display: grid;
-  width: 100%;
-  height: 100%;
-  grid-template-columns:  150px repeat(4, 1fr); 
-  grid-template-rows: 1fr 1fr; 
-  flexGrow: 1;
-  align-items: flex-start;
-
+body {
+  margin: 0;
+  padding: 0;
 }
 
-
-.bottom-panel-props-submit {
+/* 
+root / src / components / Interfaces.tsx
+*/
+.bottom-panel-typescript {
+  display: grid;
+  width: 99%;
+  height: 100%;
+  grid-template-columns:  repeat(2, 1fr) 62%; 
+  grid-template-rows: 60px 1fr; 
+  margin-top: 16px;
+  margin-left: 20px;
+  flex: 1;
+}
+.bottom-panel-typescript-new-interface-submit {
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
-  justify-self: flex-end;
-  align-self: flex-end;
-  margin-right: 10px;
+
 }
 
-
-.bottom-panel-props-key {
+.bottom-panel-typescript-new-interface-input {
   grid-column: 2 / span 1;
   grid-row: 1 / span 1;
+
 }
 
-.bottom-panel-props-value {
-  grid-column: 3 / span 1;
-  grid-row: 1 / span 1;
-}
-
-.bottom-panel-props-type {
-  grid-column: 4 / span 1;
-  grid-row: 1 / span 1;
-}
-
-.bottom-panel-props-required {
-  grid-column: 5 / span 1;
-  grid-row: 1 / span 1;
-}
-
-.bottom-panel-props-data {
-  grid-column: 2 / span 4;
+.bottom-panel-typescript-new-interface-values {
+  grid-column: 1 / span 3;
   grid-row: 2 / span 1;
 }
 
 
+/* 
+root / src / containers / AppContainer.tsx
+*/
+.app-wrapper {
+  display: grid;
+  width: 100vw;
+  grid-template-columns:  repeat(3, 1fr);
+}
+
+.app-wrapper-left {
+  grid-column: 1 / span 1;
+
+  height:100%; 
+  width:100%; 
+  justify-self: flex-end;
+z-index: 600px;
+  overflow:auto;
+  background-image: linear-gradient(to left,  #e0eff0 , #ffffff); /* Standard syntax (must be last) */
+    
+}
+
+.app-wrapper-middle {
+  grid-column: 2 / span 1;
+}
+
+.app-wrapper-right {
+  grid-column: 3 / span 1;
+  margin:auto; 
+  height:100%; 
+  width:100%; 
+
+  overflow:auto;
+  background-image: linear-gradient(to right,  #e0eff0 , #ffffff); /* Standard syntax (must be last) */
+    
+}
+
 
 .app-grid {
   display: grid;
-  height: 99vh;
-  grid-template-columns:  20% 40% 40%;
-  grid-template-rows: 60% 40%;
-  max-height: 99vh;
-  overflow-x: scroll;
+  height: 100vh;
+  width: calc(100vh * 1.5);
+  grid-template-columns:  25% 35% 40%;
+  grid-template-rows: 60vh 40vh;
+  max-height: 100vh;
+  overflow-x: hidden;
   overflow-y: hidden;
-  flexGrow: 1;
+  margin: auto;
+  padding-bottom: 0px;
+  background-color: rgb(255, 255, 255);
 }
 
 .app-grid-left-panel {
   grid-column: 1 / span 1;
   grid-row: 1 / span 2;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  margin-left: 2px;
+  z-index: 100;
+  overflow-x: hidden;
+  box-shadow: 0 4px 8px 0 rgba(1, 71, 87, 0.3);
 }
 
 .app-grid-middle-panel {
@@ -73,7 +109,11 @@
 .app-grid-right-panel {
   grid-column: 3 / span 1;
   grid-row: 1 / span 1;
-
+  background-color: '#fff';
+  height: 100%;
+  margin-left: 2px;
+  z-index: 100;
+  box-shadow: 0 4px 8px 0 rgba(1, 71, 87, 0.3);
 }
 
 .app-grid-bottom-panel {
@@ -81,8 +121,151 @@
   grid-row: 2 / span 2;
   align-self: start;
 
- 
+  background-color: #eee;
+  height: 100%;
 }
+
+
+/* 
+root / src / components / HtmlAttr.tsx
+*/
+.bottom-panel-html-attributes {
+  display: grid;
+  width: 99%;
+  height: 100%;
+  grid-template-columns:  repeat(3, 1fr) 40%; 
+  grid-template-rows: 1fr; 
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  margin-left: 20px;
+  flex: 1;
+}
+
+.bottom-panel-html-attributes-submit {
+  grid-column: 1 / span 1;
+  margin-bottom: 10px;
+
+}
+
+.bottom-panel-html-attributes-input {
+  grid-column: 2 / span 1;
+
+}
+
+.bottom-panel-html-attributes-assigned {
+  grid-column: 3 / span 1;
+
+}
+
+
+
+
+
+/* 
+root / src / components / LocalState.tsx
+*/
+.bottom-panel-local-state {
+  display: grid;
+  width: 99%;
+  height: 100%;
+  grid-template-columns:  repeat(5, 1fr) 25%; 
+  grid-template-rows: 60px 1fr; 
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  margin-left: 20px;
+  flex: 1;
+}
+
+.bottom-panel-local-state-submit {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.bottom-panel-local-state-name {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+  padding-right: 40px;
+}
+
+.bottom-panel-local-state-value {
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+  padding-right: 40px;
+}
+
+.bottom-panel-local-state-type {
+  grid-column: 4 / span 1;
+  grid-row: 1 / span 1;
+}
+
+
+.bottom-panel-local-state-data {
+  grid-column: 2 / span 4;
+  grid-row: 2 / span 1;
+
+  align-self: flex-start;
+
+
+}
+
+
+/* 
+root / src / components / Props.tsx
+*/
+.bottom-panel-props {
+  display: grid;
+  width: 99%;
+  height: 100%;
+  grid-template-columns:  repeat(6, 1fr) 5%; 
+  grid-template-rows: 60px 1fr; 
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  margin-left: 20px;
+  flex: 1;
+}
+
+.bottom-panel-props-submit {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+
+}
+
+
+.bottom-panel-props-key {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+  padding-right: 40px;
+}
+
+.bottom-panel-props-value {
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+  padding-right: 40px;
+}
+
+.bottom-panel-props-type {
+  grid-column: 4 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.bottom-panel-props-required {
+  grid-column: 5/ span 1;
+  grid-row: 1 / span 1;
+}
+
+.bottom-panel-props-data {
+  grid-column: 2 / span 6;
+  grid-row: 2 / span 1;
+
+  align-self: flex-start;
+
+}
+
+
+
 
 
 
@@ -105,7 +288,6 @@
   grid-row: 1 / span 1;
 
   align-self: end;
-  margin-left: 10px;
 }
 
 .left-panel-grid-expansionPanel {
@@ -113,7 +295,6 @@
   grid-row: 2 / span 1;
 
   align-self: start;
-  margin-left: 10px;
 }
 
 .left-panel-grid-HTMLComponentPanel {
@@ -121,8 +302,7 @@
   grid-row: 3 / span 1;
 
   align-self: end;
-  margin-left: 10px;
-  margin-right: 10px;
+
 }
 
 .left-panel-grid-clearAndExportButtons {
@@ -130,9 +310,7 @@
   grid-row: 4 / span 1;
 
   align-self: end;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+
 }
 
 
@@ -296,11 +474,7 @@ START :: LeftContainer.tsx
   margin: 10px 0 0;
 }
 
-/*//////////////
-/* text labels for HTML elments menu 'image' , 'form' , 'button', 'link', 'list', 'paragraph' */
-#html-component-panel div[role='button'] span {
 
-}
 
 #html-component-panel span {
   width: 100%;
@@ -321,7 +495,7 @@ START :: LeftContainer.tsx
 }
 
 .node-html-child div.focused {
-
+  color: '#def8ff';
   font-weight: 600;
 }
 
@@ -516,7 +690,7 @@ RIGHT PANEL - RightPanel.tsx
   margin-right: 6px;
 }
 
-.right-panel .interface:hover .delete-store-item,
+.interface:hover .delete-store-item,
 .right-panel .reducer:hover .delete-store-item {
   visibility: visible;
 }
@@ -669,7 +843,7 @@ tr:hover .property-controls,
   visibility: hidden;
 }
 
-right-panel div:before,
+.right-panel div:before,
 .MuiInput-underline-351:before {
   /* border-radius: 0px 10px 10px 0px; */
 }
@@ -723,7 +897,7 @@ right-panel div:before,
 }
 
 .props-container .data-table {
-  margin: 10px;
+  margin: 0px;
   border: 4px solid white;
 }
 
@@ -823,12 +997,9 @@ div.rst__rowContents {
   margin: 15px 0 0;
 }
 
-.right-panel .interface,
+.interface,
 .right-panel .reducer {
-  background: #eee;
-  margin: 10px 10px;
-  padding: 2px 0 1.3em;
-  border-radius: 10px;
+
 }
 
 .right-panel section {

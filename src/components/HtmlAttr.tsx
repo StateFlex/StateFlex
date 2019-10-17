@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
@@ -23,23 +24,23 @@ interface StateInt {}
 const styles = (theme: any): any => ({
   root: {
     display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    background: '#007BFF',
-    color: 'white',
-    borderRadius: '15px',
-    border: '2px solid white',
+    height: '30px',
+    justifyContent: 'flex-start',
+    alignContent: 'flex-end',
+    background: '#fff',
+    color: '222',
+    padding: '22px',
   },
   cssLabel: {
-    color: 'white',
+    color: '222',
   },
   cssFocused: {
-    color: '#5CDB95',
+    color: '#222',
   },
   input: {
     color: 'white',
-    opacity: '0.7',
-    marginBottom: '15px',
+    opacity: '1.0',
+ 
   },
 });
 
@@ -79,8 +80,21 @@ class HtmlAttr extends Component<PropsInt, StateInt> {
     const focusChildType = focusChild.htmlElement;
 
     const HtmlForm = HTMLelements[focusChildType].attributes.map((attr: string, i: number) => (
-      <Grid container spacing={0} key={i} style={{ marginTop: '10px', marginRight: '20px' }}>
-        <Grid item xs={2}>
+      <Fragment>
+          <div className={'bottom-panel-html-attributes-submit'}>
+          <Button
+                aria-label="Save"
+       
+                type="submit"
+                // disabled={!this.state.propKey || !this.state.propType}
+                onClick={() => this.handleSave(attr)}
+                variant="contained"
+                size="large">                                     
+                ADD ATTRIBUTE
+          </Button>
+          </div>
+
+          <div className={'bottom-panel-html-attributes-input'}>
           <TextField
             InputLabelProps={{
               classes: {
@@ -95,43 +109,26 @@ class HtmlAttr extends Component<PropsInt, StateInt> {
                 notchedOutline: classes.notchedOutline,
               },
             }}
-            style={{ background: '#4e4e4e', height: '70%', borderRadius: '10px' }}
             label={attr}
-            variant="outlined"
             id={attr}
             onChange={this.handleChange}
             value={this.state[attr]}
           />
-        </Grid>
-        <Grid item xs={1}>
-          <Fab
-            variant="extended"
-            size="small"
-            color="default"
-            aria-label="Save"
-            style={{
-              marginLeft: '10px',
-              marginTop: '5px',
-              marginBottom: '10px',
-            }}
-            onClick={() => this.handleSave(attr)}>
-            {'save'}
-          </Fab>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.root} style={{ height: '70%' }}>
-            <h4 style={{ padding: '-10px 0px 0px 0px', alignSelf: 'center' }}>
+          </div>
+
+          <div className={'bottom-panel-html-attributes-assigned'}>
+          <Paper className={classes.root}>
               {focusChild.HTMLInfo[attr] ? focusChild.HTMLInfo[attr] : ' no attribute assigned'}
-            </h4>
           </Paper>
-        </Grid>
-      </Grid>
+          </div>
+          </Fragment>
     ));
 
     return (
-      <div className={'htmlattr'}>
-        <div className={'htmlattr-name'}>{`${focusChildType.toLowerCase()}`}</div>
+      <div className={'bottom-panel-html-attributes'}>
+
         {HtmlForm}
+
       </div>
     );
   }

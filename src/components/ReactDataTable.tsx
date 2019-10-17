@@ -11,21 +11,18 @@ import CreateIcon from '@material-ui/icons/Create';
 import IconButton from '@material-ui/core/IconButton';
 import uuid from 'uuid';
 
+
+
+
+
 const styles = (theme: any) => ({
   root: {
-    marginTop: theme.spacing.unit * 3,
-    margin: '10px',
-    fontSize: '20px',
-    borderRadius: '10px',
-    backgroundColor: 'white',
-    // overflowX: "auto"
+    width: '94%',
+    marginTop: '0px',
+    marginLeft: '0px',
   },
   table: {
-    minWidth: 500,
-    marginRight: '100px',
-    fontSize: '20px',
-    borderRadius: '10px',
-    backgroundColor: 'white',
+    backgroundColor: '#eee'
   },
 });
 
@@ -46,7 +43,7 @@ function reactDataTable(props: any) {
   function renderRowCells(row: any) {
     if (!row) return;
     return rowHeader.map((header: string, idx: number) => (
-      <TableCell align={'center'} key={`${uuid.v4()}`}>
+      <TableCell align={'left'} key={`${uuid.v4()}`}>
         {row[header].toString()}
       </TableCell>
     ));
@@ -63,26 +60,23 @@ function reactDataTable(props: any) {
 //     setEnteredValue(initialValue);
 //   };
 
-  const renderRows = rowData.map((row: any) => (
-    <TableRow key={`${uuid.v4()}`}>
-      {renderRowCells(row)}
-      <TableCell align={'center'} padding={'none'}>
-        <IconButton color="default" onClick={() => deletePropHandler(row.id)}>
-          <DeleteIcon />
-        </IconButton>
-        <IconButton color="default" onClick={() => reactHandler(row, deletePropHandler)}>
-          <CreateIcon />
-        </IconButton>
-      </TableCell>
-    </TableRow>
-  ));
+const renderRows = rowData.map((row: any) => (
+  <TableRow key={`${uuid.v4()}`}>
+    {renderRowCells(row)}
+      <TableCell align={'center'} padding={'none'} >
+      <IconButton color="default" onClick={() => deletePropHandler(row.id)}>
+        <DeleteIcon />
+      </IconButton>
+      <IconButton color="default" onClick={() => reactHandler(row, deletePropHandler)}>
+        <CreateIcon />
+      </IconButton>
+    </TableCell>
+  </TableRow>
+));
 
   return (
-    <Paper className={`${classes.root}, data-table`}>
+    <Paper className={classes.root}>
       <Table className={classes.table} selectable={'true'}>
-        <TableHead>
-          <TableRow>{renderHeader}</TableRow>
-        </TableHead>
         <TableBody>{renderRows}</TableBody>
       </Table>
     </Paper>
