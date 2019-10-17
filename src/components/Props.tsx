@@ -215,7 +215,7 @@ class Props extends Component {
     this.setState({
       propKey: '',
       propValue: '',
-      propRequired: true,
+      propRequired: false,
       propType: '',
     });
   };

@@ -200,7 +200,7 @@ class BottomTabs extends Component<PropsInt> {
             <Tab
               disableRipple
               classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-              label={`typescript interfaces ${propCount ? `(${propCount})` : ''} `}
+              label={`Typescript Interfaces ${propCount ? `(${propCount})` : ''} `}
             />
           </Tooltip>
 
@@ -212,7 +212,7 @@ class BottomTabs extends Component<PropsInt> {
               <Tab
                 disableRipple
                 classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-                label={`redux reducers ${propCount ? `(${propCount})` : ''} `}
+                label={`Redux Reducers ${propCount ? `(${propCount})` : ''} `}
               />
             </Tooltip>
           }
