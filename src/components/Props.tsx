@@ -179,10 +179,7 @@ class Props extends Component {
     }
 
     if(propType === 'boolean'){
-      console.log(propValue);
-      console.log(typeof propValue)
       if(propValue !== 'true' && propValue !== 'false') {
-      console.log('in here')
       window.alert('A boolean type must have a boolean initial value');
       return;
       }
