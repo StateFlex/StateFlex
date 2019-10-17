@@ -18,7 +18,7 @@ const initialComponentState: ComponentInt = {
   stateful: false,
   componentState: [],
   title: '',
-  color: getColor(1),
+  color: '',
   props: [],
   nextPropId: 1,
   childrenArray: [],
@@ -57,7 +57,7 @@ export const addComponent = (state: ApplicationStateInt, { title }: { title: str
     };
   }
 
-  const componentColor = getColor(1);
+  const componentColor = getColor();
   const componentId = state.nextId;
 
   const newComponent: ComponentInt = {

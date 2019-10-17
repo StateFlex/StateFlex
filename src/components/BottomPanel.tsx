@@ -22,17 +22,16 @@ interface PropsInt {
 
 class BottomPanel extends Component<PropsInt> {
   render() {
+    console.log('reduxView in BottomPanel is', this.props.reduxView)
     const { components, focusComponent, focusChild, reduxView } = this.props;
 
     return (
-      <div className="bottom-panel" style={{ width: '100%' }}>
         <BottomTabs
           components={components}
           focusComponent={focusComponent}
           focusChild={focusChild}
           reduxView={reduxView}
         />
-      </div>
     );
   }
 }

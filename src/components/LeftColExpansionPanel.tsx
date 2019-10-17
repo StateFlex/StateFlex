@@ -13,6 +13,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import uuid from 'uuid';
 import Collapse from '@material-ui/core/Collapse';
 import HtmlChild from './HtmlChild';
+import theme from './theme';
 
 export const LeftColExpansionPanel = (props: any) => {
   const {
@@ -33,24 +34,32 @@ export const LeftColExpansionPanel = (props: any) => {
   }
 
   const focusedStyle = {
-    boxShadow: 'rgba(150, 150, 150, 0.2) 0 0 4px 2px',
+    boxShadow: 'rgba(50, 50, 50, 0.3) 0 0 2px 2px',
     background: color,
+    opacity: 1.0
   };
+
+  const unFocusedStyle = {
+    boxShadow: 'rgba(50, 50, 50, 0.2) 0 0 2px 2px',
+    background: color,
+    opacity: 0.5
+  }
 
   const componentTitleDisplay = (
     <Grid item xs={12}>
       <List>
         <ListItem
           button
+       
           disableRipple={true}
           onClick={() => {
             changeFocusComponent({ title });
           }}>
           <ListItemText
             disableTypography
-            className={classes.light}
+            //className={classes.light}
             primary={
-              <Typography variant="h6" style={isFocused() ? { color: 'white' } : { color }}>
+              <Typography variant="h6" style={isFocused() ? { color: 'white' } : { color: 'white' }}>
                 {title}
               </Typography>
             }
@@ -134,7 +143,7 @@ export const LeftColExpansionPanel = (props: any) => {
   return (
     <Grid container spacing={16} direction="row" justify="flex-start" alignItems="center">
       <Grid item xs={8}>
-        <div className={classes.root} style={!isFocused() ? {} : focusedStyle}>
+        <div className={classes.root} style={!isFocused() ? unFocusedStyle : focusedStyle}>
           {componentTitleDisplay}
           <Collapse in={isFocused() === 'focused'}>
             <Grid item xs={12} style={{ alignSelf: 'center' }}>
@@ -168,14 +177,15 @@ function styles(): any {
       height: '100%',
       borderRadius: '10px',
       marginTop: 10,
-      backgroundColor: '#4e4e4e',
+      backgroundColor: '#0f0',
     },
     light: {
-      color: '#eee',
+      color: 'blue',
       '&:hover': {
-        color: '#1de9b6',
+        color: 'green',
       },
     },
+
   };
 }
 
