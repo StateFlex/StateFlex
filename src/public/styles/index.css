@@ -1,22 +1,30 @@
 
+
+
+
+
+
+/* 
+root / src / components / Props.tsx
+*/
 .bottom-panel-props {
   display: grid;
-  width: 100%;
+  width: 99%;
   height: 100%;
   grid-template-columns:  150px repeat(4, 1fr); 
-  grid-template-rows: 1fr 1fr; 
+  grid-template-rows: 60px 1fr; 
   flexGrow: 1;
   align-items: flex-start;
-
+  margin-top: 20px;
+  margin-left: 10px;
 }
-
 
 .bottom-panel-props-submit {
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
   justify-self: flex-end;
-  align-self: flex-end;
-  margin-right: 10px;
+  align-self: flex-start;
+  margin-right: 20px;
 }
 
 
@@ -43,6 +51,8 @@
 .bottom-panel-props-data {
   grid-column: 2 / span 4;
   grid-row: 2 / span 1;
+
+  align-self: flex-start;
 }
 
 
@@ -296,11 +306,7 @@ START :: LeftContainer.tsx
   margin: 10px 0 0;
 }
 
-/*//////////////
-/* text labels for HTML elments menu 'image' , 'form' , 'button', 'link', 'list', 'paragraph' */
-#html-component-panel div[role='button'] span {
 
-}
 
 #html-component-panel span {
   width: 100%;
@@ -669,7 +675,7 @@ tr:hover .property-controls,
   visibility: hidden;
 }
 
-right-panel div:before,
+.right-panel div:before,
 .MuiInput-underline-351:before {
   /* border-radius: 0px 10px 10px 0px; */
 }
@@ -723,7 +729,7 @@ right-panel div:before,
 }
 
 .props-container .data-table {
-  margin: 10px;
+  margin: 0px;
   border: 4px solid white;
 }
 
