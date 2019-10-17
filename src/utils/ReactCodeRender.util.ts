@@ -125,6 +125,21 @@ import {
     const interfacesToImport = listOfInterfaces.length
     ? `import {${listOfInterfaces.join(', ')}} from '../Interfaces'`
     : '';
+
+    const useStateCalls = componentState.length
+    ? componentState
+      .map((pieceOfState: ComponentStateInterface) => {
+        const initialValue = pieceOfState.type === 'string'
+          ? `'${pieceOfState.initialValue}'`
+          : pieceOfState.initialValue;
+        return `const [${
+          pieceOfState.name
+        }, set${pieceOfState.name[0].toUpperCase()}${pieceOfState.name.slice(1)}] = useState<${
+          pieceOfState.type
+        }>(${initialValue});`;
+      })
+      .join('\n')
+    : '';
   
     return `
       import React from 'react';
@@ -146,6 +161,7 @@ import {
       }
   
       const ${title} = (props: Props) => {
+        ${useStateCalls}
         const {${props.map(el => el.key).join(',\n')}} = props
         
         return (

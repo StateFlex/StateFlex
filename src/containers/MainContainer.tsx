@@ -92,6 +92,7 @@ class MainContainer extends Component<PropsInt, StateInt> {
   }
 
   render() {
+    console.log('reduxView in Main is', this.props.reduxView)
     const { modal } = this.state;
     const {
       components, focusComponent, focusChild, classes, reduxView
@@ -111,11 +112,11 @@ class MainContainer extends Component<PropsInt, StateInt> {
       </div>
       <div className="app-grid-right-panel">
       
-                <RightPanel focusComponent={focusComponent} components={components}/> 
+                <RightPanel focusComponent={focusComponent} components={components} reduxView={reduxView} /> 
        </div>
        <div className="app-grid-bottom-panel">       
       
-                <BottomPanel focusComponent={focusComponent} /> 
+                <BottomPanel focusComponent={focusComponent} reduxView={reduxView} /> 
       </div>
       </React.Fragment>
     );

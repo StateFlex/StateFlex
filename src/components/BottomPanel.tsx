@@ -22,6 +22,7 @@ interface PropsInt {
 
 class BottomPanel extends Component<PropsInt> {
   render() {
+    console.log('reduxView in BottomPanel is', this.props.reduxView)
     const { components, focusComponent, focusChild, reduxView } = this.props;
 
     return (

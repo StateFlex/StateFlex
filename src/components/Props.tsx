@@ -178,6 +178,33 @@ class Props extends Component {
       return;
     }
 
+    if(propType === 'boolean'){
+      if(propValue !== 'true' && propValue !== 'false') {
+      window.alert('A boolean type must have a boolean initial value');
+      return;
+      }
+    } else if (propType == 'object'){
+      if(propValue[0] !== '{' || propValue[propValue.length-1] !== '}'){
+        window.alert('An object type\'s initial value must be enclosed in an object');
+        return;
+      } 
+    } else if(propType == 'array'){
+      if(propValue[0] !== '[' || propValue[propValue.length-1] !== ']'){
+        window.alert('An array type\'s initial value must be enclosed in an array');
+        return;
+      }
+    } else if(propType === 'number'){
+      if(!Number(propValue) && Number(propValue) !== 0){
+        window.alert('A number type\'s initial value must be a number');
+        return;
+      }
+    } else if (propType === 'string'){
+      if(Number(propValue) || Number(propValue) == 0 || propValue[0] == '['|| propValue[propValue.length-1] == ']' || propValue[0] == '{' || propValue[propValue.length-1] == '}' || propValue == 'true' || propValue == 'false'){
+        window.alert('A string type\'s initial value must be a string');
+        return;
+      }
+    }
+
     this.props.addProp({
       key: propKey,
       value: propValue,
@@ -300,7 +327,7 @@ class Props extends Component {
                   'any',
                   'tuple',
                   'emum',
-                  //...Object.keys(this.props.storeConfig.interfaces),
+                  ...Object.keys(this.props.storeConfig.interfaces),
                   ])}
         </Select>
         </FormControl>

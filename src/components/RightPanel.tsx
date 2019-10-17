@@ -1,5 +1,6 @@
 import React from 'react';
 import CodePreview from './CodePreview';
+import ReactCodePreview from './ReactCodePreview';
 import { ComponentInt, ComponentsInt, ChildInt } from '../utils/InterfaceDefinitions';
 
 
@@ -11,9 +12,19 @@ interface PropsInt {
 }
 
 
-const RightPanel = ({focusComponent, components}) => {
+const RightPanel = ({focusComponent, components, reduxView}) => {
+  console.log('reduxView in RightPanel', reduxView)
+  // let codePreview;
+  // if (reduxView) {
+  //   codePreview = (<CodePreview focusComponent={focusComponent} components={components} />);
+  // } else {
+  //   codePreview = (<ReactCodePreview />);
+  // }
   return (
-    <CodePreview focusComponent={focusComponent} components={components} />
+    <div>
+      {reduxView && <CodePreview focusComponent={focusComponent} components={components} />}
+      {!reduxView && <ReactCodePreview focusComponent={focusComponent} components={components} />}
+    </div>
   );
 };
 

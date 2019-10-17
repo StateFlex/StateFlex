@@ -7,10 +7,11 @@ import HtmlAttr from './HtmlAttr';
 import Interfaces from './Interfaces';
 import Reducers from './Reducers';
 import CodePreview from './CodePreview';
-import Props from './Props.tsx';
+import Props from './Props';
 import ReactCodePreview from './ReactCodePreview'
 import { ComponentInt, ComponentsInt, ChildInt } from '../utils/InterfaceDefinitions';
 import ComponentReduxSetup from './ComponentReduxSetup';
+import LocalState from './LocalState';
 import AppBar from '@material-ui/core/AppBar';
 import theme from './theme';
 
@@ -118,6 +119,7 @@ class BottomTabs extends Component<PropsInt> {
   }
 
   render() {
+    console.log('reduxView in Bottom Tabs is', this.props.reduxView)
     const {
       classes, components, focusComponent, focusChild, reduxView
     } = this.props;
@@ -125,6 +127,7 @@ class BottomTabs extends Component<PropsInt> {
 
     // display count on the tab. user can see without clicking into tab
     const propCount = focusComponent.props.length;
+    const componentStateCount = focusComponent.componentState.length;
     const htmlAttribCount = focusComponent.childrenArray.filter(child => child.childType === 'HTML')
       .length;
 
@@ -146,33 +149,49 @@ class BottomTabs extends Component<PropsInt> {
           value={value}
           onChange={this.handleChange}
           classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}>
-         
-          { reduxView ?
+          {reduxView ? 
           <Tooltip
-            title="give selected component local state and/or connections to the redux store/actions"
-            aria-label="give selected component local state and/or connections to the redux store/actions"
-            placement="top">
+          title="give selected component connections to the redux store/actions"
+          aria-label="give selected component connections to the redux store/actions"
+          placement="top">
             <Tab
               disableRipple
               classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-              label={`local state & redux connections ${propCount ? `(${propCount})` : ''} `}
-            />
+              label={`Redux Connections ${propCount ? `(${propCount})` : ''} `}
+              />
           </Tooltip>
           :
           <Tooltip
-            title="component props"
-            aria-label="Component Props"
+          title="Component Props"
+          aria-label="Component Props"
+          placement="top">
+            <Tab
+              disableRipple
+              classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+              label={`Component Props ${propCount ? `(${propCount})` : ''} `}
+              />
+          </Tooltip>
+          }
+          <Tooltip
+            title="give selected component local state"
+            aria-label="give selected component local state"
             placement="top">
             <Tab
               disableRipple
               classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-              label={`component props ${propCount ? `(${propCount})` : ''} `}
-            />
+              label={`Local State ${componentStateCount ? `(${componentStateCount})` : ''} `}
+              />
           </Tooltip>
-          }
-
-
-
+          <Tooltip
+            title="edit attributes of currently selected HTML element"
+            aria-label="edit attributes of currently selected HTML element"
+            placement="top">
+            <Tab
+              disableRipple
+              classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+              label={`HTML Element Attributes ${htmlAttribCount ? `(${htmlAttribCount})` : ''} `}
+              />
+          </Tooltip>
 
           <Tooltip
             title="interfaces"
@@ -185,32 +204,18 @@ class BottomTabs extends Component<PropsInt> {
             />
           </Tooltip>
 
-
-
-          <Tooltip
-            title="edit attributes of currently selected HTML element"
-            aria-label="edit attributes of currently selected HTML element"
-            placement="top">
-            <Tab
-              disableRipple
-              classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-              label={`HTML Element Attributes ${htmlAttribCount ? `(${htmlAttribCount})` : ''} `}
-            />
-          </Tooltip>
-
-          { reduxView  && 
-
-<Tooltip
-  title="reducers"
-  aria-label="define redux reducers"
-  placement="top">
-  <Tab
-    disableRipple
-    classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-    label={`redux reducers ${propCount ? `(${propCount})` : ''} `}
-  />
-</Tooltip>
-}
+          {reduxView && 
+            <Tooltip
+              title="reducers"
+              aria-label="define redux reducers"
+              placement="top">
+              <Tab
+                disableRipple
+                classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+                label={`redux reducers ${propCount ? `(${propCount})` : ''} `}
+              />
+            </Tooltip>
+          }
 
 
           {/* <Tooltip
@@ -218,45 +223,46 @@ class BottomTabs extends Component<PropsInt> {
             aria-label="react code preview"
             placement="top">
             <Tab
-              disableRipple
-              classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-              label={'react code preview'}
+            disableRipple
+            classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+            label={'react code preview'}
             />
           </Tooltip> */}
+          {/* {reduxView ?          
+          <Tab
+            disableRipple
+            classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+            label="Code Preview"
+          />
+          :
+          <Tooltip
+            title="react code preview"
+            aria-label="react code preview"
+            placement="top">
+            <Tab
+              disableRipple
+              classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+              label={'React Code Preview'}
+            />
+          </Tooltip>
+          } */}
         </Tabs>
         </AppBar>
         <div>
-          {/* {(reduxView && value === 0) ? 
-          <CodePreview focusComponent={focusComponent} components={components} />  
-          :
-          <ReactCodePreview focusComponent={focusComponent} components={components} />
-          } */}
        
-      
+          {/* {reduxView && value === 5 && <CodePreview focusComponent={focusComponent} components={components} />}
+          {!reduxView && value === 5 && <ReactCodePreview focusComponent={focusComponent} components={components} />} */}
           {reduxView && value === 0 && <ComponentReduxSetup focusComponent={focusComponent} />}
           {!reduxView && value === 0 && <Props />}
-
-          { value === 1 && <Interfaces /> }
-
-          {reduxView && value === 2 && focusChild.childType === 'HTML' && <HtmlAttr />}
-          {!reduxView && value === 2 && focusChild.childType === 'HTML' && <HtmlAttr />}
-          {reduxView && value === 2 && focusChild.childType !== 'HTML' && (
-            <p>select an HTML element to view attributes</p>
-          )}
-          {!reduxView && value === 2 && focusChild.childType !== 'HTML' && (
-            <p>select an HTML element to view attributes</p>
-          )}
-          
-          {!reduxView && value === 3 && <Reducers />}
-
-          {/* {value === 0 && <CodePreview focusComponent={focusComponent} components={components} />} */}
-          {/* {value === 1 && <ComponentReduxSetup focusComponent={focusComponent} />}
+          {value === 1 && <LocalState focusComponent={focusComponent} />}
           {value === 2 && focusChild.childType === 'HTML' && <HtmlAttr />}
           {value === 2 && focusChild.childType !== 'HTML' && (
             <p>select an HTML element to view attributes</p>
-          )} */}
-          {/* {value === 3 && <ReactCodePreview focusComponent={focusComponent} components={components} />} */}
-        </div>
+          )}
+          {value === 3 && <Interfaces />}
+          {reduxView && value === 4 && <Reducers />}
+          {/* {!reduxView && value === 2 && focusChild.childType === 'HTML' && <HtmlAttr />} */}
+        </div> 
       </div>
     );
   }
