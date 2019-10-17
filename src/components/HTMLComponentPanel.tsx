@@ -23,9 +23,9 @@ const HTMLComponentPanel = (props: PropsInterface) => {
     <div id="html-component-panel">
       <span>add HTML element as child</span>
       <Chip
-        style={{ borderColor: 'white' }}
+        style={{ borderColor: '#61d8f9' }}
         label="image"
-        icon={<Image style={{ color: '#007BFF' }} />}
+        icon={<Image style={{ color: '#61d8f9' }} />}
         onClick={() => {
           handleCreateHTMLChild('image');
         }}
@@ -33,8 +33,8 @@ const HTMLComponentPanel = (props: PropsInterface) => {
       />
       <Chip
         label="form"
-        style={{ borderColor: 'white' }}
-        icon={<Description style={{ color: '#007BFF' }} />}
+        style={{ borderColor: '#61d8f9'}}
+        icon={<Description style={{ color: '#61d8f9' }} />}
         onClick={() => {
           handleCreateHTMLChild('form');
         }}
@@ -42,8 +42,8 @@ const HTMLComponentPanel = (props: PropsInterface) => {
       />
       <Chip
         label="button"
-        style={{ borderColor: 'white' }}
-        icon={<EditAttributes style={{ color: '#007BFF' }} />}
+        style={{ borderColor: '#61d8f9'}}
+        icon={<EditAttributes style={{ color: '#61d8f9' }} />}
         onClick={() => {
           handleCreateHTMLChild('button');
         }}
@@ -51,8 +51,8 @@ const HTMLComponentPanel = (props: PropsInterface) => {
       />
       <Chip
         label="link"
-        style={{ borderColor: 'white' }}
-        icon={<Link style={{ color: '#007BFF' }} />}
+        style={{ borderColor: '#61d8f9' }}
+        icon={<Link style={{ color: '#61d8f9' }} />}
         onClick={() => {
           handleCreateHTMLChild('link');
         }}
@@ -60,8 +60,8 @@ const HTMLComponentPanel = (props: PropsInterface) => {
       />
       <Chip
         label="list"
-        style={{ borderColor: 'white' }}
-        icon={<List style={{ color: '#007BFF' }} />}
+        style={{ borderColor: '#61d8f9' }}
+        icon={<List style={{ color: '#61d8f9' }} />}
         onClick={() => {
           handleCreateHTMLChild('list');
         }}
@@ -69,8 +69,8 @@ const HTMLComponentPanel = (props: PropsInterface) => {
       />
       <Chip
         label="paragraph"
-        style={{ borderColor: 'white' }}
-        icon={<LocalParking style={{ color: '#007BFF' }} />}
+        style={{ borderColor: '#61d8f9' }}
+        icon={<LocalParking style={{ color: '#61d8f9' }} />}
         onClick={() => {
           handleCreateHTMLChild('paragraph');
         }}

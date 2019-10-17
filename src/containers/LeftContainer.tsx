@@ -137,7 +137,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
     // Choose app dir
       const { components, storeConfig } = this.props;
       // const { genOption } = this.state;
-      const appName = this.props.reduxView ? 'preducks app' : 'ReacType App';
+      const appName = this.props.reduxView ? 'StateFlex Redux App' : 'StateFlex React App';
       const exportAppBool = true;
       this.props.createApp({
         path: '',
@@ -189,9 +189,9 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
     const message = this.props.reduxView ? 'React' : 'Redux';
     this.setState({
       modal: createModal({
-        message: `create new ${message} project?`,
+        message: `Create new ${message} project?`,
         closeModal: this.closeModal,
-        secBtnLabel: `create new ${message} project`,
+        secBtnLabel: `Create new ${message} project?`,
         open: true,
         children: null,
         primBtnAction: null,
@@ -243,11 +243,11 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
       ));
 
     const addComponent = (
-      <Grid container spacing={8} alignItems="center" direction="row" justify="space-around">
+      <Grid container spacing={2} alignItems="center" direction="row" justify="space-around">
         <Grid item xs={8}>
           <TextField
             id="title-input"
-            label="add component"
+            label="Add component"
             placeholder="component name"
             margin="normal"
             autoFocus
@@ -309,7 +309,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
               borderRadius: '10px',
               margin: '2px',
               color: 'black',
-              backgroundColor: theme.palette.primary.main
+              backgroundColor: '#5EF2CB',
             }}>
             <GetAppIcon style={{ paddingRight: '5px' }} />
             export project
@@ -331,7 +331,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
               borderRadius: '10px',
               margin: '2px',
               color: theme.palette.primary.contrastText,
-              backgroundColor: theme.palette.primary.main
+              backgroundColor: '#FF84A5'
             }}>
             clear workspace
           </Button>
@@ -351,8 +351,8 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
             style={{
               borderRadius: '10px',
               margin: '2px',
-              color: 'white',
-              backgroundColor: '#F64C72',
+              color: theme.palette.primary.contrastText,
+              backgroundColor: theme.palette.primary.main
             }}>
             new project
           </Button>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,6 +9,7 @@ import { InterfacesInterface, InputValidation } from '../utils/InterfaceDefiniti
 import Interface from './Interface';
 import validateInput from '../utils/validateInput.util';
 import ErrorMessage from './ErrorMessage';
+import Button from '@material-ui/core/Button';
 
 const mapDispatchToProps = (dispatch: any) => ({
   setInterface: (myInterface: InterfacesInterface) => dispatch(actions.setInterface(myInterface)),
@@ -63,16 +64,44 @@ class Interfaces extends Component<PropsInterface, StateInterface> {
   };
 
   render() {
+
+
     return (
-      <div className={'htmlattr'}>
-    
-        <Tooltip
-          title="define typescript interfaces for use in reducers or for adding local state to components"
-          aria-label="define typescript interfaces for use in reducers or for adding local state to components"
-          placement="left">
-          <h2>Interfaces</h2>
-        </Tooltip>
-        <div id="interfaces">
+      <Fragment>
+         <form
+                onSubmit={(e) => {
+                  this.createInterface();
+                }}>
+
+        <div className="bottom-panel-typescript">
+         
+        
+          <div className="bottom-panel-typescript-new-interface-submit"> 
+          <Button
+                aria-label="Add Interface"
+                type="submit"
+                variant="contained"
+                size="large">
+                ADD INTERFACE
+          </Button>
+          </div>
+      
+          <div className="bottom-panel-typescript-new-interface-input">
+          <TextField
+                    label="new interface"
+                    value={this.state.newInterfaceNameInput}
+                    onChange={this.handleChange}
+                    onKeyPress={(event) => {
+                           if (event.key === 'Enter') {
+                           this.createInterface();
+                           event.preventDefault();
+                           }}}
+                    required />
+          </div>
+          
+
+
+          <div className="bottom-panel-typescript-new-interface-values">
           {this.props.interfaces
             && Object.keys(this.props.interfaces).map(thisInterface => (
               <Interface
@@ -83,33 +112,11 @@ class Interfaces extends Component<PropsInterface, StateInterface> {
                 key={`interface${thisInterface}`}
               />
             ))}
-        </div>
-        <ErrorMessage
-          validation={this.state.newInterfaceValidation}
-          visible={this.state.isVisible}
-        />
-        <form id="new-interface">
-          <TextField
-            label="new interface"
-            value={this.state.newInterfaceNameInput}
-            onChange={this.handleChange}
-            onKeyPress={(event) => {
-              if (event.key === 'Enter') {
-                this.createInterface();
-                event.preventDefault();
-              }
-            }}
-            required
-          />
-          <IconButton
-            aria-label="create interface"
-            onClick={this.createInterface}
-            className={this.state.newInterfaceValidation.isValid ? '' : 'disabled'}>
-            <Icon>add</Icon>
-          </IconButton>
-        </form>
+         </div>
 
-      </div>
+       </div>
+       </form>
+      </Fragment>
     );
   }
 }

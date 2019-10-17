@@ -45,6 +45,10 @@ class AppContainer extends Component<Props> {
 
     // uses component childIds and parentIds arrays (numbers) to build component-filled children and parents arrays
     return (
+      <div className='app-wrapper'>
+      <div className='app-wrapper-left'></div>
+      <div className='app-wrapper-middle'>
+
       <div className='app-grid'>
         <div className="app-grid-left-panel" style={{ backgroundColor: theme.palette.primary.light}}>
               <LeftContainer
@@ -68,6 +72,11 @@ class AppContainer extends Component<Props> {
                 </div>
               ) : null}
               
+        </div>
+
+
+        </div>
+        <div className='app-wrapper-right'></div >
         </div>
           );
   }
