@@ -18,14 +18,14 @@ class CodePreview extends Component<Props> {
     const components: ComponentsInt = this.props.components;
     return (
       // <h1></h1>
-      <div style={{height: '100%'}}>
+      <div style={{height: '100%', backgroundColor: '#fff', marginTop: '20px'}}>
         <SyntaxHighlighter
           style={style}
           language="javascript"
           customStyle={{
             background: 'transparent',
             overflow: 'auto',
-            fontSize: '18px',
+            fontSize: '16px',
             backgroundColor: '#fff',
             border: 'none',
             

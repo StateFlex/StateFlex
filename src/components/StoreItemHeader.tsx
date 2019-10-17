@@ -23,15 +23,39 @@ const StoreItemHeader = (props: any) => {
           </Button>
         </div>
       </div>
-      <header>
-        <h3>{storeItem}</h3>
-        <IconButton
-          aria-label={`delete "${storeItem}"`}
-          onClick={() => toggleVisibility()}
-          className="delete-store-item">
-          <Icon>delete</Icon>
-        </IconButton>
-      </header>
+
+
+
+          <div  style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+                backgroundColor: '#eee',}}>
+
+          <div>
+                <IconButton
+                    aria-label={`delete "${storeItem}"`}
+                    onClick={() => toggleVisibility()}
+                    className="delete-store-item">
+                <Icon>
+                    delete
+                </Icon>
+                </IconButton>
+          </div>
+
+          <div  style={{fontSize: '20px',
+                        height: '100%',
+                        color: '333',
+                        height: '30px',
+                        alignItems: 'end',
+                        height: '100%',
+                        color: '#333'}}>
+                Interface name: <b>{storeItem}</b>
+          </div>
+
+
+      </div>
+
     </React.Fragment>
   );
 };

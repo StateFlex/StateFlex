@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import Switch from '@material-ui/core/Switch';
+import Paper from '@material-ui/core/Paper';
 import InputLabel from '@material-ui/core/InputLabel';
 import { addProp, deleteProp } from '../actions/components.ts';
 import ReactDataTable from './ReactDataTable.tsx';
@@ -13,19 +14,47 @@ import { StoreInterface } from '../utils/InterfaceDefinitions';
 import Grid from '@material-ui/core/Grid';
 
 
+
+const RequiredSwitch = withStyles({
+  switchBase: {
+    color: '#ddd',
+    '&$checked': {
+      color: '#61d8f9',
+    },
+    '&$checked + $track': {
+      backgroundColor: '#61d8f9',
+    },
+  },
+  checked: {},
+  track: {},
+})(Switch);
+
+
+
+const RequiredSwitchPaper = withStyles({
+    root: {
+      paddingLeft: '10px',
+      paddingRight: '10px',
+      paddingTop: '10px',
+    }
+})(Paper);
+
+
 const styles = theme => ({
+  input: {
+    color: '#222',
+  },
+
+  
+  colorPrimary: {
+      color: '#0f0',
+  },
+
   root: {
     color: '#222'
 
   },
-  chip: {
-    color: '#00f',
-    backgroundColor: '#eee',
-  },
-  column: {
 
-
-  },
   icon: {
     fontSize: '20px',
     color: '#0f0',
@@ -33,25 +62,12 @@ const styles = theme => ({
     transition: 'all .2s ease',
 
     '&:hover': {
-      color: 'red',
+      color: 'blue',
     },
   },
-  cssLabel: {
-    color: '222',
-
-    '&$cssFocused': {
-      color: '222',
-    },
-  },
+  
   cssFocused: {},
-  input: {
-    color: '#222',
-    marginBottom: '0px',
-    width: '60%',
-  },
-  light: {
-    color: '#222',
-  },
+
   avatar: {
     color: '#eee',
     fontSize: '10px',
@@ -221,6 +237,10 @@ class Props extends Component {
   };
 
   render() {
+
+  
+      
+ 
     const {
       focusComponent, classes, deleteProp, addProp,
     } = this.props;
@@ -238,7 +258,6 @@ class Props extends Component {
     return (
       <Fragment>
           <form 
-                className="props-input" 
                 onSubmit={this.handleAddProp}
                 >
 
@@ -251,6 +270,7 @@ class Props extends Component {
                 className="bottom-panel-props-submit">
           <Button
                 aria-label="Add"
+       
                 type="submit"
                 // disabled={!this.state.propKey || !this.state.propType}
                 variant="contained"
@@ -271,11 +291,11 @@ class Props extends Component {
                 value={this.state.propKey}
                 required
                 InputProps={{
-                            className: classes.input,
+                      className: classes.input,
                             }}
-                            InputLabelProps={{
-                            className: classes.input,
-                           }}/>
+                InputLabelProps={{
+                      className: classes.input,
+                }}/>
           </div>
 
 
@@ -303,13 +323,13 @@ class Props extends Component {
                 className="bottom-panel-props-type">
         <FormControl required>
         <InputLabel 
-                className={classes.light} 
+                className={classes.input} 
                 htmlFor="propType">
                 Type
         </InputLabel>
         <Select
                 native
-                className={classes.light}
+                className={classes.input}
                 id="propType"
                 placeholder="title"
                 onChange={this.handleChange}
@@ -341,20 +361,23 @@ class Props extends Component {
                       justify="flex-start"
                       alignItems="flex-end"
                       direction='row'>
+                        <RequiredSwitchPaper>
                 <Grid item xs={6}>
                 <InputLabel 
-                        className={classes.light} htmlFor="propRequired"
+                        className={classes.input} htmlFor="propRequired"
                         >
                         Required?
                 </InputLabel>
                 </Grid>
                 <Grid xs={6}>
-                <Switch
+                <RequiredSwitch
                       checked={this.state.propRequired}
                       onChange={this.togglePropRequired}
                       value="propRequired"
-                      id="propRequired"/>
+                      id="propRequired"
+                  />
                 </Grid>
+                </RequiredSwitchPaper>
                 </Grid>
         </div>
 
