@@ -13,7 +13,7 @@ const styles = (theme: any): any => ({
     maxWidth: '500px',
     height: 'auto',
     maxHeight: '300px',
-    backgroundColor: '#FFCB9A',
+    backgroundColor: '#60D7F9',
     boxShadow: theme.shadows[5],
     padding: '4%',
     minWidth: '500px',
@@ -26,6 +26,7 @@ const styles = (theme: any): any => ({
     marginLeft: '3%',
     borderRadius: '4px',
     float: 'right',
+    backgroundColor: '#0f0'
   },
 });
 

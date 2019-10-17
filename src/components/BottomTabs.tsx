@@ -194,25 +194,25 @@ class BottomTabs extends Component<PropsInt> {
           </Tooltip>
 
           <Tooltip
-            title="interfaces"
+            title="Interfaces"
             aria-label="define typescript interfaces"
             placement="top">
             <Tab
               disableRipple
               classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-              label={`typescript interfaces ${propCount ? `(${propCount})` : ''} `}
+              label={`Typescript Interfaces ${propCount ? `(${propCount})` : ''} `}
             />
           </Tooltip>
 
           {reduxView && 
             <Tooltip
-              title="reducers"
+              title="Reducers"
               aria-label="define redux reducers"
               placement="top">
               <Tab
                 disableRipple
                 classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-                label={`redux reducers ${propCount ? `(${propCount})` : ''} `}
+                label={`Redux Reducers ${propCount ? `(${propCount})` : ''} `}
               />
             </Tooltip>
           }

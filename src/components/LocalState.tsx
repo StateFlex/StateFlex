@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, withTheme } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
@@ -153,42 +153,67 @@ const LocalState: React.FC = (props: any): JSX.Element => {
     };
 
     return (
-      <div className={'htmlattr'}>
-        {' '}
-        {Object.keys(focusComponent).length < 1 ? (
-          <div style={{ marginTop: '20px', width: '90%' }}>
-            select a component to view its state & actions
-          </div>
-        ) : (
-          <div className="props-container" style={{ marginTop: '20px' }}>
-            <div className="local-state-container">
-                <form
-                className="local-state-form"
-                onSubmit={(e) => {
-                    handleLocalStateSubmit(e);
-                    setEnteredName('');
-                    setEnteredType('');
-                    setEnteredValue('');
-                }}>
-              <h3 style={{ color: '#e0e0e0' }}>add local state</h3>
-              <FormControl>
-                <InputLabel className={classes.light} htmlFor="localstate-name">
+        <Fragment>
+         
+            <form
+                  className="local-state-form"
+                  onSubmit={(e) => {
+                      handleLocalStateSubmit(e);
+                      setEnteredName('');
+                      setEnteredType('');
+                      setEnteredValue('');
+                  }}>
+
+            <div className="bottom-panel-local-state">
+
+            <div className="bottom-panel-local-state-submit">
+            <Button
+                  aria-label="Add"
+                  type="submit"
+                  variant="contained"
+                  size="large">
+                  ADD STATE
+            </Button>
+            </div>
+
+
+            <div className="bottom-panel-local-state-name">
+            <FormControl>
+            <InputLabel 
+                  className={classes.input} htmlFor="localstate-name">
                   Name:
-                </InputLabel>
-                <Input
-                  className={classes.light}
+            </InputLabel>
+            <Input
+                  className={classes.input}
                   id="localstate-name"
                   onChange={handleChange(setEnteredName)}
-                  value={enteredName}
-                />
-              </FormControl>
+                  value={enteredName} />
+            </FormControl>
+            </div>
+       
+
+            <div className="bottom-panel-local-state-value">
+            <FormControl required>
+            <InputLabel className={classes.input} htmlFor="localstate-value">
+                  Value:
+            </InputLabel>
+            <Input
+                  className={classes.input}
+                  id="localstate-value"
+                  onChange={handleChange(setEnteredValue)}
+                  value={enteredValue} />
+            </FormControl>
+            </div>
+
+
+            <div className="bottom-panel-local-state-type">
               <FormControl>
-                <InputLabel className={classes.light} htmlFor="localstate-type">
+                <InputLabel className={classes.input} htmlFor="localstate-type">
                   Type:
                 </InputLabel>
                 <Select
                   native
-                  className={classes.light}
+                  className={classes.input}
                   id="localstate-type"
                   placeholder="Type"
                   onChange={handleChange(setEnteredType)}
@@ -205,42 +230,31 @@ const LocalState: React.FC = (props: any): JSX.Element => {
                   ])}
                 </Select>
               </FormControl>
-              <FormControl required>
-                <InputLabel className={classes.light} htmlFor="localstate-value">
-                  Value:
-                </InputLabel>
-                <Input
-                  className={classes.light}
-                  id="localstate-value"
-                  onChange={handleChange(setEnteredValue)}
-                  value={enteredValue}
-                />
-              </FormControl>
-              <Button
-                color="primary"
-                aria-label="Add"
-                type="submit"
-                variant="contained"
-                size="large">
-                {'submit'}
-              </Button>
-            </form>
+            </div>
+
+
+            <div className="bottom-panel-local-state-data">
             <DataTable
-              rowHeader={['local state selections']}
-              rowData={focusComponent.componentState.map(
-                state => `Name: ${state.name}      Type: ${state.type}      Initial Value: ${state.initialValue}`,
-              )}
-              deletePropHandler={name => dispatch(deleteState(name.match(/Name: \w+/)[0].slice(6)))}
-              editHandler={row => editHandler(row)}
-            />
-          </div>
-        </div>
-      )}
-    </div>
+                  rowHeader={['local state selections']}
+                  rowData={focusComponent.componentState.map(
+                    state => `Name: ${state.name}      Type: ${state.type}      Initial Value: ${state.initialValue}`,
+                  )}
+                  deletePropHandler={name => dispatch(deleteState(name.match(/Name: \w+/)[0].slice(6)))}
+                  editHandler={row => editHandler(row)} />
+            </div>
+
+            </div>
+            </form>
+            </Fragment>
     );
 }
 
 const styles = theme => ({
+
+  input: {
+    color: '#222',
+  },
+
     root: {
       display: 'flex',
       justifyContent: 'center',
@@ -272,12 +286,7 @@ const styles = theme => ({
       },
     },
     cssFocused: {},
-    input: {
-      color: '#eee',
-      marginBottom: '30px',
-      width: '50%',
-      textAlign: 'center',
-    },
+
     light: {
       color: '#eee',
       fontSize: '14px',
