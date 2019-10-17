@@ -2,6 +2,7 @@ import Tree from 'react-d3-tree';
 import React, { useEffect, useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { ComponentInt, ComponentsInt, ChildInt } from '../utils/InterfaceDefinitions';
+import theme from './theme';
 
 interface TreeInt {
   name: string;
@@ -19,16 +20,16 @@ interface PropsInt {
 const styles = (theme: any): any => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#333333',
+    backgroundColor: '#00ff00',
     height: '100%',
-    color: '#fff',
+    color: '#0000ff',
     boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
   },
   tabsRoot: {
     borderBottom: '0.5px solid #424242',
   },
   tabsIndicator: {
-    backgroundColor: '#1de9b6',
+    backgroundColor: '#0000ff',
   },
   tabRoot: {
     textTransform: 'initial',
@@ -53,7 +54,7 @@ const styles = (theme: any): any => ({
       opacity: 1,
     },
     '&$tabSelected': {
-      color: '#33eb91',
+      color: '#000',
       fontWeight: theme.typography.fontWeightMedium,
     },
     '&:focus': {
@@ -68,6 +69,7 @@ const styles = (theme: any): any => ({
     padding: `0 ${theme.spacing.unit * 2}px`,
   },
 });
+
 
 const TreeDisplay: React.FC<PropsInt> = (props): JSX.Element => {
   const [translation, setTranslation] = useState({ x: 0, y: 0 });

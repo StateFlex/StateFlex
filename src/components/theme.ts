@@ -2,19 +2,20 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/indigo';
 
 const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
   palette: {
     primary: {
-      light: '#00e676',
-      // main: '#33eb91',
-      main: '#01d46d', // less blinding green
-      dark: '#14a37f',
-      contrastText: '#fff',
+      light: '#def8ff',
+      main: '#61d8f9',
+      dark: '#12a6c6',
+      contrastText: '#000000'
     },
-    secondary: red,
-  },
+    secondary: {
+      light: '#c7badb',
+      main: '#764abc',
+      dark: '#441e8b',
+      contrastText: '#ffffff'
+    },
+  }
 });
 
 export default theme;

@@ -2,6 +2,8 @@ import { ComponentInt, ChildInt, ApplicationStateInt } from '../utils/InterfaceD
 
 import * as types from '../actionTypes';
 
+import getColor from '../utils/colors.util';
+
 import {
   addComponent,
   addChild,
@@ -40,7 +42,7 @@ const appComponent: ComponentInt = {
   stateful: false,
   componentState: [],
   title: 'App',
-  color: '#FF6D00',
+  color: getColor(),
   props: [],
   nextPropId: 1,
   childrenArray: [],

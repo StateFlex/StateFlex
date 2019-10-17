@@ -64,7 +64,8 @@ class Interfaces extends Component<PropsInterface, StateInterface> {
 
   render() {
     return (
-      <section>
+      <div className={'htmlattr'}>
+    
         <Tooltip
           title="define typescript interfaces for use in reducers or for adding local state to components"
           aria-label="define typescript interfaces for use in reducers or for adding local state to components"
@@ -107,7 +108,8 @@ class Interfaces extends Component<PropsInterface, StateInterface> {
             <Icon>add</Icon>
           </IconButton>
         </form>
-      </section>
+
+      </div>
     );
   }
 }

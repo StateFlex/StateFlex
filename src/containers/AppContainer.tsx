@@ -45,26 +45,31 @@ class AppContainer extends Component<Props> {
 
     // uses component childIds and parentIds arrays (numbers) to build component-filled children and parents arrays
     return (
-      <MuiThemeProvider theme={theme}>
-        <LeftContainer
-          components={components}
-          totalComponents={totalComponents}
-          focusComponent={focusComponent}
-          selectableChildren={selectableChildren}
-        />
-        <MainContainer />
-        {loading ? (
-          <div
-            style={{
-              alignSelf: 'flex-end',
-              position: 'fixed',
-              width: '100%',
-            }}>
-            <LinearProgress color="secondary" />
-          </div>
-        ) : null}
-      </MuiThemeProvider>
-    );
+      <div className='app-grid'>
+        <div className="app-grid-left-panel" style={{ backgroundColor: theme.palette.primary.light}}>
+              <LeftContainer
+                components={components}
+                totalComponents={totalComponents}
+                focusComponent={focusComponent}
+                selectableChildren={selectableChildren}
+              />
+        </div>
+      
+              <MainContainer />
+      
+              {loading ? (
+                <div
+                  style={{
+                    alignSelf: 'flex-end',
+                    position: 'fixed',
+                    width: '100%',
+                  }}>
+                  <LinearProgress color="secondary" />
+                </div>
+              ) : null}
+              
+        </div>
+          );
   }
 }
 

@@ -81,11 +81,58 @@ const LocalState: React.FC = (props: any): JSX.Element => {
     const handleLocalStateSubmit = (e) => {
         e.preventDefault();
         if (numbersAsStrings.includes(enteredName[0])) {
+          window.alert(`Cannot begin a prop name with a number.`);
           return;
         }
         if (reservedWords.includes(transformIntoVariableName(enteredName))) {
+          window.alert(`"${enteredName}" is a reserved word. Please choose another.`);
           return;
         }
+
+        focusComponent.componentState.map(
+          state => {if(enteredName === state.name) {
+          window.alert(`A prop with the name "${enteredName}" already exists.`);
+          return;
+          }
+          })
+
+        if(enteredType === 'boolean'){
+          if(enteredValue !== 'true' && enteredValue !== 'false') {
+          window.alert('A boolean type must have a boolean initial value');
+          return;
+          }
+        } else if (enteredType == 'object'){
+          if(enteredValue[0] !== '{' || enteredValue[enteredValue.length-1] !== '}' || !enteredValue.includes(':') || typeof JSON.parse(enteredValue) !== 'object'){
+            window.alert('An object type\'s initial value must be enclosed in an object and must be a valid key-value pair');
+            return;
+          } 
+        } else if(enteredType == 'array'){
+          if(enteredValue[0] !== '[' || enteredValue[enteredValue.length-1] !== ']' || !Array.isArray(JSON.parse(enteredValue))){
+            window.alert('An array type\'s initial value must be enclosed in an array');
+            return;
+          }
+        } else if(enteredType === 'number'){
+          if(!Number(enteredValue) && Number(enteredValue) !== 0){
+            window.alert('A number type\'s initial value must be a number');
+            return;
+          }
+        } else if (enteredType === 'string'){
+          if(Number(enteredValue) || Number(enteredValue) == 0 || enteredValue[0] == '['|| enteredValue[enteredValue.length-1] == ']' || enteredValue[0] == '{' || enteredValue[enteredValue.length-1] == '}' || enteredValue == 'true' || enteredValue == 'false'){
+            window.alert('A string type\'s initial value must be a string');
+            return;
+          }
+        } else if (enteredType == 'any' && enteredValue[0] == '{' || enteredType == 'any' && enteredValue[enteredValue.length-1] == '}'){
+          if(enteredValue[0] !== '{' || enteredValue[enteredValue.length-1] !== '}' || !enteredValue.includes(':') || typeof JSON.parse(enteredValue) !== 'object'){
+            window.alert('An object type\'s initial value must be enclosed in an object and must be a valid key-value pair');
+            return;
+          } 
+        } else if (enteredType == 'any' && enteredValue[0] == '[' || enteredType == 'any' && enteredValue[enteredValue.length-1] == ']'){
+          if(enteredValue[0] !== '[' || enteredValue[enteredValue.length-1] !== ']' || !Array.isArray(JSON.parse(enteredValue))){
+            window.alert('An array type\'s initial value must be enclosed in an array');
+            return;
+          }
+        } 
+        
         return dispatch(
           setState({
             name: transformIntoVariableName(enteredName),
@@ -151,6 +198,8 @@ const LocalState: React.FC = (props: any): JSX.Element => {
                     'number',
                     'string',
                     'boolean',
+                    'object',
+                    'array',
                     'any',
                     ...Object.keys(storeConfig.interfaces),
                   ])}
