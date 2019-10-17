@@ -179,7 +179,7 @@ class Props extends Component {
     }
 
     if(propType === 'boolean'){
-      if(propValue !== 'true' || propValue !== 'false') {
+      if(propValue !== 'true' && propValue !== 'false') {
       window.alert('A boolean type must have a boolean initial value');
       return;
       }
