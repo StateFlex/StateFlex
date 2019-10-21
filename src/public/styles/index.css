@@ -868,6 +868,7 @@ tr:hover .property-controls,
   height: 100%;
   width: 100%;
   align-items: flex-start;
+  overflow-y: scroll;
 }
 
 .htmlattr-name {
