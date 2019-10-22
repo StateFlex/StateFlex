@@ -3,38 +3,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
-/* 
-root / src / components / Interfaces.tsx
-*/
-.bottom-panel-typescript {
-  display: grid;
-  width: 99%;
-  height: 100%;
-  grid-template-columns:  repeat(2, 1fr) 62%; 
-  grid-template-rows: 60px 1fr; 
-  margin-top: 16px;
-  margin-left: 20px;
-  flex: 1;
-}
-.bottom-panel-typescript-new-interface-submit {
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
-
-}
-
-.bottom-panel-typescript-new-interface-input {
-  grid-column: 2 / span 1;
-  grid-row: 1 / span 1;
-
-}
-
-.bottom-panel-typescript-new-interface-values {
-  grid-column: 1 / span 3;
-  grid-row: 2 / span 1;
-}
-
-
 /* 
 root / src / containers / AppContainer.tsx
 */
@@ -70,6 +38,39 @@ z-index: 600px;
   background-image: linear-gradient(to right,  #e0eff0 , #ffffff); /* Standard syntax (must be last) */
     
 }
+
+/* 
+root / src / components / Interfaces.tsx
+*/
+.bottom-panel-typescript {
+  display: grid;
+  width: 99%;
+  height: 100%;
+  grid-template-columns:  repeat(2, 1fr) 62%; 
+  grid-template-rows: 60px 1fr; 
+  margin-top: 16px;
+  margin-left: 20px;
+  flex: 1;
+}
+.bottom-panel-typescript-new-interface-submit {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+
+}
+
+.bottom-panel-typescript-new-interface-input {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+
+}
+
+.bottom-panel-typescript-new-interface-values {
+  grid-column: 1 / span 3;
+  grid-row: 2 / span 1;
+}
+
+
+
 
 
 .app-grid {
