@@ -8,17 +8,20 @@ const SRC_DIR = path.join(__dirname, 'src');
 const indexCss = new ExtractTextPlugin('index.css');
 
 const argv = require('minimist')(process.argv.slice(2));
-
+console.log(argv)
 const targetOption = argv.target;
 // const output = targetOption === 'web' ? 'build/web' : 'build/electron';
+console.log(__dirname);
 const BUILD_DIR = path.join(__dirname, 'build');
+console.log(BUILD_DIR)
 
 const options = {
-  entry: { index: ['babel-polyfill', './index.js'] },
+  // entry: { test: ['babel-polyfill', './index.js'] },
+  entry: './index.js',
   target: targetOption,
   output: {
     path: BUILD_DIR,
-    filename: 'js/[name].js',
+    filename: 'bundle.js',
     pathinfo: false,
   },
   node: {
@@ -33,21 +36,36 @@ const options = {
   plugins: [
     indexCss,
     new HtmlWebpackPlugin({
-      title: 'app',
+      title: 'App',
       filename: 'index.html',
       template: 'public/index.html',
-      chunks: ['index'],
+      // chunks: ['test'],
     }),
-    new CopyWebpackPlugin([{ from: './public/', to: '' }]),
+    new CopyWebpackPlugin(['public']),
   ],
   module: {
     rules: [
-      { test: /\.ts$/, exclude: /node-modules/, loader: 'babel-loader' },
-      { test: /\.tsx$/, exclude: /node-modules/, loader: 'babel-loader' },
+      // { 
+      //   test: /\.ts$/, 
+      //   exclude: /node-modules/, 
+      //   use: 'babel-loader' 
+      // },
+      { 
+        test: /\.tsx?$/, 
+        exclude: /node-modules/, 
+        use: 'babel-loader' 
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['react']
+            }
+          }
+        ]
       },
       {
         test: /index.css$/,
