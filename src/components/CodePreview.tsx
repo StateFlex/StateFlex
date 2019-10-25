@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx';
-import { ghcolors as style } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import jsx from 'react-syntax-highlighter/dist/cjs/languages/prism/jsx';
+import { ghcolors as style } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { formatter } from '../utils/formatter.util';
 import componentRender from '../utils/componentRender.util';
 import { ComponentInt, ComponentsInt } from '../utils/InterfaceDefinitions';
