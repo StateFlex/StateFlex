@@ -1,0 +1,35 @@
+/* 
+root / src / containers / AppContainer.tsx
+*/
+.app-wrapper {
+    display: grid;
+    width: 100vw;
+    grid-template-columns:  repeat(3, 1fr);
+  }
+  
+  .app-wrapper-left {
+    grid-column: 1 / span 1;
+  
+    height:100%; 
+    width:100%; 
+    justify-self: flex-end;
+  z-index: 600px;
+    overflow:auto;
+    background-image: linear-gradient(to left,  #e0eff0 , #ffffff); /* Standard syntax (must be last) */
+      
+  }
+  
+  .app-wrapper-middle {
+    grid-column: 2 / span 1;
+  }
+  
+  .app-wrapper-right {
+    grid-column: 3 / span 1;
+    margin:auto; 
+    height:100%; 
+    width:100%; 
+  
+    overflow:auto;
+    background-image: linear-gradient(to right,  #e0eff0 , #ffffff); /* Standard syntax (must be last) */
+      
+  }

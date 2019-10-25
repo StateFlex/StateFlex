@@ -1,0 +1,29 @@
+.HtmlAttr {
+    display: grid;
+    width: 99%;
+    height: 100%;
+    grid-template-columns:  repeat(3, 1fr) 40%; 
+    grid-template-rows: 1fr; 
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    margin-left: 20px;
+    flex: 1;
+  }
+  
+  .HtmlAttr-submit {
+    grid-column: 1 / span 1;
+    margin-bottom: 10px;
+  
+  }
+  
+  .HtmlAttr-input {
+    grid-column: 2 / span 1;
+  
+  }
+  
+  .HtmlAttr-assigned {
+    grid-column: 3 / span 1;
+  
+  }
+  

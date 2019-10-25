@@ -262,12 +262,12 @@ class Props extends Component {
                 >
 
           <div 
-                className="bottom-panel-props">
+                className="Props">
 
 
 
           <div 
-                className="bottom-panel-props-submit">
+                className="Props-submit">
           <Button
                 aria-label="Add"
        
@@ -282,7 +282,7 @@ class Props extends Component {
 
 
           <div 
-                className="bottom-panel-props-key">
+                className="Props-key">
           <TextField
                 id="propKey"
                 label="Key"
@@ -302,7 +302,7 @@ class Props extends Component {
 
 
           <div 
-                className="bottom-panel-props-value">
+                className="Props-value">
           <TextField
                 id="propValue"
                 label="Value"
@@ -320,7 +320,7 @@ class Props extends Component {
 
 
           <div 
-                className="bottom-panel-props-type">
+                className="Props-type">
         <FormControl required>
         <InputLabel 
                 className={classes.input} 
@@ -355,7 +355,7 @@ class Props extends Component {
 
 
         <div 
-                className="bottom-panel-props-required">
+                className="Props-required">
                 <Grid container 
                       spacing={0}
                       justify="flex-start"
@@ -383,7 +383,7 @@ class Props extends Component {
 
 
         <div 
-                className="bottom-panel-props-data">
+                className="Props-data">
         <ReactDataTable
                 rowHeader={rowHeader}
                 rowData={propsRows}

@@ -81,7 +81,7 @@ class HtmlAttr extends Component<PropsInt, StateInt> {
 
     const HtmlForm = HTMLelements[focusChildType].attributes.map((attr: string, i: number) => (
       <Fragment>
-          <div className={'bottom-panel-html-attributes-submit'}>
+          <div className={'HtmlAttr-submit'}>
           <Button
                 aria-label="Save"
        
@@ -94,7 +94,7 @@ class HtmlAttr extends Component<PropsInt, StateInt> {
           </Button>
           </div>
 
-          <div className={'bottom-panel-html-attributes-input'}>
+          <div className={'HtmlAttr-input'}>
           <TextField
             InputLabelProps={{
               classes: {
@@ -116,7 +116,7 @@ class HtmlAttr extends Component<PropsInt, StateInt> {
           />
           </div>
 
-          <div className={'bottom-panel-html-attributes-assigned'}>
+          <div className={'HtmlAttr-assigned'}>
           <Paper className={classes.root}>
               {focusChild.HTMLInfo[attr] ? focusChild.HTMLInfo[attr] : ' no attribute assigned'}
           </Paper>
@@ -125,7 +125,7 @@ class HtmlAttr extends Component<PropsInt, StateInt> {
     ));
 
     return (
-      <div className={'bottom-panel-html-attributes'}>
+      <div className={'HtmlAttr'}>
 
         {HtmlForm}
 

@@ -156,7 +156,7 @@ const LocalState: React.FC = (props: any): JSX.Element => {
         <Fragment>
          
             <form
-                  className="local-state-form"
+                  className="LocalState-form"
                   onSubmit={(e) => {
                       handleLocalStateSubmit(e);
                       setEnteredName('');
@@ -164,9 +164,9 @@ const LocalState: React.FC = (props: any): JSX.Element => {
                       setEnteredValue('');
                   }}>
 
-            <div className="bottom-panel-local-state">
+            <div className="LocalState">
 
-            <div className="bottom-panel-local-state-submit">
+            <div className="LocalState-submit">
             <Button
                   aria-label="Add"
                   type="submit"
@@ -177,7 +177,7 @@ const LocalState: React.FC = (props: any): JSX.Element => {
             </div>
 
 
-            <div className="bottom-panel-local-state-name">
+            <div className="LocalState-name">
             <FormControl>
             <InputLabel 
                   className={classes.input} htmlFor="localstate-name">
@@ -192,7 +192,7 @@ const LocalState: React.FC = (props: any): JSX.Element => {
             </div>
        
 
-            <div className="bottom-panel-local-state-value">
+            <div className="LocalState-value">
             <FormControl required>
             <InputLabel className={classes.input} htmlFor="localstate-value">
                   Value:
@@ -206,7 +206,7 @@ const LocalState: React.FC = (props: any): JSX.Element => {
             </div>
 
 
-            <div className="bottom-panel-local-state-type">
+            <div className="LocalState-type">
               <FormControl>
                 <InputLabel className={classes.input} htmlFor="localstate-type">
                   Type:
@@ -233,7 +233,7 @@ const LocalState: React.FC = (props: any): JSX.Element => {
             </div>
 
 
-            <div className="bottom-panel-local-state-data">
+            <div className="LocalState-data">
             <DataTable
                   rowHeader={['local state selections']}
                   rowData={focusComponent.componentState.map(

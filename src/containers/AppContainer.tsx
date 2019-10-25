@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import LeftContainer from './LeftContainer';
 import MainContainer from './MainContainer';
 import theme from '../components/theme';
 import { loadInitData } from '../actions/components';
 import { ComponentInt, ComponentsInt } from '../utils/InterfaceDefinitions';
+
+
 
 type Props = {
   components: ComponentsInt;
