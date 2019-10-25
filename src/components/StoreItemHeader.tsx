@@ -26,13 +26,9 @@ const StoreItemHeader = (props: any) => {
 
 
 
-          <div  style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-                backgroundColor: '#eee',}}>
 
-          <div>
+
+          <div style={{backgroundColor: '#eee'}}>
                 <IconButton
                     aria-label={`delete "${storeItem}"`}
                     onClick={() => toggleVisibility()}
@@ -54,7 +50,7 @@ const StoreItemHeader = (props: any) => {
           </div>
 
 
-      </div>
+   
 
     </React.Fragment>
   );

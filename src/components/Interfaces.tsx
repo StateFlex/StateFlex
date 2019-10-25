@@ -45,7 +45,7 @@ class Interfaces extends Component<PropsInterface, StateInterface> {
   }
 
   createInterface = () => {
-    if (this.state.newInterfaceValidation.isValid) {
+    if (this.state.newInterfaceValidation.isValid === true) {
       const interfaceName = this.state.newInterfaceValidation.input;
       this.props.setInterface({ [interfaceName]: {} });
       this.setState({ newInterfaceNameInput: '' });
@@ -64,21 +64,15 @@ class Interfaces extends Component<PropsInterface, StateInterface> {
   };
 
   render() {
-
-
     return (
-      <Fragment>
-         <form
-                onSubmit={(e) => {
-                  this.createInterface();
-                }}>
-
-        <div className="bottom-panel-typescript">
+      <section>
          
-        
-          <div className="bottom-panel-typescript-new-interface-submit"> 
+         <div className="Interfaces">
+         
+          <div className="Interfaces-submit"> 
           <Button
                 aria-label="Add Interface"
+                onClick={this.createInterface}
                 type="submit"
                 variant="contained"
                 size="large">
@@ -86,22 +80,22 @@ class Interfaces extends Component<PropsInterface, StateInterface> {
           </Button>
           </div>
       
-          <div className="bottom-panel-typescript-new-interface-input">
+          <div className="Interfaces-input">
           <TextField
-                    label="new interface"
-                    value={this.state.newInterfaceNameInput}
-                    onChange={this.handleChange}
-                    onKeyPress={(event) => {
-                           if (event.key === 'Enter') {
-                           this.createInterface();
-                           event.preventDefault();
-                           }}}
-                    required />
+                label="new interface"
+                value={this.state.newInterfaceNameInput}
+                onChange={this.handleChange}
+                onKeyPress={(event) => {
+                        if (event.key === 'Enter') {
+                        this.createInterface();
+                        event.preventDefault();
+                        }}}
+                required />
           </div>
-          
+         
 
 
-          <div className="bottom-panel-typescript-new-interface-values">
+          <div className="Interfaces-values">
           {this.props.interfaces
             && Object.keys(this.props.interfaces).map(thisInterface => (
               <Interface
@@ -115,8 +109,8 @@ class Interfaces extends Component<PropsInterface, StateInterface> {
          </div>
 
        </div>
-       </form>
-      </Fragment>
+     
+      </section>
     );
   }
 }

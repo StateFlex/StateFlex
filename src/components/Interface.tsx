@@ -18,6 +18,7 @@ const Interface = (props: any) => {
   const {
     thisInterface, interfaces, setInterface, deleteInterface,
   } = props;
+
   const [newPropertyName, setNewPropertyName] = useState('');
   const [newPropertyType, setNewPropertyType] = useState('');
   const [newPropertyIsArray, setNewPropertyIsArray] = useState(false);
@@ -57,26 +58,32 @@ const Interface = (props: any) => {
   };
 
   return (
-    <div className="interface" key={`interface${thisInterface}`}>
-      <StoreItemHeader storeItem={thisInterface} deleter={deleteInterface} />
-      <div>
-        {interfaces[thisInterface]
-          && Object.keys(interfaces[thisInterface]).map(property => (
-            <div className="property" id={property} key={property}>
-              <ul className="property-info">
-                <li>
-                  <div className="info-title">name</div>
-                  <div>{property}</div>
-                </li>
-                <li>
-                  <div className="info-title">type</div>
-                  <div>{interfaces[thisInterface][property][0]}</div>
-                </li>
-                <li>
-                  <div className="info-title">required</div>
-                  <div>{interfaces[thisInterface][property][1].toString()}</div>
-                </li>
-              </ul>
+    
+      <div  key={`interface${thisInterface}`}
+            style={{display: 'flex', 
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center'}}>
+
+              
+          <StoreItemHeader storeItem={thisInterface} deleter={deleteInterface} />
+          <div>
+          {interfaces[thisInterface] &&
+              Object.keys(interfaces[thisInterface]).map(property => (
+              <div  id={property} key={property}>
+
+              <div className="info-title">name</div>
+              <div>{property}</div>
+
+              <div className="info-title">type</div>
+              <div>{interfaces[thisInterface][property][0]}</div>
+
+              <div className="info-title">required</div>
+              <div>{interfaces[thisInterface][property][1].toString()}
+                  
+                  
+              </div>
+      
               <div className="property-controls">
                 <IconButton
                   aria-label={`delete property "${property}"`}
@@ -84,8 +91,9 @@ const Interface = (props: any) => {
                   <Icon>delete</Icon>
                 </IconButton>
               </div>
+          
             </div>
-          ))}
+            ))}
       </div>
       <ErrorMessage validation={newPropertyValidation} visible={isVisible} />
       <form className="new-interface-property">
