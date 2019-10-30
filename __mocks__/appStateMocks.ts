@@ -5,7 +5,7 @@ const appComponent = {
   stateful: false,
   componentState: [],
   title: 'App',
-  color: '#FF6D00',
+  color: '#60D7F9',
   props: [],
   nextPropId: 1,
   childrenArray: [],
@@ -22,7 +22,7 @@ const appComponent2 = {
     {name: 'test', type: 'string', initialValue: 'test'}
   ],
   title: 'App',
-  color: '#FF6D00',
+  color: '#60D7F9',
   props: [],
   nextPropId: 1,
   childrenArray: [],
@@ -56,6 +56,7 @@ export const initialAppStateMock = {
   components: [appComponent],
   appDir: '',
   loading: false,
+  reduxView: true,
   storeConfig: { interfaces: {}, reducers: {} },
 };
 
@@ -90,7 +91,7 @@ export const aboutToAddChildMock = {
     stateful: false,
     componentState: [],
     title: 'App',
-    color: '#FF6D00',
+    color: '#60D7F9',
     props: [],
     nextPropId: 1,
     childrenArray: [],
@@ -127,7 +128,7 @@ export const aboutToAddChildMock = {
       stateful: false,
       componentState: [],
       title: 'App',
-      color: '#FF6D00',
+      color: '#60D7F9',
       props: [],
       nextPropId: 1,
       childrenArray: [],

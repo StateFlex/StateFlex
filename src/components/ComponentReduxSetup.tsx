@@ -133,10 +133,10 @@ const ComponentReduxSetup: React.FC = (props: any): JSX.Element => {
   // };
 
   const submitValueUsingAction = (title, value, onChange, onSubmit, choices) => (
-    <Grid item xs={3}>
+    <Grid item={true} xs={3}>
       <form className="props-input" onSubmit={handleStoreSubmit(onSubmit, value)}>
         <Grid container spacing={8}>
-          <Grid item xs={12}>
+          <Grid item={true} xs={12}>
             <FormControl required>
               <InputLabel className={classes.light} htmlFor="propType">
                 {`select ${title}`}
@@ -153,7 +153,7 @@ const ComponentReduxSetup: React.FC = (props: any): JSX.Element => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item={true} xs={12}>
             <Button color="primary" aria-label="Add" type="submit" variant="contained" size="large">
               {'submit'}
             </Button>
@@ -175,7 +175,7 @@ const ComponentReduxSetup: React.FC = (props: any): JSX.Element => {
           {/* <Grid container spacing={8}> */}
           <div className="redux-connection-container">
             <h3 style={{ flex: 1, color: '#e0e0e0' }}>add redux connections</h3>
-            <Grid item xs={12}>
+            <Grid item={true} xs={12}>
               <div className="redux-selections">
                 {submitValueUsingAction(
                   'redux state',
@@ -191,7 +191,7 @@ const ComponentReduxSetup: React.FC = (props: any): JSX.Element => {
                 />
               </div>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item={true} xs={12}>
               <div className="redux-selections">
                 {submitValueUsingAction(
                   'redux action',

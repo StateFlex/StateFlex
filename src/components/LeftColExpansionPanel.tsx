@@ -47,7 +47,7 @@ export const LeftColExpansionPanel = (props: any) => {
   }
 
   const componentTitleDisplay = (
-    <Grid item xs={12}>
+    <Grid item={true} xs={12}>
       <List>
         <ListItem
           button
@@ -143,25 +143,25 @@ export const LeftColExpansionPanel = (props: any) => {
 
   return (
     <Grid container spacing={16} direction="row" justify="flex-start" alignItems="center">
-      <Grid item xs={8}>
+      <Grid item={true} xs={8}>
         <div className={classes.root} style={!isFocused() ? unFocusedStyle : focusedStyle}>
           {componentTitleDisplay}
           <Collapse in={isFocused() === 'focused'}>
-            <Grid item xs={12} style={{ alignSelf: 'center' }}>
+            <Grid item={true} xs={12} style={{ alignSelf: 'center' }}>
               <List>{isFocused() ? HtmlChildrenOfFocusComponent : <div />}</List>
             </Grid>
           </Collapse>
           {id !== 1 && isFocused() ? deleteComponentButton : <div />}
         </div>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item={true} xs={2}>
         {id !== 1 && !isFocused() && selectableChildren.includes(id) ? addAsChildButton : <div />}
       </Grid>
       {id !== 1
       && !isFocused()
       && selectableChildren.includes(id)
       && thisComponentIsAChildOfFocusComponent ? (
-        <Grid item xs={2}>
+        <Grid item={true} xs={2}>
           {deleteChildButton}
         </Grid>
         ) : (
