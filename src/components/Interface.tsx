@@ -133,7 +133,7 @@ const Interface = (props: any) => {
           label="array?"
           labelPlacement="top"
         />
-        <Grid item xs={6}>
+        <Grid item={true} xs={6}>
           <div className='is-required'>
             <InputLabel className='is-required-input' htmlFor="propRequired">
               required?

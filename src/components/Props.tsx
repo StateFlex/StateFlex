@@ -362,14 +362,14 @@ class Props extends Component {
                       alignItems="flex-end"
                       direction='row'>
                         <RequiredSwitchPaper>
-                <Grid item xs={6}>
+                <Grid item={true} xs={6}>
                 <InputLabel 
                         className={classes.input} htmlFor="propRequired"
                         >
                         Required?
                 </InputLabel>
                 </Grid>
-                <Grid xs={6}>
+                <Grid item={true} xs={6}>
                 <RequiredSwitch
                       checked={this.state.propRequired}
                       onChange={this.togglePropRequired}

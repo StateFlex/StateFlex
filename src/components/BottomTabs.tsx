@@ -138,7 +138,7 @@ class BottomTabs extends Component<PropsInt> {
 
       
     return (
-      <div className={classes.root}>
+      <div data-testid="bottom-tabs" className={classes.root}>
         <AppBar 
           position="static"
           color="primary"
