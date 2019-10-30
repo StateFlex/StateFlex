@@ -154,7 +154,7 @@ const ComponentReduxSetup: React.FC = (props: any): JSX.Element => {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <Button color="primary" aria-label="Add" type="submit" variant="contained" size="large">
+            <Button aria-label="Add" type="submit" variant="contained" size="large">
               {'submit'}
             </Button>
           </Grid>
@@ -174,7 +174,6 @@ const ComponentReduxSetup: React.FC = (props: any): JSX.Element => {
         <div className="props-container" style={{ marginTop: '20px' }}>
           {/* <Grid container spacing={8}> */}
           <div className="redux-connection-container">
-            <h3 style={{ flex: 1, color: '#e0e0e0' }}>add redux connections</h3>
             <Grid item xs={12}>
               <div className="redux-selections">
                 {submitValueUsingAction(
@@ -321,13 +320,13 @@ const styles = theme => ({
   input: {
     color: '#eee',
     marginBottom: '30px',
-    width: '50%',
+    width: '100px',
     textAlign: 'center',
   },
   light: {
-    color: '#eee',
+    color: '#222',
     fontSize: '14px',
-    padding: '12px',
+    paddingBottom  : '10px',
   },
   avatar: {
     color: '#eee',

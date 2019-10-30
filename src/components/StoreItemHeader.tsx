@@ -13,6 +13,7 @@ const StoreItemHeader = (props: any) => {
 
   return (
     <React.Fragment>
+
       <div className="confirm-delete" style={{ display: dialogIsVisible ? 'flex' : 'none' }}>
         <div>
           <Button variant="contained" onClick={() => deleter(storeItem)} className="delete">
@@ -26,9 +27,7 @@ const StoreItemHeader = (props: any) => {
 
 
 
-
-
-          <div style={{backgroundColor: '#eee'}}>
+          <div style={{display: 'inline-block'}}>
                 <IconButton
                     aria-label={`delete "${storeItem}"`}
                     onClick={() => toggleVisibility()}
@@ -45,11 +44,12 @@ const StoreItemHeader = (props: any) => {
                         height: '30px',
                         alignItems: 'end',
                         height: '100%',
-                        color: '#333'}}>
+                        color: '#333',
+                        display: 'inline-block'}}>
                 Name: <b>{storeItem}</b>
           </div>
 
-
+ 
    
 
     </React.Fragment>

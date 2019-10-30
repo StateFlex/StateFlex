@@ -57,46 +57,60 @@ const Interface = (props: any) => {
     setInterface({ [thisInterface]: updatedInterface });
   };
 
-  return (
-    
-      <div  key={`interface${thisInterface}`}
-            style={{display: 'flex', 
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            alignItems: 'center'}}>
 
-              
-          <StoreItemHeader storeItem={thisInterface} deleter={deleteInterface} />
-          <div>
+
+
+
+
+  return (
+  <React.Fragment>
+    <form>
+  <div className="Interface-container" key={`interface${thisInterface}`}> 
+
+    <div className="Interface-StoreItemHeader">  
+    <StoreItemHeader storeItem={thisInterface} deleter={deleteInterface} />
+    </div>
+
+    <div  className="Interface-StoreItemProperty-name" 
+          style={{backgroundColor: '#777', color: '#fff'}}>NAME</div>
+    <div  className="Interface-StoreItemProperty-type" 
+          style={{backgroundColor: '#777', color: '#fff'}}>TYPE</div>
+    <div  className="Interface-StoreItemProperty-required" 
+          style={{backgroundColor: '#777', color: '#fff'}}>REQUIRED</div>
+    <div  className="Interface-StoreItemProperty-delete" 
+          style={{backgroundColor: '#777', color: '#fff'}}>ACTION</div>
+
+    
+
+    
           {interfaces[thisInterface] &&
               Object.keys(interfaces[thisInterface]).map(property => (
-              <div  id={property} key={property}>
 
-              <div className="info-title">name</div>
-              <div>{property}</div>
+<React.Fragment>
+    <div  className="Interface-StoreItemProperty-name"
+          id={property} 
+          key={property}>{property}</div>
+    <div className="Interface-StoreItemProperty-type">{interfaces[thisInterface][property][0]}</div>
+    <div className="Interface-StoreItemProperty-required">{interfaces[thisInterface][property][1].toString()}</div>
+    <div className="Interface-StoreItemProperty-delete">
+      <IconButton
+        aria-label={`delete property "${property}"`}
+        onClick={() => deleteProperty(property)}>
+        <Icon>delete</Icon>
+      </IconButton>
+    </div>
+</React.Fragment>        
+            
 
-              <div className="info-title">type</div>
-              <div>{interfaces[thisInterface][property][0]}</div>
 
-              <div className="info-title">required</div>
-              <div>{interfaces[thisInterface][property][1].toString()}
-                  
-                  
-              </div>
-      
-              <div className="property-controls">
-                <IconButton
-                  aria-label={`delete property "${property}"`}
-                  onClick={() => deleteProperty(property)}>
-                  <Icon>delete</Icon>
-                </IconButton>
-              </div>
-          
-            </div>
             ))}
-      </div>
+
       <ErrorMessage validation={newPropertyValidation} visible={isVisible} />
-      <form className="new-interface-property">
+
+
+
+<React.Fragment>
+<div  className="Interface-StoreItemProperty-name"> 
         <TextField
           id="interface-property-name"
           label="property name"
@@ -109,6 +123,8 @@ const Interface = (props: any) => {
           }}
           required
         />
+  </div>
+  <div  className="Interface-StoreItemProperty-type"> 
         <TypeSelect
           selectName="interface-property-type"
           outer={thisInterface}
@@ -118,6 +134,8 @@ const Interface = (props: any) => {
             setNewPropertyType(event.target.value);
           }}
         />
+ 
+
         <FormControlLabel
           value="top"
           control={
@@ -133,6 +151,8 @@ const Interface = (props: any) => {
           label="array?"
           labelPlacement="top"
         />
+ </div>
+ <div  className="Interface-StoreItemProperty-required"> 
         <Grid item xs={6}>
           <div className='is-required'>
             <InputLabel className='is-required-input' htmlFor="propRequired">
@@ -147,14 +167,21 @@ const Interface = (props: any) => {
             />
           </div>
         </Grid>
+</div>
+<div  className="Interface-StoreItemProperty-delete"> 
         <IconButton
           aria-label="add property"
           onClick={addProperty}
           className={newPropertyValidation.isValid && newPropertyType ? '' : 'disabled'}>
           <Icon>add</Icon>
         </IconButton>
-      </form>
-    </div>
+</div>
+</React.Fragment>
+    
+
+</div>
+</form>
+</React.Fragment>
   );
 };
 

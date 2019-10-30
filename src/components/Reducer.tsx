@@ -14,19 +14,25 @@ const Reducer = (props: any) => {
   } = props;
 
   return (
-    <div className="reducer" key={'reducer' + reducer}>  
+    <React.Fragment>
+    <div key={'reducer' + reducer} style={{ backgroundColor: '#eee'}}>  
       <StoreItemHeader storeItem={reducer} deleter={deleteReducer} />
+    </div>
+    <div>
       <Store
         reducer={reducer}
         reducers={reducers}
         interfaces={interfaces}
         setReducer={setReducer} />
+    </div>
+    <div>
       <Actions
         reducer={reducer}
         reducers={reducers}
         interfaces={interfaces}
         setReducer={setReducer} />
     </div>
+    </React.Fragment> 
   );
 
 };

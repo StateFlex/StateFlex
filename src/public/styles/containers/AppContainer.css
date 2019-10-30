@@ -81,7 +81,7 @@ root / src / containers / MainContainer.tsx
     grid-column: 2 / span 2;
     grid-row: 2 / span 2;
     align-self: start;
-  
+ 
     background-color: #eee;
     height: 100%;
   }

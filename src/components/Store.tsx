@@ -55,72 +55,82 @@ const Store = (props: any) => {
   };
 
   return (
-    <div id="store">
-      <Tooltip
-        title="add pieces of state to the store for this reducer"
-        aria-label="add pieces of state to the store for this reducer"
-        placement="left">
-        <h4>Store</h4>
-      </Tooltip>
-      <div className="table-wrapper">
-        <table>
-          <tbody>
-            <tr>
-              <th>name</th>
-              <th>type</th>
-              <th>array</th>
-              <th>initial</th>
-              <th></th>
-            </tr>
-            {reducers[reducer].store
-              && Object.keys(reducers[reducer].store).map(store => (
-                <tr key={`store${store}`}>
-                  <td>{store}</td>
-                  <td>{reducers[reducer].store[store].type}</td>
-                  <td>{reducers[reducer].store[store].array ? '✓' : '×'}</td>
-                  <td className="code">{reducers[reducer].store[store].initialValue}</td>
-                  <td className="property-controls">
+    <React.Fragment>
+    <form className="new-store-item">
+    <div  id="store" 
+          style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(5, 1fr)',
+                  gridTemplateRows: '30px',
+                  gridGap: '5px'    
+                  }}>
+
+        <div  style={{
+                      gridColumn: '1 / span 5',
+                      backgroundColor: '#def8ff',   
+                      }}>
+            STORE
+        </div>
+
+        <div  style={{ gridColumn: '1 / span 1', backgroundColor: '#eee'}}>NAME</div>
+        <div  style={{ gridColumn: '2 / span 1', backgroundColor: '#eee'}}>TYPE</div>
+        <div  style={{ gridColumn: '3 / span 1', backgroundColor: '#eee'}}>ARRAY</div>
+        <div  style={{ gridColumn: '4 / span 1', backgroundColor: '#eee'}}>INITIAL</div>
+        <div  style={{ gridColumn: '5 / span 1', backgroundColor: '#eee'}}>ACTION</div>
+
+
+        {reducers[reducer].store &&
+          Object.keys(reducers[reducer].store).map(store => (
+            <React.Fragment>
+        <div  style={{ gridColumn: '1 / span 1'}} key={`store${store}`}>{store}</div>
+        <div  style={{ gridColumn: '2 / span 1'}}>{reducers[reducer].store[store].type}</div>   
+        <div  style={{ gridColumn: '3 / span 1'}}>{reducers[reducer].store[store].array ? '✓' : '×'}</div>   
+        <div  style={{ gridColumn: '4 / span 1'}}>{reducers[reducer].store[store].initialValue}</div>
+        <div  style={{ gridColumn: '5 / span 1'}}>
                     <IconButton
                       aria-label={`delete store item "${store}"`}
                       onClick={() => deleteProperty(store)}>
                       <Icon>delete</Icon>
                     </IconButton>
-                  </td>
-                </tr>
+        </div>
+        </React.Fragment>
               ))}
-          </tbody>
-        </table>
-      </div>
-      <ErrorMessage validation={validation} visible={isVisible} />
-      <form className="new-store-item">
-        <TextField
-          label="name"
-          value={propertyName}
-          onChange={() => {
-            handleChange(event, setPropertyName);
-          }}
-          required
-        />
-        <TypeSelect
-          selectName="store-property-type"
-          outer={reducer}
-          interfaces={interfaces}
-          value={propertyType}
-          handleChange={(event: Event) => {
-            handleChange(event, setPropertyType);
-          }}
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={propertyIsArray}
+ 
+
+        <ErrorMessage validation={validation} visible={isVisible} />
+       
+        <div  style={{ gridColumn: '1 / span 1'}}>
+            <TextField
+              label="name"
+              value={propertyName}
               onChange={() => {
-                handleChange(event, setPropertyIsArray);
+                handleChange(event, setPropertyName);
               }}
-            />
-          }
-          label="array"
-        />
+              required />
+        </div>
+        <div  style={{ gridColumn: '2 / span 1'}}>
+            <TypeSelect
+              selectName="store-property-type"
+              outer={reducer}
+              interfaces={interfaces}
+              value={propertyType}
+              handleChange={(event: Event) => {
+                handleChange(event, setPropertyType);
+              }} />
+        </div>
+        <div  style={{ gridColumn: '3 / span 1'}}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={propertyIsArray}
+                  onChange={() => {
+                    handleChange(event, setPropertyIsArray);
+                  }}
+                />
+              }
+              label="array" />
+        </div>
+        <div  style={{ gridColumn: '4 / span 1'}}>
         <TextField
           label="initial value"
           value={propertyInitialValue}
@@ -136,14 +146,20 @@ const Store = (props: any) => {
           }}
           required
         />
+        </div>
+        <div  style={{ gridColumn: '5 / span 1'}}>        
         <IconButton
           aria-label="add property to store"
           onClick={addProperty}
           className={validation.isValid && propertyType && propertyInitialValue ? '' : 'disabled'}>
           <Icon>add</Icon>
         </IconButton>
-      </form>
+        </div>
+
+     
     </div>
+    </form>
+    </React.Fragment>
   );
 };
 

@@ -5,6 +5,8 @@
 @import './components/HtmlAttr.css';
 @import './components/Interfaces.css';
 @import './components/Interface.css';
+@import './components/BottomTabs.css';
+@import './components/Reducers.css';
 
 body {
   margin: 0;

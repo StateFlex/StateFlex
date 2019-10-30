@@ -9,6 +9,7 @@ import { ReducersInterface, InputValidation } from '../utils/InterfaceDefinition
 import Reducer from './Reducer';
 import validateInput from '../utils/validateInput.util';
 import ErrorMessage from './ErrorMessage';
+import Button from '@material-ui/core/Button';
 
 const mapDispatchToProps = (dispatch: any) => ({
   setReducer: (reducer: ReducersInterface) => dispatch(actions.setReducer(reducer)),
@@ -64,11 +65,39 @@ class Reducers extends Component<PropsInterface, StateInterface> {
 
   render() {
     return (
-      <section>
-        <Tooltip title="define redux reducers" aria-label="define redux reducers" placement="left">
-          <h2>Reducers</h2>
-        </Tooltip>
-        <div id="reducers">
+  <section>
+  <form id="new-reducer">
+  <div className="Reducers">
+    
+        
+    <div className="Reducers-submit">
+              <Button
+                aria-label="Add Reducer"
+                onClick={this.createReducer}
+                type="submit"
+                variant="contained"
+                size="large">
+                ADD REDUCER
+              </Button>
+    </div>
+
+    <div className="Reducers-input">
+              <TextField
+                label="new reducer"
+                value={this.state.nameInput}
+                onChange={this.handleChange}
+                onKeyPress={(event) => {
+                  if (event.key === 'Enter') {
+                    this.createReducer();
+                    event.preventDefault();
+                  }
+                }}
+                required
+              />
+    </div>
+    
+   
+    <div className="Reducers-values">
           {this.props.reducers
             && Object.keys(this.props.reducers).map(reducer => (
               <Reducer
@@ -80,29 +109,12 @@ class Reducers extends Component<PropsInterface, StateInterface> {
                 key={`reducer${reducer}`}
               />
             ))}
-        </div>
+    </div>
         <ErrorMessage validation={this.state.validation} visible={this.state.isVisible} />
-        <form id="new-reducer">
-          <TextField
-            label="new reducer"
-            value={this.state.nameInput}
-            onChange={this.handleChange}
-            onKeyPress={(event) => {
-              if (event.key === 'Enter') {
-                this.createReducer();
-                event.preventDefault();
-              }
-            }}
-            required
-          />
-          <IconButton
-            aria-label="create reducer"
-            onClick={this.createReducer}
-            className={this.state.validation.isValid ? '' : 'disabled'}>
-            <Icon>add</Icon>
-          </IconButton>
-        </form>
-      </section>
+  
+</div>
+</form>
+</section>
     );
   }
 }

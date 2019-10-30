@@ -1,0 +1,8 @@
+.BottomTabs-scroll {
+    height: 40vh;
+    overflow-y:scroll; 
+    background:#fff;
+    padding-bottom: 40px;
+}
+
+

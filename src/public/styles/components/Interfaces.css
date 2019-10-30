@@ -1,11 +1,11 @@
 .Interfaces {
     display: grid;
-    width: 99%;
     height: 100%;
-    grid-template-columns:  repeat(2, 1fr) 62%; 
+    grid-template-columns:  repeat(2, 1fr) 60%; 
     grid-template-rows: 60px 1fr; 
     margin-top: 16px;
     margin-left: 20px;
+    margin-bottom: 20px;
     flex: 1;
   }
 
@@ -24,5 +24,6 @@
   .Interfaces-values {
     grid-column: 1 / span 3;
     grid-row: 2 / span 1;
+    overflow-y: scroll;
   }
 

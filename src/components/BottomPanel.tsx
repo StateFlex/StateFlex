@@ -26,12 +26,14 @@ class BottomPanel extends Component<PropsInt> {
     const { components, focusComponent, focusChild, reduxView } = this.props;
 
     return (
+
         <BottomTabs
           components={components}
           focusComponent={focusComponent}
           focusChild={focusChild}
           reduxView={reduxView}
         />
+
     );
   }
 }

@@ -1,12 +1,35 @@
-.Interface {
-
+.Interface-container {
+    display: grid;
+    grid-template-columns:  repeat(4, 1fr) 20%;
+    grid-template-rows: 1fr;
 }
 
-.Interface-property {
+.Interface-StoreItemHeader {
+    grid-column: 1 / span 4;
+    background-color: #eee;
+}    
 
+
+.Interface-StoreItemProperty-name {
+    grid-column: 1 / span 1;
+    grid-row: auto;
+    background-color: rgb(255, 255, 255);
 }
 
-.Interface- {
-
+.Interface-StoreItemProperty-type {
+    grid-column: 2 / span 1;
+    grid-row: auto;
+    background-color: rgb(255, 255, 255);
 }
 
+.Interface-StoreItemProperty-required {
+    grid-column: 3 / span 1;
+    grid-row: auto;
+    background-color: rgba(255, 255, 255, 0.927);
+}
+
+.Interface-StoreItemProperty-delete {
+    grid-column: 4 / span 1;
+    grid-row: auto;
+    background-color: rgb(255, 255, 255);
+}

@@ -14,6 +14,7 @@ import ComponentReduxSetup from './ComponentReduxSetup';
 import LocalState from './LocalState';
 import AppBar from '@material-ui/core/AppBar';
 import theme from './theme';
+import { Grid } from '@material-ui/core';
 
 interface PropsInt {
   focusChild: ChildInt;
@@ -36,7 +37,7 @@ const styles = (theme: any): any => ({
   },
 
     root: {
-      flexGrow: 1,
+ 
       backgroundColor: 'white',
       height: '100%',
       width: '100%',
@@ -248,7 +249,7 @@ class BottomTabs extends Component<PropsInt> {
           } */}
         </Tabs>
         </AppBar>
-        <div>
+        <div className="BottomTabs-scroll">
        
           {/* {reduxView && value === 5 && <CodePreview focusComponent={focusComponent} components={components} />}
           {!reduxView && value === 5 && <ReactCodePreview focusComponent={focusComponent} components={components} />} */}

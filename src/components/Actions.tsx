@@ -74,59 +74,67 @@ const Actions = (props: any) => {
   };
 
   return (
-    <div id="actions">
-      <Tooltip
-        title="add an action to this reducer whose action creator takes in a parameter and dispatches an action with a payload"
-        aria-label="add an action to this reducer whose action creator takes in a parameter and dispatches an action with a payload"
-        placement="left">
-        <h4>Actions</h4>
-      </Tooltip>
-      <div className="table-wrapper">
-        <table>
-          <tbody>
-            <tr>
-              <th>name</th>
-              <th>async</th>
-              <th>parameter</th>
-              <th>parameter type</th>
-              <th>parameter array</th>
-              <th>payload type</th>
-              <th>payload array</th>
-              <th></th>
-            </tr>
-            {reducers[reducer].actions
-              && Object.keys(reducers[reducer].actions).map(action => (
-                <tr key={`action${action}`}>
-                  <td>{action}</td>
-                  <td>{reducers[reducer].actions[action].async ? '✓' : '×'}</td>
-                  <td>{reducers[reducer].actions[action].parameter.name}</td>
-                  <td>{reducers[reducer].actions[action].parameter.type}</td>
-                  <td>{reducers[reducer].actions[action].parameter.array ? '✓' : '×'}</td>
-                  <td>{reducers[reducer].actions[action].payload.type}</td>
-                  <td>{reducers[reducer].actions[action].payload.array ? '✓' : '×'}</td>
-                  <td className="property-controls">
-                    <IconButton
-                      aria-label={`delete action "${action}"`}
-                      onClick={() => deleteProperty(action)}>
-                      <Icon>delete</Icon>
-                    </IconButton>
-                  </td>
-                </tr>
+    <React.Fragment>
+    <form className="new-action-item">
+<div           style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(8, 1fr)',
+                  gridTemplateRows: '30px',
+                  gridGap: '5px'    
+                  }}>
+
+
+<div   style={{ gridColumn: '1 / span 8',
+                backgroundColor: '#def8ff', 
+                }}>ACTIONS</div>
+
+    <div    style={{ gridColumn: '1 / span 1', backgroundColor: '#eee', height: '40px'}}>NAME</div>
+    <div    style={{ gridColumn: '2 / span 1', backgroundColor: '#eee', height: '40px'}}>ASYNC</div>
+    <div     style={{ gridColumn: '3 / span 1', backgroundColor: '#eee', height: '40px'}}>PARAMETER</div>
+    <div    style={{ gridColumn: '4 / span 1', backgroundColor: '#eee', height: '40px'}}>PARAMETER TYPE</div>
+    <div    style={{ gridColumn: '5 / span 1', backgroundColor: '#eee', height: '40px'}}>PARAMETER ARRAY</div>
+    <div    style={{ gridColumn: '6 / span 1', backgroundColor: '#eee', height: '40px'}}>PAYLOAD TYPE</div>
+    <div    style={{ gridColumn: '7 / span 1', backgroundColor: '#eee', height: '40px'}}>PAYLOAD ARRAY</div>
+    <div    style={{ gridColumn: '8 / span 1', backgroundColor: '#eee', height: '40px'}}>ACTION</div>
+
+    
+    {reducers[reducer].actions && 
+      Object.keys(reducers[reducer].actions).map(action => (
+        <React.Fragment>
+
+    <div  style={{ gridColumn: '1 / span 1'}} key={`action${action}`}>{action}</div>
+    <div  style={{ gridColumn: '2 / span 1'}}>{reducers[reducer].actions[action].async ? '✓' : '×'}</div>
+    <div  style={{ gridColumn: '3 / span 1'}}>{reducers[reducer].actions[action].parameter.name}</div>
+    <div  style={{ gridColumn: '4 / span 1'}}>{reducers[reducer].actions[action].parameter.type}</div>
+    <div   style={{ gridColumn: '5 / span 1'}}>{reducers[reducer].actions[action].parameter.array ? '✓' : '×'}</div>
+    <div  style={{ gridColumn: '6 / span 1'}}>{reducers[reducer].actions[action].payload.type}</div>
+    <div  style={{ gridColumn: '7 / span 1'}}>{reducers[reducer].actions[action].payload.array ? '✓' : '×'}</div>
+    <div  style={{ gridColumn: '8 / span 1'}}>
+                      <IconButton
+                        aria-label={`delete action "${action}"`}
+                        onClick={() => deleteProperty(action)}>
+                        <Icon>delete</Icon>
+                      </IconButton>
+    </div>
+    </React.Fragment>
               ))}
-          </tbody>
-        </table>
+
+
+            <ErrorMessage validation={nameValidation} visible={nameIsVisible} />
+
+      <div  style={{ gridColumn: '1 / span 1'}}>
+                <TextField
+                  label="name"
+                  value={propertyName}
+                  onChange={() => {
+                    handleChange(event, setPropertyName, setNameValidation);
+                  }}
+                  required
+                />
       </div>
-      <form className="new-action-item">
-        <ErrorMessage validation={nameValidation} visible={nameIsVisible} />
-        <div>
-          <TextField
-            label="name"
-            value={propertyName}
-            onChange={() => {
-              handleChange(event, setPropertyName, setNameValidation);
-            }}
-            required
-          />
+
+
+      <div  style={{ gridColumn: '2 / span 1'}}>
           <FormControlLabel
             control={
               <Checkbox
@@ -136,81 +144,101 @@ const Actions = (props: any) => {
                 }}
               />
             }
-            label="async"
-          />
-        </div>
+            label="array" />
+      </div>
+
         <ErrorMessage validation={parameterNameValidation} visible={parameterNameIsVisible} />
-        <span>Parameter</span>
-        <div className="parameter-properties">
-          <TextField
-            label="name"
-            value={parameterName}
-            onChange={() => {
-              handleChange(event, setParameterName, setParameterNameValidation);
-            }}
-            required
-          />
-          <TypeSelect
-            selectName="parameter-type"
-            outer={reducer}
-            interfaces={interfaces}
-            value={parameterType}
-            handleChange={(event: Event) => {
-              handleChange(event, setParameterType);
-            }}
-            required
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={parameterIsArray}
-                onChange={() => {
-                  handleChange(event, setParameterIsArray);
-                }}
-              />
-            }
-            label="array"
-          />
-        </div>
-        <ErrorMessage validation={nameValidation} visible={false} />
-        <span>Payload</span>
-        <div className="payload-properties">
-          <TypeSelect
-            selectName="payload-type"
-            outer={reducer}
-            interfaces={interfaces}
-            value={payloadType}
-            handleChange={(event: Event) => {
-              handleChange(event, setPayloadType);
-            }}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={payloadIsArray}
-                onChange={() => {
-                  handleChange(event, setPayloadIsArray);
-                }}
-              />
-            }
-            label="array"
-          />
-        </div>
-        <IconButton
-          aria-label="add action"
-          onClick={addProperty}
-          className={
-            nameValidation.isValid
-            && parameterNameValidation.isValid
-            && parameterType
-            && payloadType
-              ? ''
-              : 'disabled'
-          }>
-          <Icon>add</Icon>
-        </IconButton>
-      </form>
-    </div>
+
+      <div  style={{ gridColumn: '3 / span 1'}}>
+                <TextField
+                  label="name"
+                  value={parameterName}
+                  onChange={() => {
+                    handleChange(event, setParameterName, setParameterNameValidation);
+                  }}
+                  required
+                />
+      </div>
+
+
+      <div  style={{ gridColumn: '4 / span 1'}}>
+
+                <TypeSelect
+                  selectName="parameter-type"
+                  outer={reducer}
+                  interfaces={interfaces}
+                  value={parameterType}
+                  handleChange={(event: Event) => {
+                    handleChange(event, setParameterType);
+                  }}
+                  required
+                />
+      </div>
+
+      <div  style={{ gridColumn: '5 / span 1'}}>   
+
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={parameterIsArray}
+                      onChange={() => {
+                        handleChange(event, setParameterIsArray);
+                      }}
+                    />
+                  }
+                  label="array"
+                />
+      </div>
+
+      <ErrorMessage validation={nameValidation} visible={false} />
+
+
+      <div  style={{ gridColumn: '6 / span 1'}}>
+    
+                <TypeSelect
+                  selectName="payload-type"
+                  outer={reducer}
+                  interfaces={interfaces}
+                  value={payloadType}
+                  handleChange={(event: Event) => {
+                    handleChange(event, setPayloadType);
+                  }}
+                />
+      </div>
+
+
+      <div  style={{ gridColumn: '7 / span 1'}}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={payloadIsArray}
+                      onChange={() => {
+                        handleChange(event, setPayloadIsArray);
+                      }}
+                    />
+                  }
+                  label="array"
+                />
+      </div>
+
+      <div  style={{ gridColumn: '8 / span 1'}}>
+              <IconButton
+                aria-label="add action"
+                onClick={addProperty}
+                className={
+                  nameValidation.isValid
+                  && parameterNameValidation.isValid
+                  && parameterType
+                  && payloadType
+                    ? ''
+                    : 'disabled'
+                }>
+                <Icon>add</Icon>
+              </IconButton>
+      </div>
+</div>
+    </form>
+    </React.Fragment>
   );
 };
 
