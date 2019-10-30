@@ -18,7 +18,7 @@ class CodePreview extends Component<Props> {
     const components: ComponentsInt = this.props.components;
     return (
       // <h1></h1>
-      <div style={{height: '100%', backgroundColor: '#fff', marginTop: '20px'}}>
+      <div data-testid='code-preview' style={{height: '100%', backgroundColor: '#fff', marginTop: '20px'}}>
         <SyntaxHighlighter
           style={style}
           language="javascript"

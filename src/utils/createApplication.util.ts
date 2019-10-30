@@ -13,8 +13,8 @@ function createIndexHtml(path, appName, zip, reduxView) {
     </head>
     <link rel="stylesheet" type="text/css" href="./styles.css">
     <body>
-      <div id="preducks-display">
-        <div id="title">quack quack quack, i'm a preducks app</div>
+      <div id="StateFlex-display">
+        <div id="title">i'm a StateFlex app</div>
         <img id="preduck" src="./preduck.svg"></img>
       </div>
       <div id="root"></div>
@@ -161,7 +161,7 @@ function createPreduckSVG(path, appName, zip) {
 function createStylesCss(path, appName, zip) {
   const dir = path;
   const filePath: string = 'styles.css';
-  const data: string = `#preducks-display {
+  const data: string = `#StateFlex-display {
     margin: -8px -8px 0px -8px;
     display: flex;
     flex-direction: column;

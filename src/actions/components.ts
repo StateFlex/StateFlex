@@ -153,7 +153,7 @@ reduxView: boolean;
   // dispatch({
   //   type: EXPORT_FILES,
   // });
-  const zipFileName = reduxView ? 'preducksApp' : 'reactypeApp';
+  const zipFileName = reduxView ? 'StateFlex Redux App' : 'StateFlex React App';
   const dir = createComponentFiles(components, path, appName, exportAppBool, zip, reduxView);
   dispatch({
     type: EXPORT_FILES_SUCCESS,
@@ -194,7 +194,7 @@ export const createApplication = ({
   path,
   components = [],
   genOption,
-  appName = 'dope_exported_preducks_app',
+  appName = 'dope_exported_StateFlex_app',
   exportAppBool,
   storeConfig,
   reduxView

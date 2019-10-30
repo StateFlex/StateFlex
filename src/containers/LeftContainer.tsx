@@ -244,7 +244,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
 
     const addComponent = (
       <Grid container spacing={2} alignItems="center" direction="row" justify="space-around">
-        <Grid item xs={8}>
+        <Grid item={true} xs={8}>
           <TextField
             id="title-input"
             label="Add component"
@@ -269,7 +269,7 @@ export class LeftContainer extends Component<PropsInt, StateInt> {
             }}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item={true} xs={4}>
           <Fab
             size="medium"
             color="secondary"
