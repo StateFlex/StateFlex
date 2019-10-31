@@ -23,16 +23,10 @@ interface PropsInt {
   reduxView: boolean;
 }
 
-// interface TreeInt {
-//   name: string;
-//   attributes: { [key: string]: { value: string } };
-//   children: TreeInt[];
-// }
-
 const styles = (theme: any): any => ({
   appBarRoot: {
     color: '#000000',
-    backgroundColor: '#61d8f9' //theme.palette.primary.light
+    backgroundColor: '#61d8f9'
   },
 
     root: {
@@ -42,7 +36,6 @@ const styles = (theme: any): any => ({
       width: '100%',
       color: '#000',
       padding: '0px',
-      // boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
     },
     tabsRoot: {
       borderBottom: '0.5px solid #222',
@@ -54,7 +47,7 @@ const styles = (theme: any): any => ({
       textTransform: 'initial',
       minWidth: 72,
       fontWeight: theme.typography.fontWeightRegular,
-      marginRight: 0, //theme.spacing.unit * 4,
+      marginRight: 0, 
   
       fontFamily: [
         '-apple-system',
@@ -85,7 +78,7 @@ const styles = (theme: any): any => ({
       padding: theme.spacing.unit * 3,
     },
     padding: {
-      padding: 0 //`0 ${theme.spacing.unit * 2}px`,
+      padding: 0 
     },
 
   });
@@ -129,12 +122,6 @@ class BottomTabs extends Component<PropsInt> {
     const componentStateCount = focusComponent.componentState.length;
     const htmlAttribCount = focusComponent.childrenArray.filter(child => child.childType === 'HTML')
       .length;
-
-
-
-
-
-
       
     return (
       <div data-testid="bottom-tabs" className={classes.root}>
@@ -215,42 +202,9 @@ class BottomTabs extends Component<PropsInt> {
               />
             </Tooltip>
           }
-
-
-          {/* <Tooltip
-            title="react code preview"
-            aria-label="react code preview"
-            placement="top">
-            <Tab
-            disableRipple
-            classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label={'react code preview'}
-            />
-          </Tooltip> */}
-          {/* {reduxView ?          
-          <Tab
-            disableRipple
-            classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label="Code Preview"
-          />
-          :
-          <Tooltip
-            title="react code preview"
-            aria-label="react code preview"
-            placement="top">
-            <Tab
-              disableRipple
-              classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-              label={'React Code Preview'}
-            />
-          </Tooltip>
-          } */}
         </Tabs>
         </AppBar>
         <div>
-       
-          {/* {reduxView && value === 5 && <CodePreview focusComponent={focusComponent} components={components} />}
-          {!reduxView && value === 5 && <ReactCodePreview focusComponent={focusComponent} components={components} />} */}
           {reduxView && value === 0 && <ComponentReduxSetup focusComponent={focusComponent} />}
           {!reduxView && value === 0 && <Props />}
           {value === 1 && <LocalState focusComponent={focusComponent} />}
@@ -260,7 +214,6 @@ class BottomTabs extends Component<PropsInt> {
           )}
           {value === 3 && <Interfaces />}
           {reduxView && value === 4 && <Reducers />}
-          {/* {!reduxView && value === 2 && focusChild.childType === 'HTML' && <HtmlAttr />} */}
         </div> 
       </div>
     );

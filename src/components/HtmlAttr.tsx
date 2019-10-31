@@ -86,7 +86,6 @@ class HtmlAttr extends Component<PropsInt, StateInt> {
                 aria-label="Save"
        
                 type="submit"
-                // disabled={!this.state.propKey || !this.state.propType}
                 onClick={() => this.handleSave(attr)}
                 variant="contained"
                 size="large">                                     

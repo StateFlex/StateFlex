@@ -17,7 +17,6 @@ test('<CodePreview /> is in the DOM', () => {
     focusComponent={initialAppStateMock.focusComponent} 
     components={initialAppStateMock.components} 
   />);
-//   debug();
   expect(getByTestId('code-preview')).toBeInTheDocument();
   expect(getByTestId('code-preview').tagName).toBe('DIV');
 });
@@ -27,7 +26,6 @@ test('<BottomTabs/> is in the DOM', () => {
     focusComponent={initialAppStateMock.focusComponent} 
     components={initialAppStateMock.components} 
   /></Provider>);
-  // debug();
   expect(getByTestId('bottom-tabs')).toBeInTheDocument();
   expect(getByTestId('bottom-tabs').tagName).toBe('DIV');
 });

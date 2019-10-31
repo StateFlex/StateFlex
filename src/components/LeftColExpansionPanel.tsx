@@ -58,7 +58,6 @@ export const LeftColExpansionPanel = (props: any) => {
           }}>
           <ListItemText
             disableTypography
-            //className={classes.light}
             primary={
               <Typography variant="h6" style={isFocused() ? { color: 'white' } : { color: 'white' }}>
                 {title}

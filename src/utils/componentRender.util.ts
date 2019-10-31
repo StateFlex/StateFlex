@@ -70,11 +70,9 @@ const componentRender = (component: ComponentInt, components: ComponentsInt) => 
   }
 
   function htmlAttrSanitizer(element: string) {
-    // return `'${element}'`;
     return element
       .replace(/[a-z]+/gi, word => word[0].toUpperCase() + word.slice(1))
       .replace(/[-_\s0-9\W]+/gi, '');
-
   }
     
   function componentNameGenerator(child: ChildInt) {

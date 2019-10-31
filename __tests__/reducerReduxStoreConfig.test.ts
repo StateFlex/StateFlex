@@ -7,7 +7,7 @@ import {
   ComponentStateInterface,
 } from '../src/utils/InterfaceDefinitions';
 
-// REDUX STORE CONFIG STUFF
+// REDUX STORE CONFIG
 describe('tests for redux store config', () => {
   let initialState;
 

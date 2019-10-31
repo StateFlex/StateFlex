@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
-// import Input from '@material-ui/core/Input';
 import {
   addSelector,
   deleteSelector,
@@ -17,45 +16,6 @@ import {
 } from '../actions/components';
 import DataTable from './DataTable';
 import { StoreInterface } from '../utils/InterfaceDefinitions';
-
-// const numbersAsStrings = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
-// const reservedWords = [
-//   'break',
-//   'case',
-//   'catch',
-//   'class',
-//   'const',
-//   'continue',
-//   'debugger',
-//   'default',
-//   'delete',
-//   'do',
-//   'else',
-//   'export',
-//   'extends',
-//   'finally',
-//   'for',
-//   'function',
-//   'if',
-//   'import',
-//   'in',
-//   'instanceof',
-//   'new',
-//   'return',
-//   'super',
-//   'switch',
-//   'this',
-//   'throw',
-//   'try',
-//   'typeof',
-//   'var',
-//   'void',
-//   'while',
-//   'with',
-//   'yield',
-//   'enum',
-// ];
 
 const convertToOptions = choices => [
   <option value="" key="" />,
@@ -69,13 +29,9 @@ const convertToOptions = choices => [
 const ComponentReduxSetup: React.FC = (props: any): JSX.Element => {
   const [chosenAction, setChosenAction] = useState('');
   const [chosenSelector, setChosenSelector] = useState('');
-  // const [enteredName, setEnteredName] = useState('');
-  // const [enteredType, setEnteredType] = useState('');
-  // const [enteredValue, setEnteredValue] = useState('');
   const storeConfig = useSelector((store: StoreInterface) => store.workspace.storeConfig);
   const { focusComponent, classes } = props;
   const dispatch = useDispatch();
-  const rowHeader = ['Actions', 'Store Selections'];
   let selectorOptions = [];
   let actionOptions = [];
   Object.keys(storeConfig.reducers).forEach((reducerName) => {
@@ -99,38 +55,6 @@ const ComponentReduxSetup: React.FC = (props: any): JSX.Element => {
       return dispatch(callback(value));
     };
   };
-
-  // const transformIntoVariableName = (string: string): string => string
-  //   .replace(/[^ _$A-Za-z0-9]/g, '')
-  //   .replace(/\s+(\w)/g, (match, $1) => $1.toUpperCase())
-  //   .replace(/\s/g, '');
-
-  // const handleLocalStateSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (numbersAsStrings.includes(enteredName[0])) {
-  //     return;
-  //   }
-  //   if (reservedWords.includes(transformIntoVariableName(enteredName))) {
-  //     return;
-  //   }
-  //   return dispatch(
-  //     setState({
-  //       name: transformIntoVariableName(enteredName),
-  //       type: enteredType,
-  //       initialValue: enteredValue,
-  //     }),
-  //   );
-  // };
-
-  // const editHandler = (row) => {
-  //   const name = row.match(/Name: \w+/)[0].slice(6);
-  //   const type = row.match(/Type: \w+/)[0].slice(6);
-  //   const initialValue = row.match(/Initial Value: \w+/)[0].slice(15);
-  //   dispatch(deleteState(name));
-  //   setEnteredName(name);
-  //   setEnteredType(type);
-  //   setEnteredValue(initialValue);
-  // };
 
   const submitValueUsingAction = (title, value, onChange, onSubmit, choices) => (
     <Grid item={true} xs={3}>
@@ -262,5 +186,4 @@ const styles = theme => ({
   },
 });
 
-// const Placeholder: React.FC = (props): JSX.Element => <div>HI</div>;
 export default withStyles(styles)(ComponentReduxSetup);

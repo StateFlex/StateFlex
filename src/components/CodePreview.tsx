@@ -17,7 +17,6 @@ class CodePreview extends Component<Props> {
     const focusComponent: ComponentInt = this.props.focusComponent;
     const components: ComponentsInt = this.props.components;
     return (
-      // <h1></h1>
       <div data-testid='code-preview' style={{height: '100%', backgroundColor: '#fff', marginTop: '20px'}}>
         <SyntaxHighlighter
           style={style}

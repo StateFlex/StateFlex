@@ -18,7 +18,6 @@ const styles = (theme: any) => ({
     fontSize: '20px',
     borderRadius: '10px',
     backgroundColor: 'white',
-    // overflowX: "auto"
   },
   table: {
     minWidth: 500,
@@ -28,11 +27,6 @@ const styles = (theme: any) => ({
     backgroundColor: 'white',
   },
 });
-
-/** **************************
- * cannot have a row header or a key in the data  called "key"
- * ,ust have unique id
- * ****************************** */
 
 function dataTable(props: any) {
   const {
@@ -51,7 +45,6 @@ function dataTable(props: any) {
       </TableCell>
     ));
   }
-  // style={{height: 30}}
   const renderRows = rowData.map((row: any) => (
     <TableRow key={`${uuid.v4()}`}>
       {renderRowCells(row)}

@@ -1,4 +1,3 @@
-// import configureMockStore from 'redux-mock-store';
 import componentReducer from '../src/reducers/componentReducer';
 import {
   initialAppStateMock,
@@ -115,7 +114,7 @@ describe('deleteChild', () => {
 
     const deleteChildResult = componentReducer(addChildResult, {
       type: types.DELETE_CHILD,
-      payload: 2, // this is confusing bc this is actually the component's ID, not its child ID
+      payload: 2, 
     });
 
     expect(deleteChildResult.focusComponent.childrenArray.length).toEqual(0);
