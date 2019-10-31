@@ -5,19 +5,19 @@
   "author": "StateFlex",
   "main": "main.js",
   "contributors": [
-    "jacob richards",
-    "max gonzalez",
-    "will napier"
+    "Reid Klarsfeld",
+    "Robb Eastman",
+    "Patrick Young",
+    "David Chung"
   ],
   "engines": {
     "node": "12.x"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/oslabs-beta/preducks"
+    "url": "https://github.com/StateFlex/StateFlex"
   },
   "build": {
-    "appId": "com.team-preducks.preducks",
     "copyright": "Copyright © 2019",
     "linux": {
       "target": [
@@ -42,7 +42,7 @@
       "main.js",
       "build/electron"
     ],
-    "productName": "preducks",
+    "productName": "StateFlex",
     "dmg": {
       "contents": [
         {
@@ -70,7 +70,7 @@
     "refresh": "rm -rf ./node_modules ./build && npm install"
   },
   "bin": {
-    "preducks": "./src/index.js"
+    "stateflex": "./src/index.js"
   },
   "preferGlobal": true,
   "license": "MIT",

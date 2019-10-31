@@ -52,7 +52,6 @@ const styles = theme => ({
 
   root: {
     color: '#222'
-
   },
 
   icon: {

@@ -80,6 +80,7 @@ class Interfaces extends Component<PropsInterface, StateInterface> {
           <Button
                 aria-label="Add Interface"
                 type="submit"
+                onClick={this.createInterface}
                 variant="contained"
                 size="large">
                 ADD INTERFACE
