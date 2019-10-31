@@ -9,7 +9,7 @@ React, as its name implies, seamlessly reflects changes in state. However, as st
 
 ## THE SOLUTION
 
-**StateFlex** is a visual prototyping tool for developers utilizing **React** as their front-end architechture. The application provides the user the ability to implement either **React** as a means to manage state, or incorporate **Redux** when the needs of the project require it, all of which are written in **TypeScript** safe code.\
+**StateFlex** is a visual prototyping tool for developers utilizing **React** as their front-end architecture. The application provides the user the ability to implement either **React** as a means to manage state, or incorporate **Redux** when the needs of the project require it, all of which are written in **TypeScript** safe code.\
 This means **StateFlex** will generate **React/Redux** code in a **TypeScript** environment as a launching pad for your application. 
 
 At the heart of **StateFlex** is the _component visualization tree_ which provides the user a _real-time_ reflection of their application hierarchy. As the user engages with the GUI and builds their component tree and selects their preferences, the code is dynamically displayed in the _code preview_. _Reducers_, _Interfaces_, _React Hooks_ and more are all features **StateFlex** offers for this highly _customizable_ prototyping tool and experience. 
