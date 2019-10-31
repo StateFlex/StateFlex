@@ -4,6 +4,7 @@ import { handleClose } from '../actions/components';
 import BottomTabs from './BottomTabs';
 import { ComponentInt, ComponentsInt, ChildInt } from '../utils/InterfaceDefinitions';
 
+//This is contemplated functionality that was never completed and is being preserved for subsequent iteration
 const mapDispatchToProps = (dispatch: any) => ({
   handleNotificationClose: () => dispatch(handleClose()),
 });
@@ -22,7 +23,6 @@ interface PropsInt {
 
 class BottomPanel extends Component<PropsInt> {
   render() {
-    console.log('reduxView in BottomPanel is', this.props.reduxView)
     const { components, focusComponent, focusChild, reduxView } = this.props;
 
     return (

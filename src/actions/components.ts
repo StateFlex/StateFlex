@@ -19,9 +19,7 @@ import {
   CHANGE_FOCUS_COMPONENT,
   CHANGE_FOCUS_CHILD,
   CHANGE_COMPONENT_FOCUS_CHILD,
-  EXPORT_FILES,
   EXPORT_FILES_SUCCESS,
-  EXPORT_FILES_ERROR,
   HANDLE_CLOSE,
   HANDLE_TRANSFORM,
   CREATE_APPLICATION,
@@ -40,21 +38,20 @@ import {
   DELETE_ACTION_FROM_COMPONENT,
   SET_REDUCER,
   DELETE_REDUCER,
-  // RENAME_REDUCER,
   SET_INTERFACE,
   DELETE_INTERFACE,
-  // RENAME_INTERFACE,
   SET_STATE,
   DELETE_STATE,
-  // RENAME_STATE,
 } from '../actionTypes/index.js';
 
 import { loadState } from '../localStorage';
 import createComponentFiles from '../utils/createComponentFiles.util';
 import createApplicationUtil from '../utils/createApplication.util';
+//components.ts file stores all of the action creators
 
 const zip = new JSZip();
 
+//loads data on mounting of application container
 export const loadInitData = () => (dispatch: any) => {
   loadState().then((data: any) => dispatch({
     type: LOAD_INIT_DATA,
@@ -81,7 +78,7 @@ HTMLInfo: object;
 };
 
 export const deleteChild = (childToDeleteId?: number) => (dispatch: any) => {
-  // with no payload, it will delete focusd child
+  // with no payload, it will delete focused child
   dispatch({ type: DELETE_CHILD, payload: childToDeleteId });
 };
 
@@ -92,7 +89,7 @@ export const deleteComponent = ({
 componentId: number;
 stateComponents: ComponentsInt;
 }) => (dispatch: any) => {
-  // find all places where the "to be deleted" is a child and do what u gotta do
+  // find all places where the "to be deleted" is a child 
   stateComponents.forEach((parent: ComponentInt) => {
     parent.childrenArray
       .filter((child: ChildInt) => child.childComponentId === componentId)
@@ -150,10 +147,6 @@ exportAppBool: boolean;
 reduxView: boolean;
 }) => (dispatch: any) => {
   // this dispatch sets the global state property 'loading' to true until the createComponentFiles call resolves below
-  // dispatch({
-  //   type: EXPORT_FILES,
-  // });
-  const zipFileName = reduxView ? 'StateFlex Redux App' : 'StateFlex React App';
   const dir = createComponentFiles(components, path, appName, exportAppBool, zip, reduxView);
   dispatch({
     type: EXPORT_FILES_SUCCESS,
@@ -164,14 +157,14 @@ reduxView: boolean;
   }, function (err) {
     console.log(err);
   });
-  
 };
-
+//This is contemplated functionality that was never completed and is being preserved for subsequent iteration
 export const handleClose = () => ({
   type: HANDLE_CLOSE,
   payload: false,
 });
 
+//This is contemplated functionality that was never completed and is being preserved for subsequent iteration
 export const handleTransform = (
   componentId: number,
   childId: number,

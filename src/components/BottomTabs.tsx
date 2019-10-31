@@ -119,7 +119,6 @@ class BottomTabs extends Component<PropsInt> {
   }
 
   render() {
-    console.log('reduxView in Bottom Tabs is', this.props.reduxView)
     const {
       classes, components, focusComponent, focusChild, reduxView
     } = this.props;

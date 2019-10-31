@@ -13,13 +13,6 @@ interface PropsInt {
 
 
 const RightPanel = ({focusComponent, components, reduxView}) => {
-  console.log('reduxView in RightPanel', reduxView)
-  // let codePreview;
-  // if (reduxView) {
-  //   codePreview = (<CodePreview focusComponent={focusComponent} components={components} />);
-  // } else {
-  //   codePreview = (<ReactCodePreview />);
-  // }
   return (
     <div>
       {reduxView && <CodePreview focusComponent={focusComponent} components={components} />}

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import RightPanel from '../components/RightPanel';
 import BottomPanel from '../components/BottomPanel';
-import theme from '../components/theme';
 
 import {
   handleTransform,
@@ -12,7 +10,6 @@ import {
 } from '../actions/components';
 import { ComponentInt, ComponentsInt } from '../utils/InterfaceDefinitions';
 import TreeDisplay from '../components/NewTreeDisplay';
-import Grid from '@material-ui/core/Grid';
 
 interface PropsInt {
   components?: ComponentsInt;
@@ -35,7 +32,8 @@ interface StateInt {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-  handleTransformation: (
+//This is contemplated functionality that was never completed and is being preserved for subsequent iteration
+handleTransformation: (
     componentId: number,
     childId: number,
     {
@@ -49,8 +47,9 @@ const mapDispatchToProps = (dispatch: any) => ({
       height,
     }),
   ),
-  // openPanel: component => dispatch(openExpansionPanel(component)),
   changeFocusChild: ({ childId }: { childId: number }) => dispatch(changeFocusChild({ childId })),
+
+  //The below method is contemplated functionality that was never completed and is being preserved for subsequent iteration
   changeComponentFocusChild: ({ componentId, childId }: { componentId: number; childId: number }) => dispatch(changeComponentFocusChild({ componentId, childId })), // if u send no prms, function will delete focus child.
 });
 
@@ -92,7 +91,6 @@ class MainContainer extends Component<PropsInt, StateInt> {
   }
 
   render() {
-    console.log('reduxView in Main is', this.props.reduxView)
     const { modal } = this.state;
     const {
       components, focusComponent, focusChild, classes, reduxView

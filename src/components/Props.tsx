@@ -115,15 +115,6 @@ const availablePropTypes = {
   enum: 'ENUM',
 };
 
-// const typeOptions = [
-//   <option value="" key="" />,
-//   ...Object.keys(availablePropTypes).map(type => (
-//     <option value={type} key={type} style={{ color: '#000' }}>
-//       {type}
-//     </option>
-//   )),
-// ];
-
 const convertToOptions = choices => [
   <option value="" key="" />,
   choices.map(choice => (
@@ -167,11 +158,6 @@ class Props extends Component {
     propType: type,
     });
     return callback(row.id);
-    
-    // dispatch(deleteState(name));
-    // setEnteredName(name);
-    // setEnteredType(type);
-    // setEnteredValue(initialValue);
     };
 
   handleAddProp = (event) => {
@@ -246,7 +232,7 @@ class Props extends Component {
     } = this.props;
 
     const rowHeader = ['_Key', 'Value', 'Type', 'Required'];
-    // prepare the saved Props in a nice way, so you can sent them to TableData
+    // prepare the saved Props in a nice way, so you can send them to TableData
     const propsRows = focusComponent.props.map(prop => ({
       _Key: prop.key,
       Value: prop.value,
@@ -257,33 +243,19 @@ class Props extends Component {
 
     return (
       <Fragment>
-          <form 
-                onSubmit={this.handleAddProp}
-                >
-
-          <div 
-                className="bottom-panel-props">
-
-
-
-          <div 
-                className="bottom-panel-props-submit">
-          <Button
+        <form onSubmit={this.handleAddProp}>
+          <div className="bottom-panel-props">
+            <div className="bottom-panel-props-submit">
+              <Button
                 aria-label="Add"
-       
                 type="submit"
-                // disabled={!this.state.propKey || !this.state.propType}
                 variant="contained"
                 size="large">                                     
                 ADD PROP
-          </Button>
-          </div>
-
-
-
-          <div 
-                className="bottom-panel-props-key">
-          <TextField
+              </Button>
+            </div>
+            <div className="bottom-panel-props-key">
+              <TextField
                 id="propKey"
                 label="Key"
                 autoFocus
@@ -291,43 +263,34 @@ class Props extends Component {
                 value={this.state.propKey}
                 required
                 InputProps={{
-                      className: classes.input,
+                  className: classes.input,
                             }}
                 InputLabelProps={{
-                      className: classes.input,
+                  className: classes.input,
                 }}/>
+            </div>
+          <div className="bottom-panel-props-value">
+            <TextField
+              id="propValue"
+              label="Value"
+              onChange={this.handleChange}
+              InputProps={{
+                className: classes.input,
+              }}
+              InputLabelProps={{
+                className: classes.input,
+              }}
+              value={this.state.propValue} 
+            />
           </div>
-
-
-
-
-          <div 
-                className="bottom-panel-props-value">
-          <TextField
-                id="propValue"
-                label="Value"
-                onChange={this.handleChange}
-                InputProps={{
-                  className: classes.input,
-                }}
-                InputLabelProps={{
-                  className: classes.input,
-                }}
-                value={this.state.propValue} 
-                />
-          </div>
-
-
-
-          <div 
-                className="bottom-panel-props-type">
-        <FormControl required>
-        <InputLabel 
+          <div className="bottom-panel-props-type">
+            <FormControl required>
+              <InputLabel 
                 className={classes.input} 
                 htmlFor="propType">
                 Type
-        </InputLabel>
-        <Select
+              </InputLabel>
+              <Select
                 native
                 className={classes.input}
                 id="propType"
@@ -349,55 +312,46 @@ class Props extends Component {
                   'emum',
                   ...Object.keys(this.props.storeConfig.interfaces),
                   ])}
-        </Select>
-        </FormControl>
-        </div>
-
-
-        <div 
-                className="bottom-panel-props-required">
-                <Grid container 
-                      spacing={0}
-                      justify="flex-start"
-                      alignItems="flex-end"
-                      direction='row'>
-                        <RequiredSwitchPaper>
-                <Grid item={true} xs={6}>
-                <InputLabel 
-                        className={classes.input} htmlFor="propRequired"
-                        >
-                        Required?
-                </InputLabel>
-                </Grid>
-                <Grid item={true} xs={6}>
-                <RequiredSwitch
+                </Select>
+              </FormControl>
+            </div>
+            <div className="bottom-panel-props-required">
+              <Grid 
+                container 
+                spacing={0}
+                justify="flex-start"
+                alignItems="flex-end"
+                direction='row'>
+                  <RequiredSwitchPaper>
+                    <Grid item={true} xs={6}>
+                    <InputLabel className={classes.input} htmlFor="propRequired">
+                      Required?
+                    </InputLabel>
+                    </Grid>
+                    <Grid item={true} xs={6}>
+                    <RequiredSwitch
                       checked={this.state.propRequired}
                       onChange={this.togglePropRequired}
                       value="propRequired"
                       id="propRequired"
-                  />
-                </Grid>
+                    />
+                    </Grid>
                 </RequiredSwitchPaper>
-                </Grid>
-        </div>
-
-
-        <div 
-                className="bottom-panel-props-data">
-        <ReactDataTable
+              </Grid>
+            </div>
+            <div className="bottom-panel-props-data">
+              <ReactDataTable
                 rowHeader={rowHeader}
                 rowData={propsRows}
                 deletePropHandler={deleteProp}
                 reactHandler={this.reactHandler}/>
-        </div>
-
-
-        </div>          
+            </div>
+          </div>          
         </form>             
-        </Fragment>      
-      );
-    }
-}
+      </Fragment>      
+    );
+  };
+};
 
 export default connect(
   mapStateToProps,

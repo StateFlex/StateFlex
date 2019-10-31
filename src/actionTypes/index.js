@@ -1,4 +1,4 @@
-// add new action types ADD_SELECTOR, DELETE_SELECTOR, ADD_ACTION, DELETE_ACTION
+// this file contains the constant action types
 
 export const LOAD_INIT_DATA = 'LOAD_INIT_DATA';
 export const ADD_COMPONENT = 'ADD_COMPONENT';
@@ -36,10 +36,7 @@ export const ADD_ACTION_TO_COMPONENT = 'ADD_ACTION_TO_COMPONENT';
 export const DELETE_ACTION_FROM_COMPONENT = 'DELETE_ACTION_FROM_COMPONENT';
 export const SET_REDUCER = 'SET_REDUCER';
 export const DELETE_REDUCER = 'DELETE_REDUCER';
-// export const RENAME_REDUCER = 'RENAME_REDUCER';
 export const SET_INTERFACE = 'SET_INTERFACE';
 export const DELETE_INTERFACE = 'DELETE_INTERFACE';
-// export const RENAME_INTERFACE = 'RENAME_INTERFACE';
 export const SET_STATE = 'SET_STATE';
 export const DELETE_STATE = 'DELETE_STATE';
-// export const RENAME_STATE = 'RENAME_STATE';

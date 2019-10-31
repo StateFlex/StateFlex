@@ -4,7 +4,6 @@ import cloneDeep from './cloneDeep';
 import {
   ComponentInt,
   ApplicationStateInt,
-  ChildrenInt,
   ChildInt,
   ComponentsInt,
   PropInt,
@@ -28,13 +27,6 @@ const initialComponentState: ComponentInt = {
   actions: [],
 };
 
-// export const createNewProject = (state: ApplicationStateInt, reduxView: boolean) => {
-//   return {
-//     ...state,
-//     reduxView: reduxView ? false : true
-//   };
-// };
-
 export const addComponent = (state: ApplicationStateInt, { title }: { title: string }) => {
   // remove whitespace and digits, capitalize first char
   const strippedTitle = title
@@ -57,6 +49,7 @@ export const addComponent = (state: ApplicationStateInt, { title }: { title: str
     };
   }
 
+  //randomizes component color from colors.util folder
   const componentColor = getColor();
   const componentId = state.nextId;
 
@@ -89,7 +82,7 @@ export const addComponent = (state: ApplicationStateInt, { title }: { title: str
     focusComponent: newComponent,
     focusChild: newFocusChild,
     ancestors,
-    selectableChildren, // new component so everyone except yourself is available
+    selectableChildren, // new component so everyone except selected component is available
   };
 };
 
@@ -153,7 +146,7 @@ export const addChild = (
     ...state,
     components,
     focusChild: newChild,
-    focusComponent: component, // refresh the focus component so we have the new child
+    focusComponent: component, // refresh the focus component so component has the new child
   };
 };
 
@@ -173,11 +166,10 @@ export const deleteChild = (
     childId = opts.childId;
     calledFromDeleteComponent = opts.calledFromDeleteComponent;
   }
-  // console.log('parent id, state focusChild', parentId, state.focusChild );
   /** ************************************************
   if no parameters are provided we default to delete the FOCUSED CHILD of the FOCUSED COMPONENTS
-  however when deleting  component we wnt to delete ALL the places where it's used, so we call this function
-  Also when calling from DELETE components , we do not touch focusComponent.
+  however when deleting component we want to delete ALL the places where it's used, so we call this function
+  Also when calling from DELETE components, we do not touch focusComponent.
  ************************************************************************************ */
   if (!parentId) {
     window.alert('Cannot delete root child of a component');
@@ -191,10 +183,10 @@ export const deleteChild = (
     window.alert('Cannot delete root child of a component');
     return state;
   }
-  // make a DEEP copy of the parent component (the one thats about to loose a child)
+  // make a DEEP copy of the parent component (the one thats about to lose a child)
   const parentComponentCopy: any = cloneDeep(state.components.find(c => c.id === parentId));
 
-  // delete the  CHILD from the copied array
+  // delete the CHILD from the copied array
   const indexToDelete = parentComponentCopy.childrenArray.findIndex(
     (elem: ChildInt) => elem.childId === childId || elem.childComponentId === childId,
   );
@@ -326,22 +318,21 @@ export const changeFocusComponent = (
   { title = state.focusComponent.title }: { title: string },
 ) => {
   /** ****************
-   * if the prm TITLE is a blank Object it means REFRESH focusd Components.
+   * if the parameter TITLE is a blank Object it means REFRESH focusd Components.
    * sometimes we update state  like adding Children/Props etc and we want those changes to be reflected in focus component
    ************************************************* */
   const newFocusComp: ComponentInt = state.components.find(comp => comp.title === title);
-  // set the "focus child" to the focus child of this particular component .
-
+  // set the "focus child" to the focus child of this particular component
   let newFocusChild: ChildInt | any; // check if the components has a child saved as a Focus child
   if (newFocusComp.focusChildId > 0) {
     newFocusChild = newFocusComp.childrenArray.find(
       child => child.childId === newFocusComp.focusChildId,
     );
-  }
+  };
 
   if (!newFocusChild) {
     newFocusChild = cloneDeep(state.initialApplicationFocusChild);
-  }
+  };
 
   const result = getSelectable(newFocusComp, state.components);
 
@@ -354,6 +345,7 @@ export const changeFocusComponent = (
   };
 };
 
+//changes HTML focus child within component within left container view
 export const changeFocusChild = (state: ApplicationStateInt, { childId }: { childId: number }) => {
   const focComp = state.components.find(comp => comp.title === state.focusComponent.title);
   let newFocusChild: ChildInt = focComp.childrenArray.find(child => child.childId === childId);
@@ -369,7 +361,7 @@ export const changeFocusChild = (state: ApplicationStateInt, { childId }: { chil
       htmlElement: '',
       HTMLInfo: {},
     };
-  }
+  };
 
   return {
     ...state,
@@ -377,6 +369,7 @@ export const changeFocusChild = (state: ApplicationStateInt, { childId }: { chil
   };
 };
 
+//This is contemplated functionality that was never completed and is being preserved for subsequent iteration
 export const changeComponentFocusChild = (
   state: ApplicationStateInt,
   { componentId, childId }: { componentId: number; childId: number },
@@ -391,6 +384,7 @@ export const changeComponentFocusChild = (
   };
 };
 
+//This is contemplated functionality that was never completed and is being preserved for subsequent iteration
 export const exportFilesSuccess = (
   state: ApplicationStateInt,
   { status, dir }: { status: boolean; dir: string },
@@ -401,6 +395,7 @@ export const exportFilesSuccess = (
   loading: false,
 });
 
+//This is contemplated functionality that was never completed and is being preserved for subsequent iteration
 export const exportFilesError = (
   state: ApplicationStateInt,
   { status, err }: { status: boolean; err: string },
@@ -413,12 +408,14 @@ export const exportFilesError = (
   }
 };
 
+//This is contemplated functionality that was never completed and is being preserved for subsequent iteration
 export const handleClose = (state: ApplicationStateInt, status: string) => ({
   ...state,
   errorOpen: status,
   successOpen: status,
 });
 
+//This is contemplated functionality that was never completed and is being preserved for subsequent iteration
 export const openExpansionPanel = (
   state: ApplicationStateInt,
   { component }: { component: ComponentInt },
@@ -426,6 +423,7 @@ export const openExpansionPanel = (
   ...state,
 });
 
+//Adds props to components via the Component Props tab in BottomTabs
 export const addProp = (
   state: ApplicationStateInt,
   {
@@ -439,8 +437,7 @@ export const addProp = (
     console.log('Add prop error. no focused component ');
     return state;
   }
-  // console.log('state.components', state.components);
-  // console.log('state.storeConfig', state.storeConfig);
+
   const selectedComponent = state.components.find(comp => comp.id === state.focusComponent.id);
 
   const newProp: PropInt = {
@@ -469,6 +466,7 @@ export const addProp = (
   };
 };
 
+//deletes props from components via the Component Props tab in BottomTabs
 export const deleteProp = (state: ApplicationStateInt, propId: number) => {
   if (!state.focusComponent.id) {
     console.log('Delete prop error. no focused component ');
@@ -497,6 +495,7 @@ export const deleteProp = (state: ApplicationStateInt, propId: number) => {
   };
 };
 
+//Updates HTML attributes via the HTML Elements Attributes tab in BottomTabs
 export const updateHtmlAttr = (
   state: ApplicationStateInt,
   { attr, value }: { attr: string; value: string },
@@ -529,6 +528,7 @@ export const updateHtmlAttr = (
   };
 };
 
+//This is contemplated functionality that was never completed and is being preserved for subsequent iteration
 export const updateChildrenSort = (
   state: ApplicationStateInt,
   { newSortValues }: { newSortValues: any },
@@ -558,6 +558,7 @@ export const updateChildrenSort = (
   };
 };
 
+//adds the selected piece of Redux state to the selectors array
 export const addSelector = (state: ApplicationStateInt, payload: string) => {
   const components = [...state.components];
   const index = components.findIndex(comp => comp.title === state.focusComponent.title);
@@ -577,6 +578,7 @@ export const addSelector = (state: ApplicationStateInt, payload: string) => {
   };
 };
 
+//deletes the selected piece of Redux state from the selectors array stored on the component
 export const deleteSelector = (state: ApplicationStateInt, payload: string) => {
   const components = [...state.components];
   const index = components.findIndex(comp => comp.title === state.focusComponent.title);
@@ -592,6 +594,7 @@ export const deleteSelector = (state: ApplicationStateInt, payload: string) => {
   };
 };
 
+//adds the selected action to the actions array stored on the component
 export const addActionToComponent = (state: ApplicationStateInt, payload: string) => {
   const components = [...state.components];
   const index = components.findIndex(comp => comp.title === state.focusComponent.title);
@@ -609,6 +612,7 @@ export const addActionToComponent = (state: ApplicationStateInt, payload: string
   };
 };
 
+//deletes the selected action from the actions array stored on the component
 export const deleteActionFromComponent = (state: ApplicationStateInt, payload: string) => {
   const components = [...state.components];
   const index = components.findIndex(comp => comp.title === state.focusComponent.title);
@@ -624,7 +628,8 @@ export const deleteActionFromComponent = (state: ApplicationStateInt, payload: s
   };
 };
 
-export const setReducer = (state: ApplicationStateInt, payload: ReducersInterface) => { // also for deleting store elements
+//adds Reducer and deletes store elements
+export const setReducer = (state: ApplicationStateInt, payload: ReducersInterface) => {
   const reducerName = Object.keys(payload)[0];
   const reducerStore = payload[reducerName].store;
   const reducerActions = payload[reducerName].actions;
@@ -730,7 +735,6 @@ export const setInterface = (state: ApplicationStateInt, payload: InterfacesInte
 };
 
 export const deleteInterface = (state: ApplicationStateInt, payload: string) => {
-  // console.log('before', state, payload);
   const storeConfig = {
     interfaces: {
       ...state.storeConfig.interfaces,

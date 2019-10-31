@@ -8,12 +8,9 @@ const SRC_DIR = path.join(__dirname, 'src');
 const indexCss = new ExtractTextPlugin('index.css');
 
 const argv = require('minimist')(process.argv.slice(2));
-console.log(argv)
 const targetOption = argv.target;
 // const output = targetOption === 'web' ? 'build/web' : 'build/electron';
-console.log(__dirname);
 const BUILD_DIR = path.join(__dirname, 'build');
-console.log(BUILD_DIR)
 
 const options = {
   // entry: { test: ['babel-polyfill', './index.js'] },

@@ -27,13 +27,10 @@ import {
   deleteActionFromComponent,
   setReducer,
   deleteReducer,
-  // renameReducer,
   setInterface,
   deleteInterface,
-  // renameInterface,
   setState,
   deleteState,
-  // renameState,
 } from '../utils/componentReducer.util';
 import cloneDeep from '../utils/cloneDeep';
 

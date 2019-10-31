@@ -172,7 +172,6 @@ const ComponentReduxSetup: React.FC = (props: any): JSX.Element => {
         </div>
       ) : (
         <div className="props-container" style={{ marginTop: '20px' }}>
-          {/* <Grid container spacing={8}> */}
           <div className="redux-connection-container">
             <h3 style={{ flex: 1, color: '#e0e0e0' }}>add redux connections</h3>
             <Grid item={true} xs={12}>
@@ -208,78 +207,6 @@ const ComponentReduxSetup: React.FC = (props: any): JSX.Element => {
               </div>
             </Grid>
           </div>
-          {/* <div className="local-state-container">
-            <form
-              className="local-state-form"
-              onSubmit={(e) => {
-                handleLocalStateSubmit(e);
-                setEnteredName('');
-                setEnteredType('');
-                setEnteredValue('');
-              }}>
-              <h3 style={{ color: '#e0e0e0' }}>add local state</h3>
-              <FormControl>
-                <InputLabel className={classes.light} htmlFor="localstate-name">
-                  Name:
-                </InputLabel>
-                <Input
-                  className={classes.light}
-                  id="localstate-name"
-                  onChange={handleChange(setEnteredName)}
-                  value={enteredName}
-                />
-              </FormControl>
-              <FormControl>
-                <InputLabel className={classes.light} htmlFor="localstate-type">
-                  Type:
-                </InputLabel>
-                <Select
-                  native
-                  className={classes.light}
-                  id="localstate-type"
-                  placeholder="Type"
-                  onChange={handleChange(setEnteredType)}
-                  value={enteredType}
-                  required>
-                  {convertToOptions([
-                    'number',
-                    'string',
-                    'boolean',
-                    'any',
-                    ...Object.keys(storeConfig.interfaces),
-                  ])}
-                </Select>
-              </FormControl>
-              <FormControl required>
-                <InputLabel className={classes.light} htmlFor="localstate-value">
-                  Value:
-                </InputLabel>
-                <Input
-                  className={classes.light}
-                  id="localstate-value"
-                  onChange={handleChange(setEnteredValue)}
-                  value={enteredValue}
-                />
-              </FormControl>
-              <Button
-                color="primary"
-                aria-label="Add"
-                type="submit"
-                variant="contained"
-                size="large">
-                {'submit'}
-              </Button>
-            </form>
-            <DataTable
-              rowHeader={['local state selections']}
-              rowData={focusComponent.componentState.map(
-                state => `Name: ${state.name}.      Type: ${state.type}.      Initial Value: ${state.initialValue}`,
-              )}
-              deletePropHandler={name => dispatch(deleteState(name.match(/Name: \w+/)[0].slice(6)))}
-              editHandler={row => editHandler(row)}
-            />
-          </div> */}
-          {/* </Grid> */}
         </div>
       )}
     </div>
